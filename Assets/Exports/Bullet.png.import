@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TileSet.png-7c188d357843d7e02416cff3bea4200f.stex"
+path="res://.import/Bullet.png-c314a7fba2877acd97c6ca664e79fbcc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Exports/TileSet.png"
-dest_files=[ "res://.import/TileSet.png-7c188d357843d7e02416cff3bea4200f.stex" ]
+source_file="res://Assets/Exports/Bullet.png"
+dest_files=[ "res://.import/Bullet.png-c314a7fba2877acd97c6ca664e79fbcc.stex" ]
 
 [params]
 
