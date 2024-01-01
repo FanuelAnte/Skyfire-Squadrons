@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+var bullet_scene = preload("res://Scenes/Bullet.tscn")
+onready var position_2d = $Position2D
+
 var wheel_base = 50
 var steering_angle = 15
 
@@ -23,9 +26,17 @@ func get_input():
 	if Input.is_action_pressed("ui_left"):
 		turn -= 1
 		
+	if Input.is_action_just_pressed("ui_accept"):
+		shoot()
+		
 	steer_angle = turn * deg2rad(steering_angle)
 	velocity = Vector2.ZERO
 	velocity = transform.x * speed
+
+func shoot():
+	var b = bullet_scene.instance()
+	owner.add_child(b)
+	b.transform = position_2d.global_transform
 
 func calculate_steering(delta):
 	var rear_wheel = position - transform.x * wheel_base / 2.0

@@ -1,3 +1,8 @@
 {
+<<<<<<< HEAD
   "accentColor": "#8daebf"
+=======
+  "accentColor": "#5ba482",
+  "baseFontSize": 16
+>>>>>>> a786319b2597cca4c9c3ff640da1b8d6c7bf29e6
 }
