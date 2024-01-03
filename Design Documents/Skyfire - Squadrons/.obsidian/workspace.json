@@ -4,8 +4,9 @@
     "type": "split",
     "children": [
       {
-        "id": "36b46cd1eba03758",
+        "id": "640079a5e98bd19f",
         "type": "tabs",
+        "dimension": 44.08163265306123,
         "children": [
           {
             "id": "81ce41c997a9ad16",
@@ -13,7 +14,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Game Overview.md",
+                "file": "Unformatted Ideas.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "36b46cd1eba03758",
+        "type": "tabs",
+        "dimension": 55.91836734693877,
+        "children": [
+          {
+            "id": "3e85ae842b9f054c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Final Design Document.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +89,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 233.5124969482422
   },
   "right": {
     "id": "e10bf0c287eb9aef",
@@ -85,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Game Overview.md",
+                "file": "Final Design Document.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Game Overview.md",
+                "file": "Final Design Document.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Game Overview.md"
+                "file": "Final Design Document.md"
               }
             }
           }
@@ -146,9 +166,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "81ce41c997a9ad16",
+  "active": "3e85ae842b9f054c",
   "lastOpenFiles": [
-    "Untitled.md",
-    "Game Overview.md"
+    "Unformatted Ideas.md",
+    "Final Design Document.md"
   ]
 }

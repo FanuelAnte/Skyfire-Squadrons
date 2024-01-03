@@ -4,12 +4,12 @@ var bullet_scene = preload("res://Scenes/Bullet.tscn")
 onready var position_2d = $Position2D
 
 var wheel_base = 50
-var steering_angle = 15
+var steering_angle = 10
 
 var velocity = Vector2.ZERO
 var steer_angle
 
-var speed = 400
+var speed = 500
 
 func _ready():
 	pass
