@@ -58,5 +58,16 @@ I think I'm in a good position to start prototyping the basic plane locomotion.
 - Plane(KinematicBody2D)
 	- Sprite
 	- CollisionShape2D
+	- Camera2D
 	- AnimationPlayer
-	- LocomotionComponent(Separate Scene, Component, Node2D)
+	- PlaneMovementComponent(Separate Scene, Component, Node2D)
+##### Plane Movement Component
+I'm going to add the velocity manipulation and input handling code here. This Component requires a resource which contains variables for:
+- Plane Speed.
+- Bank Angle.
+- Wingspan.
+
+> I am not aiming for realism with this project. __Game Feel__. That's what comes first.
+
+How am I going to do the movement? The plane's velocity is going to be constant in the forward direction. I'll set a roughly arbitrary value for the forward speed depending on the actual real speed specs of the plane. The wingspan is also going to be set for every plane accordingly. The only value the player changes during flight is the bank angle. There's going to be a basic 15 degree bank while pressing the ___arrow keys___ alone and then a more pronounced 30 degree bank angle when pressing ___shift___.
+I'm going to start by separating the movement function I have in the main plane script out into a component. The component's layout is going to be simple: It's going to have two primary functions; the first to accept input and the second to steer the plane and the second one to calculate the steering.

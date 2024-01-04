@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Exports/TestPlane2.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/PlaneBase.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Components/PlaneMovementComponent.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 14.0
@@ -9,15 +10,14 @@ radius = 14.0
 [node name="PlaneBase" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-
-[node name="Icon" type="Sprite" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
 texture = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 10, -10 )
+[node name="PlaneMovementComponent" parent="." instance=ExtResource( 3 )]
