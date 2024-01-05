@@ -2,13 +2,14 @@
 
 [ext_resource path="res://Assets/Exports/TestPlane2.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/PlaneBase.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Components/PlaneMovementComponent.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Resources/PlaneResources/A6M_Zero.tres" type="Resource" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 14.0
 
 [node name="PlaneBase" type="KinematicBody2D"]
 script = ExtResource( 2 )
+plane_details = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
@@ -19,5 +20,4 @@ current = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-
-[node name="PlaneMovementComponent" parent="." instance=ExtResource( 3 )]
+disabled = true

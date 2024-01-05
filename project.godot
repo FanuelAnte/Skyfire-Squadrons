@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Resource",
+"class": "plane_resource",
+"language": "GDScript",
+"path": "res://Scripts/Resources/plane_stats.gd"
+} ]
+_global_script_class_icons={
+"plane_resource": ""
+}
+
 [application]
 
 config/name="Skyfire Squadrons"
