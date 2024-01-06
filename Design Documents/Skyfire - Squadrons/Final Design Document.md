@@ -104,3 +104,6 @@ turn += sign(stepify(rad2deg(angle), 15)) * 1
 ```
 To make things better, I'm going to make the AI take sharper turns if the angle is more than + or - 90 degrees.
 I feel like most of my time prototyping is going to be spend designing and tuning the AI system. But first, I need to finish up the movement. So far I have implemented the movement management for both the player controlled planes and the AI planes.
+
+> I think I need to add a max-bank angle factor to the plane resource.
+

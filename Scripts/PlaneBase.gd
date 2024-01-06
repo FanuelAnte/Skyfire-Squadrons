@@ -21,7 +21,7 @@ func get_input(delta):
 			turn -= 1
 		
 		if Input.is_action_pressed("increase_bank"):
-			turn *= 1.5
+			turn *= plane_details.max_bank_angle_factor
 		
 	else:
 		var target = get_node(target_node)
@@ -36,7 +36,7 @@ func get_input(delta):
 		if abs(snapped_angle) <= 90:
 			turn += sign(snapped_angle) * 1
 		else:
-			turn += sign(snapped_angle) * 2
+			turn += sign(snapped_angle) * plane_details.max_bank_angle_factor
 			
 		
 	steer_angle = turn * deg2rad(plane_details.bank_angle)
