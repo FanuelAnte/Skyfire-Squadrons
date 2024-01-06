@@ -29,9 +29,15 @@ func get_input(delta):
 		var direction = (target.global_position - self.global_position)
 		var angle = self.transform.x.angle_to(direction)
 		
-		turn += sign(stepify(rad2deg(angle), 15)) * 1
-#		print(stepify(rad2deg(angle), 15))
+		var snapped_angle = stepify(rad2deg(angle), 15)
 		
+		print(snapped_angle)
+		
+		if abs(snapped_angle) <= 90:
+			turn += sign(snapped_angle) * 1
+		else:
+			turn += sign(snapped_angle) * 2
+			
 		
 	steer_angle = turn * deg2rad(plane_details.bank_angle)
 	velocity = Vector2.ZERO
