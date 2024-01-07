@@ -19,14 +19,7 @@
                 "source": false
               }
             }
-          }
-        ]
-      },
-      {
-        "id": "36b46cd1eba03758",
-        "type": "tabs",
-        "dimension": 55.91836734693877,
-        "children": [
+          },
           {
             "id": "3e85ae842b9f054c",
             "type": "leaf",
@@ -34,6 +27,26 @@
               "type": "markdown",
               "state": {
                 "file": "Final Design Document.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "36b46cd1eba03758",
+        "type": "tabs",
+        "dimension": 55.91836734693877,
+        "children": [
+          {
+            "id": "1e91aed88acc818e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Prototype 1.md",
                 "mode": "source",
                 "source": false
               }
@@ -105,7 +118,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Final Design Document.md",
+                "file": "Prototype 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,7 +135,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Final Design Document.md",
+                "file": "Prototype 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -145,7 +158,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Final Design Document.md"
+                "file": "Prototype 1.md"
               }
             }
           }
@@ -166,11 +179,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3e85ae842b9f054c",
+  "active": "1e91aed88acc818e",
   "lastOpenFiles": [
+    "Final Design Document.md",
+    "Prototype 1.md",
     "WIN_20240105_00_19_26_Pro.jpg.import",
     "WIN_20240105_00_19_26_Pro.jpg",
-    "Unformatted Ideas.md",
-    "Final Design Document.md"
+    "Unformatted Ideas.md"
   ]
 }
