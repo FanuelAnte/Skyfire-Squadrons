@@ -6,15 +6,14 @@
       {
         "id": "640079a5e98bd19f",
         "type": "tabs",
-        "dimension": 44.08163265306123,
         "children": [
           {
-            "id": "81ce41c997a9ad16",
+            "id": "d731aa89cb2df78f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Unformatted Ideas.md",
+                "file": "Planes.md",
                 "mode": "source",
                 "source": false
               }
@@ -26,6 +25,18 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "Unformatted Ideas.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "46ca96033062a5a9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "Final Design Document.md",
                 "mode": "source",
                 "source": false
@@ -33,20 +44,19 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       },
       {
-        "id": "36b46cd1eba03758",
+        "id": "6a950672831268e0",
         "type": "tabs",
-        "dimension": 55.91836734693877,
         "children": [
           {
-            "id": "1e91aed88acc818e",
+            "id": "81ce41c997a9ad16",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Prototype 1.md",
+                "file": "Prototype 1, Single player.md",
                 "mode": "source",
                 "source": false
               }
@@ -118,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Prototype 1.md",
+                "file": "Prototype 1, Single player.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -135,7 +145,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Prototype 1.md",
+                "file": "Prototype 1, Single player.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -158,7 +168,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Prototype 1.md"
+                "file": "Prototype 1, Single player.md"
               }
             }
           }
@@ -179,12 +189,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1e91aed88acc818e",
+  "active": "81ce41c997a9ad16",
   "lastOpenFiles": [
     "Final Design Document.md",
-    "Prototype 1.md",
+    "Prototype 1, Single player.md",
+    "Planes.md",
+    "Unformatted Ideas.md",
     "WIN_20240105_00_19_26_Pro.jpg.import",
-    "WIN_20240105_00_19_26_Pro.jpg",
-    "Unformatted Ideas.md"
+    "WIN_20240105_00_19_26_Pro.jpg"
   ]
 }

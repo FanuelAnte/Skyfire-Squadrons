@@ -31,7 +31,7 @@ func get_input(delta):
 		
 		var snapped_angle = stepify(rad2deg(angle), 15)
 		
-		print(snapped_angle)
+#		print(snapped_angle)
 		
 		if abs(snapped_angle) <= 90:
 			turn += sign(snapped_angle) * 1

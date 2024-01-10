@@ -32,3 +32,5 @@ This is the other essential gameplay mechanic. This involves:
 
 > Aircraft carriers, submarines, AA guns, Navy Ships.
 
+> Bullets have owners to signify who shot them to allow for identification of who got the kill.
+
