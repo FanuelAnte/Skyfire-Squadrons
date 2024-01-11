@@ -34,7 +34,6 @@ To figure out what is going to be included in this version, I'm going to divide 
 #### Music
 - [ ] Single 5 - 10 minute Cue
 - [ ] Basic Dynamic Music System
-
 # Gameplay
 ### Plane Controls and Movement
 This involves basic forward movement, which happens at a predefined fixed speed unless you're out of fuel, and side-to-side turning at two different bank angles. The flight controls consists of three buttons: ___Left arrow___ (to turn left at the base bank angle), ___Right arrow___ (to turn right at the base bank angle), and ___Shift___ (to increase the bank angle). 
@@ -61,6 +60,9 @@ var new_heading = (front_wheel - rear_wheel).normalized()
 velocity = new_heading * velocity.length()
 rotation = new_heading.angle()
 ```
+I'm thinking of making the movement controller it's own component. I have two possible ways of approaching it:
+1. Use get_parent() to get the plane body and apply move_and_slide() and the rotation.
+2. Use an export variable to get the parent node.
 ### Enemy Movement AI
 This applies to both ___Enemy___ and ___Ally___ AI. The behavior I have so far is that once a target is set, which is set by me at the moment, the plane follows it. It utilizes the same movement logic as the player controller, the only difference being that the turn angle is set based on the angle between the heading of the plane itself and the target.
 ```GDScript
