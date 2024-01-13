@@ -19,8 +19,5 @@ shape = SubResource( 1 )
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2( 2, 2 )
 
 [node name="MovementComponent" parent="." instance=ExtResource( 3 )]
-plane_path = NodePath("..")

@@ -1,18 +1,24 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Resources/PlaneResources/A6M_Zero.tres" type="Resource" id=1]
 [ext_resource path="res://Scenes/TileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/PlaneBase.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Resources/PlaneResources/SupermarineSpitfire.tres" type="Resource" id=4]
 
 [node name="MainGame" type="Node2D"]
 
 [node name="PlaneBase" parent="." instance=ExtResource( 3 )]
 details = ExtResource( 1 )
 
+[node name="PlaneBase2" parent="." instance=ExtResource( 3 )]
+is_player = false
+details = ExtResource( 4 )
+target_node = NodePath("../PlaneBase")
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 0.5, 0.5 )
+motion_scale = Vector2( 0.2, 0.2 )
 
 [node name="TileMap" parent="ParallaxBackground/ParallaxLayer" instance=ExtResource( 2 )]
 modulate = Color( 0.196078, 0.803922, 0.941176, 1 )

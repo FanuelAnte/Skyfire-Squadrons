@@ -1,13 +1,11 @@
 extends Node2D
 
-export (NodePath) var plane_path
 var plane_body
 
 var velocity = Vector2.ZERO
 var steer_angle
 
 func _ready():
-#	if plane_path != null:
 	plane_body = get_parent()
 
 func _physics_process(delta):
@@ -18,6 +16,7 @@ func _physics_process(delta):
 func get_input():
 	var turn = 0
 	if plane_body.is_player:
+		plane_body.camera.current = true
 		if Input.is_action_pressed("turn_right"):
 			turn += 1
 		elif Input.is_action_pressed("turn_left"):
@@ -28,7 +27,6 @@ func get_input():
 
 	else:
 		var target = plane_body.get_node(plane_body.target_node)
-		plane_body.camera.current = false
 		var direction = (target.global_position - plane_body.global_position)
 		var angle = plane_body.transform.x.angle_to(direction)
 

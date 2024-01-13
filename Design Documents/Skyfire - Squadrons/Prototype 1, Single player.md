@@ -141,6 +141,7 @@ What needs to change from plane to plane?
 	- Possible Weapon Types
 	- Classification
 - Gun Placement
+- Wing Trails Position
 ### Sound and Music System
 ### Objective Handling and Fail States
 # World

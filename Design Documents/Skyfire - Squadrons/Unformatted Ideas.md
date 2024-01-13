@@ -34,3 +34,4 @@ This is the other essential gameplay mechanic. This involves:
 
 > Bullets have owners to signify who shot them to allow for identification of who got the kill.
 
+> Use the parallax effect set at different values to determine the height of the plane instead of the scale of objects.
