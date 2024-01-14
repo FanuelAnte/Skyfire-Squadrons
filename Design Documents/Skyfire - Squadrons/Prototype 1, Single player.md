@@ -28,9 +28,8 @@ To figure out what is going to be included in this version, I'm going to divide 
 - [ ] Level Art
 - [ ] Explosion and Damage
 #### Sound
-- [ ] Engine Sounds
-- [ ] Cannon and Gun Sounds
-- [ ] Explosion Sounds
+- [ ] In-Game Plane and World SFX
+- [ ] Menu SFX
 #### Music
 - [ ] Single 5 - 10 minute Cue
 - [ ] Basic Dynamic Music System
@@ -118,17 +117,27 @@ I'm going to keep the in-game HUD as minimal as possible. The main things that n
 - Fuel Amount
 - Radar
 - Objective Text
+- Player Names
 ##### Android
 - Everything on the PC Version
 - On-Screen Controls
 - Pause Button
 ### Menus
 ##### Main Menu
+Standard main menu. Buttons:
+- Start Game -> Game Mode Selection Screen 
+- Settings -> Settings Menu
+- Exit
 ##### Game Mode Selection Screen
+For the time being, there is only one game mode: Single player. This takes you to the Mission Selection Screen.
 ##### Mission Selection Screen
+There will be a list of missions/scenarios. You can pick one to play. Selecting a mission takes you to the plane and loadout selection screen. 
 ##### Plane and Loadout Selection Screen
+Depending on the mission and on the scenario, you're only allowed to pick the appropriate planes and gear. For instance, if you pick a bombing mission where the RAF is bombing the Germans, you can only pick British planes.
 ##### Pause Menu
+Resume, Restart, Settings, Quit.
 ##### Settings Menu
+Adjust sound, music, and whatnot.
 ### Plane Variation and Resources
 What needs to change from plane to plane?
 - Sprite and Animation
@@ -143,5 +152,21 @@ What needs to change from plane to plane?
 - Gun Placement
 - Wing Trails Position
 ### Sound and Music System
+The SFX for each plane will be handled by a SFX Component attached to each plane. It receives a signal from the plane and it plays the appropriate sounds. I can either call the signals from code or I can attach method calls to the animations to trigger sounds that are a children of the SFX Component. Or I could just have the SFX Component have multiple methods each responsible for playing a random sound effect from a library whenever the function is called. For Instance, the ___turn plane___ method picks from a few audio player 2D nodes and plays one of them.
+Now I need to decide what SFX a plane needs and that will be covered in the Sound section.
 ### Objective Handling and Fail States
+Objective completion and failure will be handled differently for each mission type. However, for the single player game mode, it will be quite simple. 
 # World
+### Level Loading
+### World Design
+### Objective and Mission Design
+# Art
+### Plane Sprites and Animation
+### Level Art
+### Explosion and Damage
+# Sound
+### In-Game Plane and World SFX
+### Menu SFX
+# Music
+### Single 5 - 10 Minute Cue
+### Basic Dynamic Music System
