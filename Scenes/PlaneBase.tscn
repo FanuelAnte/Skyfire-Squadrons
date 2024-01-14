@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Exports/TestPlane2.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/PlaneBase.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Components/MovementComponent.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Components/ArtilleryComponent.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 14.0
@@ -21,3 +23,18 @@ disabled = true
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="MovementComponent" parent="." instance=ExtResource( 3 )]
+
+[node name="ArtilleryComponent" parent="." instance=ExtResource( 4 )]
+primary_weapon = ExtResource( 5 )
+
+[node name="Primary" type="Node2D" parent="ArtilleryComponent"]
+
+[node name="Position2D" type="Position2D" parent="ArtilleryComponent/Primary"]
+position = Vector2( 9, -7 )
+
+[node name="Position2D2" type="Position2D" parent="ArtilleryComponent/Primary"]
+position = Vector2( 9, 7 )
+
+[node name="Secondary" type="Node2D" parent="ArtilleryComponent"]
+
+[node name="Tertiary" type="Node2D" parent="ArtilleryComponent"]

@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "plane_resource",
 "language": "GDScript",
 "path": "res://Scripts/Resources/plane_stats.gd"
+}, {
+"base": "Resource",
+"class": "weapon_resource",
+"language": "GDScript",
+"path": "res://Scripts/Resources/weapon_stats.gd"
 } ]
 _global_script_class_icons={
-"plane_resource": ""
+"plane_resource": "",
+"weapon_resource": ""
 }
 
 [application]
@@ -26,11 +32,12 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/width=1280
-window/size/height=720
+window/size/width=640
+window/size/height=360
 window/size/test_width=1280
 window/size/test_height=720
 window/dpi/allow_hidpi=true
+window/vsync/vsync_via_compositor=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
@@ -77,6 +84,21 @@ turn_left={
 turn_right={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+fire_primary={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+fire_secondary={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+fire_tertiary={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

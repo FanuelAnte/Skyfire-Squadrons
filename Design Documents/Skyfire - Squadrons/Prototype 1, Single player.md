@@ -100,6 +100,16 @@ These are small caliber machine guns with quicker fire rate, larger magazine cap
 These are slightly larger guns and cannons with slower fire rate, lower magazine capacity but higher damage. On PC, the ___X___ key is used to shoot. This has only one mode of firing and it is basically a manual; repeated key presses are required in order to shoot.
 ##### Tertiary Weapons
 This is mostly reserved for bombers and larger fighter and includes bombs and other large explosive payloads. On PC, the ___C___ key is used to drop the payload.
+#### Shooting, Actually
+The artillery component has 3 parameters that it accepts:
+- Primary Weapon Path
+- Secondary Weapon Path
+- Tertiary Weapon Path
+Each path leads to a bullet scene. Each bullet scene has the following structure. A bullet knows how fast it is, and how much damage it does.
+- Bullet (Area2D)
+	- Sprite
+	- SFXComponent
+Whenever one of the fire keys is pressed, a spawn bullet method is called.
 ### Enemy Combat AI
 This combat logic follows the __Movement__ logic I'll set above.
 ### Health and Damage
