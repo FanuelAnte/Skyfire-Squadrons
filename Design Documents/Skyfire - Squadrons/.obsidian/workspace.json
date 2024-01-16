@@ -141,7 +141,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Planes.md",
+                "file": "Prototype 1, Single player.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -158,7 +158,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Planes.md",
+                "file": "Prototype 1, Single player.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -181,7 +181,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Planes.md"
+                "file": "Prototype 1, Single player.md"
               }
             }
           }
@@ -202,12 +202,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d731aa89cb2df78f",
+  "active": "81ce41c997a9ad16",
   "lastOpenFiles": [
+    "Planes.md",
     "Prototype 1, Single player.md",
     "Final Design Document.md",
     "Unformatted Ideas.md",
-    "Planes.md",
     "WIN_20240105_00_19_26_Pro.jpg.import",
     "WIN_20240105_00_19_26_Pro.jpg"
   ]

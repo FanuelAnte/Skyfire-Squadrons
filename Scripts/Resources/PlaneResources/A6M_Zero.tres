@@ -8,3 +8,4 @@ wingspan = 50
 speed = 400
 bank_angle = 10
 max_bank_angle_factor = 1.5
+max_health = 100.0

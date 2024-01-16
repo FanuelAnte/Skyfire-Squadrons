@@ -2,7 +2,7 @@ To figure out what is going to be included in this version, I'm going to divide 
 #### Gameplay
 - [x] Plane Controls and Movement
 - [x] Enemy Movement AI
-- [ ] Combat Controls
+- [x] Combat Controls
 - [ ] Enemy Combat AI
 - [ ] Health and Damage
 - [ ] Fuel and Ammunition

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource( 1 )
-speed = 1500
-damage = 400
+speed = 2500
+damage = 10
 frame = 0
