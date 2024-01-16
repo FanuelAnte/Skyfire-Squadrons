@@ -1,13 +1,15 @@
 extends Area2D
 
-export (NodePath) var HealthComponent
+export (NodePath) var HealthComponentPath
+var health_component
 
 func _ready():
-	pass
+	health_component = get_node(HealthComponentPath)
 
 func _physics_process(delta):
 	pass
 
 func _on_HurtboxComponent_area_entered(area):
 	if area.is_in_group("bullet"):
-		print(area.weapon_details.damage)
+		var damage = area.weapon_details.damage
+		health_component.take_damage(damage)

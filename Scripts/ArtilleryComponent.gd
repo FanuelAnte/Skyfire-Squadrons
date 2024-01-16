@@ -16,7 +16,7 @@ func _physics_process(delta):
 func get_input():
 	if plane_body.is_player:
 		if Input.is_action_pressed("fire_primary"):
-			if OS.get_ticks_msec() - last_shot_time > 100:
+			if OS.get_ticks_msec() - last_shot_time > 50:
 				spawn_bullet(primary_weapon, 0)
 				last_shot_time = OS.get_ticks_msec()
 				

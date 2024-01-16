@@ -10,5 +10,6 @@ func _ready():
 func _physics_process(delta):
 	pass
 
-func take_damage():
-	pass
+func take_damage(damage_amount):
+	if current_health > 0:
+		current_health -= damage_amount

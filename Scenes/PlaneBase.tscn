@@ -10,8 +10,8 @@
 [ext_resource path="res://Scenes/Components/HurtboxComponent.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 12.0
-height = 4.0
+radius = 13.0
+height = 0.0
 
 [node name="PlaneBase" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -60,7 +60,7 @@ max_trail_length = 200
 [node name="HealthComponent" parent="." instance=ExtResource( 7 )]
 
 [node name="HurtboxComponent" parent="." instance=ExtResource( 8 )]
-HealthComponent = NodePath("../HealthComponent")
+HealthComponentPath = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 rotation = 1.57079
