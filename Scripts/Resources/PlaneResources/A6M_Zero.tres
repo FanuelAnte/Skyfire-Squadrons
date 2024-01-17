@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
-wingspan = 50
+wingspan = 20
 speed = 400
 bank_angle = 10
 max_bank_angle_factor = 1.5
