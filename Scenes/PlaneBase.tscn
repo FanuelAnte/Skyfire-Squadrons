@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Assets/Exports/TestPlane2.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Exports/TestPlane4.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/PlaneBase.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Components/MovementComponent.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Components/ArtilleryComponent.tscn" type="PackedScene" id=4]
@@ -10,8 +10,8 @@
 [ext_resource path="res://Scenes/Components/HurtboxComponent.tscn" type="PackedScene" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 13.0
-height = 0.0
+radius = 6.00004
+height = 13.9998
 
 [node name="PlaneBase" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -30,10 +30,10 @@ primary_weapon = ExtResource( 5 )
 [node name="Primary" type="Node2D" parent="ArtilleryComponent"]
 
 [node name="Position2D" type="Position2D" parent="ArtilleryComponent/Primary"]
-position = Vector2( 14, -7 )
+position = Vector2( 5, -9 )
 
 [node name="Position2D2" type="Position2D" parent="ArtilleryComponent/Primary"]
-position = Vector2( 14, 6 )
+position = Vector2( 5, 9 )
 
 [node name="Secondary" type="Node2D" parent="ArtilleryComponent"]
 
@@ -42,7 +42,7 @@ position = Vector2( 14, 6 )
 [node name="Trails" type="Node2D" parent="."]
 
 [node name="TrailsParent1" type="Position2D" parent="Trails"]
-position = Vector2( 5, -13 )
+position = Vector2( 3, -14 )
 
 [node name="Trail" parent="Trails/TrailsParent1" instance=ExtResource( 6 )]
 default_color = Color( 1, 1, 1, 0.431373 )
@@ -50,7 +50,7 @@ gradient = null
 max_trail_length = 200
 
 [node name="TrailsParent2" type="Position2D" parent="Trails"]
-position = Vector2( 5, 13 )
+position = Vector2( 3, 14 )
 
 [node name="Trail" parent="Trails/TrailsParent2" instance=ExtResource( 6 )]
 default_color = Color( 1, 1, 1, 0.431373 )
