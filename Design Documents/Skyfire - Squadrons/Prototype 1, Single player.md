@@ -78,6 +78,8 @@ else:
 	turn += sign(snapped_angle) * plane_details.max_bank_angle_factor
 ```
 This behavior is a good starting point to build upon and create more complex behavior which begs the question, ___what complex behavior do I want___?
+##### Complex Movement AI
+At 
 ### Combat Controls
 Depending on the class of the plane, a given plane might carry no weapons or at most 3 different types of weapons. This means there will be a ___primary weapon___, a ___secondary weapon___, and a ___tertiary weapon___. This is independent of positioning i.e. where the gun is physically on the plane. Bombers for instance may have the same weapon type mounted in two different positions (real and front). 
 #### Artillery Component
