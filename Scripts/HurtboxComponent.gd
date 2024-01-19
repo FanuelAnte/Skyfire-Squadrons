@@ -12,4 +12,5 @@ func _physics_process(delta):
 func _on_HurtboxComponent_area_entered(area):
 	if area.is_in_group("bullet"):
 		var damage = area.weapon_details.damage
+		area.queue_free()
 		health_component.take_damage(damage)

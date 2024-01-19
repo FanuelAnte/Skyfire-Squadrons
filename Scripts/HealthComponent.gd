@@ -7,9 +7,9 @@ func _ready():
 	plane_body = get_parent()
 	current_health = plane_body.details.max_health
 
-func _physics_process(delta):
-	if current_health <= 0:
-		self.queue_free()
+#func _physics_process(delta):
+#	if current_health <= 0:
+#		self.queue_free()
 
 func take_damage(damage_amount):
 	if current_health > 0:

@@ -1,6 +1,6 @@
 extends Area2D
 
-export (Resource) var weapon_details = preload("res://Scripts/Resources/WeaponResources/50 caliber Browning M2.tres")
+export (Resource) var weapon_details
 onready var sprite = $Sprite
 
 func _ready():

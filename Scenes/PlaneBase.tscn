@@ -1,13 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Exports/TestPlane4.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/PlaneBase.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Components/MovementComponent.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Components/ArtilleryComponent.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/Resources/WeaponResources/50 caliber Browning M2.tres" type="Resource" id=5]
 [ext_resource path="res://Scenes/Trail.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Components/HealthComponent.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Components/HurtboxComponent.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.00004
@@ -15,6 +16,7 @@ height = 13.9998
 
 [node name="PlaneBase" type="KinematicBody2D"]
 script = ExtResource( 2 )
+artillery_component = NodePath("ArtilleryComponent")
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
@@ -65,3 +67,7 @@ HealthComponentPath = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 rotation = 1.57079
 shape = SubResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource( 9 )]

@@ -24,7 +24,12 @@ func get_input():
 
 		if Input.is_action_pressed("increase_bank"):
 			turn *= plane_body.details.max_bank_angle_factor
-
+		
+		if Input.is_action_pressed("turn_right_max"):
+			turn += 1 * plane_body.details.max_bank_angle_factor
+		elif Input.is_action_pressed("turn_left_max"):
+			turn -= 1 * plane_body.details.max_bank_angle_factor
+		
 	else:
 		var target = plane_body.get_node(plane_body.target_node)
 		var direction = (target.global_position - plane_body.global_position)
