@@ -47,7 +47,8 @@ func get_input():
 			
 	else:
 		if plane_body.target_node != "" and !primary_is_overheated:
-			if abs(plane_body.get_node(plane_body.movement_component).target_angle_difference) < 20:
+			var movement_component = plane_body.get_node(plane_body.movement_component)
+			if abs(movement_component.target_angle_difference) < 20 and movement_component.can_shoot:
 				shoot_primary()
 
 func shoot_primary():

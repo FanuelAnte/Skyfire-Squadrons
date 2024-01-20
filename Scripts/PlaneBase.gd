@@ -11,3 +11,4 @@ export(NodePath) var health_component
 export(NodePath) var movement_component
 
 var targeted = false
+var is_being_shot = false

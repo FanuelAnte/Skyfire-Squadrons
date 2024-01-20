@@ -36,7 +36,7 @@ collide_with_areas = true
 unique_name_in_owner = true
 position = Vector2( 16, 0 )
 enabled = true
-cast_to = Vector2( 120, -232 )
+cast_to = Vector2( 240, 88 )
 collision_mask = 4
 collide_with_areas = true
 
@@ -44,6 +44,22 @@ collide_with_areas = true
 unique_name_in_owner = true
 position = Vector2( 16, 0 )
 enabled = true
-cast_to = Vector2( 120, 232 )
+cast_to = Vector2( 240, -88 )
+collision_mask = 4
+collide_with_areas = true
+
+[node name="Ray6" type="RayCast2D" parent="." groups=["detection_rays"]]
+unique_name_in_owner = true
+position = Vector2( 16, 0 )
+enabled = true
+cast_to = Vector2( 249, 43 )
+collision_mask = 4
+collide_with_areas = true
+
+[node name="Ray7" type="RayCast2D" parent="." groups=["detection_rays"]]
+unique_name_in_owner = true
+position = Vector2( 16, 0 )
+enabled = true
+cast_to = Vector2( 249, -43 )
 collision_mask = 4
 collide_with_areas = true
