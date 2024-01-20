@@ -79,7 +79,9 @@ else:
 ```
 This behavior is a good starting point to build upon and create more complex behavior which begs the question, ___what complex behavior do I want___?
 ##### Complex Movement AI
-At 
+If target locked, follow. Else, Go into a random searching pattern. What's the random searching pattern? What I have figured out is that the hurtbox, movement and artillery components need to work together. For example, if an ___AI___ is being shot at, it needs to do some sort of evasive maneuver. It detects that it's being shot at and then it... I need a state machine. If I were to do it without a state machine, basically, I need to make the plane know if it's in chase mode, evade more or search mode. 
+1. ___Search mode___ - It just picks the average global position of all enemy aircrafts and moves towards that location until the detection ray catches something.
+2. ___Evade mode___ - It 
 ### Combat Controls
 Depending on the class of the plane, a given plane might carry no weapons or at most 3 different types of weapons. This means there will be a ___primary weapon___, a ___secondary weapon___, and a ___tertiary weapon___. This is independent of positioning i.e. where the gun is physically on the plane. Bombers for instance may have the same weapon type mounted in two different positions (real and front). 
 #### Artillery Component

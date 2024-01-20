@@ -5,6 +5,8 @@
 [resource]
 script = ExtResource( 1 )
 wingspan = 50
+alignment = "Allied"
+country = "Great Britain"
 speed = 300
 bank_angle = 10
 max_bank_angle_factor = 1.5

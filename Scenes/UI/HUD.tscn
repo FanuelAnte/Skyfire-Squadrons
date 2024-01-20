@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/Exports/HUD/D-Pad#1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Exports/HUD/D-Pad#1(p).png" type="Texture" id=2]
@@ -8,6 +8,10 @@
 [ext_resource path="res://Assets/Exports/HUD/ActionButton.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Fonts/BLOCKYV2.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Exports/HUD/HealthBarOver.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Exports/HUD/HealthBarProgress.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Exports/HUD/HealthBarUnder.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Exports/HUD/Guides.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 6
@@ -152,23 +156,51 @@ text = "C"
 [node name="AmmoSection" type="VBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -120.0
+margin_left = -112.0
 margin_top = 24.0
 margin_right = -24.0
-margin_bottom = 64.0
+margin_bottom = 40.0
 
 [node name="PrimaryAmmo" type="Label" parent="AmmoSection"]
-margin_right = 96.0
+unique_name_in_owner = true
+margin_right = 88.0
 margin_bottom = 6.0
 text = "000000"
 align = 2
 
 [node name="SecondaryAmmo" type="Label" parent="AmmoSection"]
+unique_name_in_owner = true
 margin_top = 10.0
-margin_right = 96.0
+margin_right = 88.0
 margin_bottom = 16.0
 text = "000000"
 align = 2
+
+[node name="HealthBar" type="TextureProgress" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_right = 64.0
+margin_bottom = -24.0
+value = 100.0
+texture_under = ExtResource( 11 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
+
+[node name="Guides" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -180.0
+margin_right = 320.0
+margin_bottom = 180.0
+texture = ExtResource( 12 )
 
 [connection signal="pressed" from="DPad/Control/TurnLeftMax" to="." method="_on_TurnLeftMax_pressed"]
 [connection signal="pressed" from="DPad/Control3/TurnLeft" to="." method="_on_TurnLeft_pressed"]

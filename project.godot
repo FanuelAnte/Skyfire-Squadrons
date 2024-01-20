@@ -113,6 +113,11 @@ turn_right_max={
 
 pointing/emulate_touch_from_mouse=true
 
+[layer_names]
+
+2d_physics/layer_2="hurtboxes and bullets"
+2d_physics/layer_3="detection components and rays"
+
 [physics]
 
 common/enable_pause_aware_picking=true

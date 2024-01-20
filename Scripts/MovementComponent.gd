@@ -1,17 +1,44 @@
 extends Node2D
 
+onready var ray_1 = $"%Ray1"
+onready var ray_2 = $"%Ray2"
+onready var ray_3 = $"%Ray3"
+onready var ray_4 = $"%Ray4"
+onready var ray_5 = $"%Ray5"
+
 var plane_body
 
 var velocity = Vector2.ZERO
 var steer_angle
+var target_angle_difference = 0
+
+var g_force = 0
+
+var enemy_planes = []
+
+var rays = []
 
 func _ready():
 	plane_body = get_parent()
+	rays = get_children()
+	update_enemy_planes()
 
 func _physics_process(delta):
 	get_input()
 	apply_rotation(delta)
 	velocity = plane_body.move_and_slide(velocity)
+	update_enemy_planes()
+#	print("-------")
+#	print(plane_body.name)
+#	print(enemy_planes)
+#	print("-------")
+
+func update_enemy_planes():
+	enemy_planes = []
+	var all_planes = get_tree().root.get_node("MainGame").get_node("Planes").get_children()
+	for plane in all_planes:
+		if plane.details.alignment != plane_body.details.alignment and !plane.targeted:
+			enemy_planes.append(plane.name)
 
 func get_input():
 	var turn = 0
@@ -31,20 +58,41 @@ func get_input():
 			turn -= 1 * plane_body.details.max_bank_angle_factor
 		
 	else:
-		var target = plane_body.get_node(plane_body.target_node)
-		var direction = (target.global_position - plane_body.global_position)
-		var angle = plane_body.transform.x.angle_to(direction)
-
-		var snapped_angle = stepify(rad2deg(angle), 15)
-
-		if abs(snapped_angle) <= 90:
-			turn += sign(snapped_angle) * 1
+		# TODO: Figure out a way to share the movement code between the serch state and the target state.
+		
+		if plane_body.target_node != "":
+			var target = plane_body.get_parent().get_node(plane_body.target_node)
+			var direction = (target.global_position - plane_body.global_position)
+			var angle = plane_body.transform.x.angle_to(direction)
+			
+			target_angle_difference = stepify(rad2deg(angle), 5)
+			
+			if abs(target_angle_difference) <= 90:
+				turn += sign(target_angle_difference) * 1
+			elif abs(target_angle_difference) >= 90 and abs(target_angle_difference) <= 120:
+				turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
+			else:
+				turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
+				target.targeted = false
+				plane_body.target_node = ""
+				
 		else:
-			turn += sign(snapped_angle) * plane_body.details.max_bank_angle_factor
-
+			randomize()
+			plane_body.target_node = enemy_planes[randi() % enemy_planes.size()]
+			var target = plane_body.get_parent().get_node(plane_body.target_node)
+			target.targeted = true
+#			search_target()
+			
 	steer_angle = turn * deg2rad(plane_body.details.bank_angle)
 	velocity = Vector2.ZERO
 	velocity = plane_body.transform.x * plane_body.details.speed
+
+#func search_target():
+#	for ray in rays:
+#		ray.force_raycast_update()
+#		if ray.is_colliding():
+#			if ray.get_collider().get_parent().details.alignment != plane_body.details.alignment:
+#				plane_body.target_node = ray.get_collider().get_parent().name
 
 func apply_rotation(delta):
 	var rear_wheel = plane_body.position - plane_body.transform.x * plane_body.details.wingspan / 2.0

@@ -4,7 +4,12 @@
 
 [resource]
 script = ExtResource( 1 )
-speed = 2000
-damage = 10
+speed = 1500
+damage = 1
 frame = 0
 max_ammo_count = 2400
+delay_between_shots = 50
+cooling_rate = 5.0
+heating_rate = 1.5
+heat_threshold = 50.0
+max_heat = 100.0

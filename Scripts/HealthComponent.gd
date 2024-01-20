@@ -1,7 +1,7 @@
 extends Node2D
 
 var plane_body
-var current_health
+var current_health = 0
 
 func _ready():
 	plane_body = get_parent()
