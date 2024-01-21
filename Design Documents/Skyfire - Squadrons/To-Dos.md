@@ -1,2 +1,2 @@
-- [ ] Make the enemies not target the same player. The is_targeted flat did nothing.
-- [ ] 
+- [ ] Make the enemies not target the same player. The is_targeted flag did nothing.
+- [ ] Either multi-targeting or random flight pattern towards action zones.

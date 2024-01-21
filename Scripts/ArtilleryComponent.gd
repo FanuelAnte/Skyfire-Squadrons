@@ -40,7 +40,7 @@ func get_input():
 			shoot_primary()
 			
 		if Input.is_action_just_pressed("fire_secondary"):
-			self.queue_free()
+			pass
 			
 		if Input.is_action_just_pressed("fire_tertiary"):
 			pass

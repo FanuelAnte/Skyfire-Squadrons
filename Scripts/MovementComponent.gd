@@ -68,10 +68,8 @@ func get_input():
 					turn += sign(target_angle_difference) * 1
 					check_rays()
 				elif abs(target_angle_difference) >= 60 and abs(target_angle_difference) <= 100:
-					can_shoot = false
 					turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
 				else:
-					can_shoot = false
 					turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
 					target.targeted = false
 					plane_body.target_node = ""
@@ -84,8 +82,9 @@ func get_input():
 						if !target.targeted:
 							plane_body.target_node = target.name
 							target.targeted = true
-							
+						
 		else:
+			can_shoot = false
 			turn += plane_body.details.max_bank_angle_factor * evade_direction
 			
 	steer_angle = turn * deg2rad(plane_body.details.bank_angle)

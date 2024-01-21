@@ -22,7 +22,7 @@ height = 19.9999
 radius = 14.0
 height = 0.0
 
-[node name="PlaneBase" type="KinematicBody2D" groups=["planes"]]
+[node name="PlaneBase" type="KinematicBody2D" groups=["minimap_objects", "planes"]]
 script = ExtResource( 2 )
 artillery_component = NodePath("ArtilleryComponent")
 health_component = NodePath("HealthComponent")

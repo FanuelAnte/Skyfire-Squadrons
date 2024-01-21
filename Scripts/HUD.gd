@@ -2,6 +2,7 @@ extends Control
 
 onready var d_pad = $DPad
 onready var action_buttons = $ActionButtons
+onready var mini_map = $"%MiniMap"
 
 onready var primary_ammo = $"%PrimaryAmmo"
 onready var secondary_ammo = $"%SecondaryAmmo"
