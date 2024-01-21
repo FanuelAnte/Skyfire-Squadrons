@@ -2,6 +2,7 @@ extends Resource
 
 class_name plane_resource
 
+export (String) var plane_name
 export (int) var wingspan = 50
 export (String, "Allied", "Axis") var alignment
 export (String, "Great Britain", "United States", "Japan", "Germany", "Soviet Union") var country

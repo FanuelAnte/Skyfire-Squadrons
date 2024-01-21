@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+weapon_name = ".50 Cal"
 speed = 1500
 damage = 1
 frame = 0

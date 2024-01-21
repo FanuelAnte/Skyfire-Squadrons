@@ -157,23 +157,53 @@ text = "C"
 [node name="AmmoSection" type="VBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -112.0
+margin_left = -184.0
 margin_top = 24.0
 margin_right = -24.0
 margin_bottom = 40.0
 
-[node name="PrimaryAmmo" type="Label" parent="AmmoSection"]
+[node name="PrimaryRow" type="HBoxContainer" parent="AmmoSection"]
+margin_right = 160.0
+margin_bottom = 6.0
+rect_min_size = Vector2( 160, 0 )
+alignment = 2
+
+[node name="PrimaryName" type="Label" parent="AmmoSection/PrimaryRow"]
 unique_name_in_owner = true
-margin_right = 88.0
+margin_left = 78.0
+margin_right = 120.0
+margin_bottom = 6.0
+text = ".50 CAL"
+align = 2
+
+[node name="PrimaryAmmo" type="Label" parent="AmmoSection/PrimaryRow"]
+unique_name_in_owner = true
+margin_left = 124.0
+margin_right = 160.0
 margin_bottom = 6.0
 text = "000000"
 align = 2
 
-[node name="SecondaryAmmo" type="Label" parent="AmmoSection"]
-unique_name_in_owner = true
+[node name="SecondaryRow" type="HBoxContainer" parent="AmmoSection"]
 margin_top = 10.0
-margin_right = 88.0
+margin_right = 160.0
 margin_bottom = 16.0
+rect_min_size = Vector2( 160, 0 )
+alignment = 2
+
+[node name="SecondaryName" type="Label" parent="AmmoSection/SecondaryRow"]
+unique_name_in_owner = true
+margin_left = 30.0
+margin_right = 120.0
+margin_bottom = 6.0
+text = "37 mm M4 Cannon"
+align = 2
+
+[node name="SecondaryAmmo" type="Label" parent="AmmoSection/SecondaryRow"]
+unique_name_in_owner = true
+margin_left = 124.0
+margin_right = 160.0
+margin_bottom = 6.0
 text = "000000"
 align = 2
 

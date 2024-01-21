@@ -3,11 +3,11 @@ To figure out what is going to be included in this version, I'm going to divide 
 - [x] Plane Controls and Movement
 - [x] Enemy Movement AI
 - [x] Combat Controls
-- [ ] Enemy Combat AI
+- [x] Enemy Combat AI
 - [ ] Health and Damage
 - [ ] Fuel and Ammunition
 #### Tech
-- [ ] Heads Up Display
+- [x] Heads Up Display
 - [ ] Menus
 	- [ ] Main Menu
 	- [ ] Game Mode Selection Screen

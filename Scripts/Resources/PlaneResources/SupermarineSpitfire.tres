@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+plane_name = "Supermarine Spitfire"
 wingspan = 50
 alignment = "Allied"
 country = "Great Britain"

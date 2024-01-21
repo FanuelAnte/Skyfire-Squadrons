@@ -19,6 +19,7 @@ var primary_heat = 0
 func _ready():
 	plane_body = get_parent()
 	primary_ammo_count = primary_weapon.max_ammo_count
+	print(primary_weapon.weapon_name)
 
 func _physics_process(delta):
 	get_input()

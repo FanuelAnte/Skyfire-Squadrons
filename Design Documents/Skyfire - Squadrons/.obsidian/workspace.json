@@ -80,8 +80,7 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       },
       {
         "id": "6a950672831268e0",
@@ -166,7 +165,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "To-Dos.md",
+                "file": "Planes.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -183,7 +182,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "To-Dos.md",
+                "file": "Planes.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -206,7 +205,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "To-Dos.md"
+                "file": "Planes.md"
               }
             }
           }
@@ -227,7 +226,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d25f0a53fa5462bc",
+  "active": "d731aa89cb2df78f",
   "lastOpenFiles": [
     "Prototype 1, Single player.md",
     "To-Dos.md",
