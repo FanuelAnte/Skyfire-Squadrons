@@ -5,11 +5,11 @@
 [resource]
 script = ExtResource( 1 )
 weapon_name = ".50 Cal"
-speed = 1500
+speed = 2000
 damage = 1
 frame = 0
 max_ammo_count = 2400
-delay_between_shots = 50
+delay_between_shots = 100
 cooling_rate = 5.0
 heating_rate = 1.5
 heat_threshold = 50.0

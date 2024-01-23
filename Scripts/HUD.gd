@@ -4,6 +4,9 @@ onready var d_pad = $DPad
 onready var action_buttons = $ActionButtons
 onready var mini_map = $"%MiniMap"
 
+onready var primary_name = $"%PrimaryName"
+onready var secondary_name = $"%SecondaryName"
+
 onready var primary_ammo = $"%PrimaryAmmo"
 onready var secondary_ammo = $"%SecondaryAmmo"
 onready var health_bar = $"%HealthBar"
@@ -12,7 +15,9 @@ var plane_body
 
 func _ready():
 	plane_body = get_parent().get_parent()
+	
 	health_bar.max_value = plane_body.details.max_health
+	primary_name.text = plane_body.get_node(plane_body.artillery_component).primary_weapon.weapon_name
 	
 	if !plane_body.is_player:
 		self.hide()
@@ -25,9 +30,10 @@ func _ready():
 		action_buttons.hide()
 
 func _physics_process(delta):
-	primary_ammo.text = str(plane_body.get_node(plane_body.artillery_component).primary_ammo_count)
-	health_bar.value = plane_body.get_node(plane_body.health_component).current_health
-	tween_hud_color(primary_ammo, plane_body.get_node(plane_body.artillery_component).primary_heat)
+	if plane_body.is_player:
+		primary_ammo.text = str(plane_body.get_node(plane_body.artillery_component).primary_ammo_count)
+		health_bar.value = plane_body.get_node(plane_body.health_component).current_health
+		tween_hud_color(primary_ammo, plane_body.get_node(plane_body.artillery_component).primary_heat)
 	
 func tween_hud_color(node, value):
 	var changed_value = range_lerp(value, 100, 0, 0, 1)

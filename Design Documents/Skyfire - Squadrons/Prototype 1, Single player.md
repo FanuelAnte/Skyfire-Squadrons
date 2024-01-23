@@ -171,7 +171,9 @@ What needs to change from plane to plane?
 The SFX for each plane will be handled by a SFX Component attached to each plane. It receives a signal from the plane and it plays the appropriate sounds. I can either call the signals from code or I can attach method calls to the animations to trigger sounds that are a children of the SFX Component. Or I could just have the SFX Component have multiple methods each responsible for playing a random sound effect from a library whenever the function is called. For Instance, the ___turn plane___ method picks from a few audio player 2D nodes and plays one of them.
 Now I need to decide what SFX a plane needs and that will be covered in the Sound section.
 ### Objective Handling and Fail States
-Objective completion and failure will be handled differently for each mission type. However, for the single player game mode, it will be quite simple. 
+Objective completion and failure will be handled differently for each mission type. The lowest level of the failure spectrum is death of the plane. Therefore, I need to figure out how to handle death.
+#### Death
+
 # World
 ### Level Loading
 ### World Design

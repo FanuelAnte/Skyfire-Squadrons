@@ -57,6 +57,18 @@
             }
           },
           {
+            "id": "b1c0b31a384d6c01",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Research.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "46ca96033062a5a9",
             "type": "leaf",
             "state": {
@@ -80,7 +92,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       },
       {
         "id": "6a950672831268e0",
@@ -165,7 +178,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Planes.md",
+                "file": "To-Dos.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -182,7 +195,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Planes.md",
+                "file": "To-Dos.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -205,7 +218,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Planes.md"
+                "file": "To-Dos.md"
               }
             }
           }
@@ -226,14 +239,15 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d731aa89cb2df78f",
+  "active": "d25f0a53fa5462bc",
   "lastOpenFiles": [
-    "Prototype 1, Single player.md",
-    "To-Dos.md",
-    "Alignments.md",
-    "Planes.md",
-    "Final Design Document.md",
+    "Research.md",
     "Unformatted Ideas.md",
+    "To-Dos.md",
+    "Prototype 1, Single player.md",
+    "Final Design Document.md",
+    "Planes.md",
+    "Alignments.md",
     "WIN_20240105_00_19_26_Pro.jpg.import",
     "WIN_20240105_00_19_26_Pro.jpg"
   ]
