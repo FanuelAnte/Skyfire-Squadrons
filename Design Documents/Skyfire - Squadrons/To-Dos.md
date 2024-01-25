@@ -2,7 +2,7 @@ These are to be added in the first playable prototype.
 - [ ] Fuel.
 	- [x] burn rates
 	- [x] throttle toggle PC
-	- [ ] throttle toggle Android
+	- [x] throttle toggle Android
 	- [ ] flight disable and coasting
 	- [x] UI indicator for time and fuel
 - [x] Make the enemies not target the same player. The is_targeted flag did nothing.

@@ -111,8 +111,7 @@ custom_constants/separation = 16
 alignment = 2
 
 [node name="Control" type="Control" parent="ActionButtons"]
-margin_left = 24.0
-margin_right = 56.0
+margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 
@@ -130,8 +129,8 @@ margin_bottom = 31.0
 text = "A"
 
 [node name="Control2" type="Control" parent="ActionButtons"]
-margin_left = 72.0
-margin_right = 104.0
+margin_left = 48.0
+margin_right = 80.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
 
@@ -149,7 +148,6 @@ margin_bottom = 31.0
 text = "B"
 
 [node name="Control3" type="Control" parent="ActionButtons"]
-visible = false
 margin_left = 96.0
 margin_right = 128.0
 margin_bottom = 32.0
@@ -159,7 +157,7 @@ rect_min_size = Vector2( 32, 32 )
 normal = ExtResource( 6 )
 pressed = ExtResource( 5 )
 passby_press = true
-action = "fire_tertiary"
+action = "toggle_throttle"
 
 [node name="Label3" type="Label" parent="ActionButtons/Control3"]
 margin_left = 2.0

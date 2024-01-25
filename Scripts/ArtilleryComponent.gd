@@ -31,7 +31,6 @@ func _ready():
 	primary_ammo_count = primary_weapon.max_ammo_count
 	secondary_ammo_count = secondary_weapon.max_ammo_count
 	get_rays()
-	print(primary_rays)
 	
 func get_rays():
 	var rays = get_tree().get_nodes_in_group("detection_rays")
@@ -107,19 +106,19 @@ func check_rays():
 			can_shoot_secondary = false
 			
 func shoot_primary():
-	if primary_ammo_count >= 1:
+	if primary_ammo_count > 0:
 		if OS.get_ticks_msec() - primary_last_shot_time > primary_weapon.delay_between_shots:
 			spawn_bullet(primary_weapon, 0)
-			primary_ammo_count -= 1
+			primary_ammo_count -= 2
 			primary_last_shot_time = OS.get_ticks_msec()
 			
 			primary_heat += primary_weapon.heating_rate
 		
 func shoot_secondary():
-	if secondary_ammo_count >= 1:
+	if secondary_ammo_count > 0:
 		if OS.get_ticks_msec() - secondary_last_shot_time > secondary_weapon.delay_between_shots:
 			spawn_bullet(secondary_weapon, 1)
-			secondary_ammo_count -= 1
+			secondary_ammo_count -= 2
 			secondary_last_shot_time = OS.get_ticks_msec()
 			
 			secondary_heat += secondary_weapon.heating_rate
