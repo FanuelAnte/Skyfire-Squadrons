@@ -16,7 +16,7 @@ export (int) var bank_angle = 10
 export (float) var max_bank_angle_factor = 1.5
 
 export (float) var max_health = 100
-export (float) var max_fuel = 500
+export (float) var max_fuel = 100
 
 export (float) var fuel_burn_rate_standard = 0.1
-export (float) var fuel_burn_rate_max = 0.5
+export (float) var fuel_burn_rate_max = 0.2

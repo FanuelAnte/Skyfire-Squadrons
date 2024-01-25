@@ -1,8 +1,5 @@
 extends Node2D
 
-onready var ray_1 = $"%Ray1"
-onready var ray_2 = $"%Ray2"
-
 var plane_body
 
 var velocity = Vector2.ZERO
@@ -25,9 +22,6 @@ var speed = 0
 var evade_direction = 1
 
 var enemy_planes = []
-var rays = []
-
-var can_shoot = false
 
 var rng = RandomNumberGenerator.new()
 
@@ -38,7 +32,7 @@ func _ready():
 	fuel = plane_body.details.max_fuel
 	fuel_burn_rate_standard = plane_body.details.fuel_burn_rate_standard
 	fuel_burn_rate_max = plane_body.details.fuel_burn_rate_max
-	rays = get_children()
+	
 	update_enemy_planes()
 	
 func _physics_process(delta):
@@ -58,11 +52,11 @@ func burn_fuel(burn_rate, delta):
 	if fuel > 0:
 		fuel -= burn_rate * delta
 		
-	var flight_time_seconds = stepify((fuel / burn_rate), 1) + coasting_duration_seconds
+	var flight_time_seconds = int(stepify((fuel / burn_rate), 1) + coasting_duration_seconds)
 	
 	var hours = int(flight_time_seconds / 3600)
-	var minutes = int((int(flight_time_seconds) % 3600) / 60)
-	var seconds = int(int(flight_time_seconds) % 60)
+	var minutes = int((flight_time_seconds % 3600) / 60)
+	var seconds = int(flight_time_seconds % 60)
 
 	total_flight_time = str(hours).pad_zeros(2) + ":" + str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2)
 	
@@ -107,7 +101,6 @@ func get_input():
 				
 				if abs(target_angle_difference) <= 60:
 					turn += sign(target_angle_difference) * 1
-					check_rays()
 				elif abs(target_angle_difference) >= 60 and abs(target_angle_difference) <= 100:
 					turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
 				else:
@@ -125,27 +118,17 @@ func get_input():
 							target.targeted = true
 						
 		else:
-			can_shoot = false
 			turn += plane_body.details.max_bank_angle_factor * evade_direction
 			
 	steer_angle = turn * deg2rad(plane_body.details.bank_angle)
 	velocity = Vector2.ZERO
 	velocity = plane_body.transform.x * speed
 
-func check_rays():
-	can_shoot = false
-	for ray in rays:
-		ray.force_raycast_update()
-		if ray.is_colliding():
-			if ray.get_collider().get_parent().details.alignment != plane_body.details.alignment:
-				can_shoot = true
-				break
-	
 func apply_rotation(delta):
-	var rear_wheel = plane_body.position - plane_body.transform.x * plane_body.details.wingspan / 2.0
-	var front_wheel = plane_body.position + plane_body.transform.x * plane_body.details.wingspan / 2.0
-	rear_wheel += velocity * delta
-	front_wheel += velocity.rotated(steer_angle) * delta
-	var new_heading = (front_wheel - rear_wheel).normalized()
+	var rear = plane_body.position - plane_body.transform.x * plane_body.details.wingspan / 2.0
+	var front = plane_body.position + plane_body.transform.x * plane_body.details.wingspan / 2.0
+	rear += velocity * delta
+	front += velocity.rotated(steer_angle) * delta
+	var new_heading = (front - rear).normalized()
 	velocity = new_heading * velocity.length()
 	plane_body.rotation = new_heading.angle()

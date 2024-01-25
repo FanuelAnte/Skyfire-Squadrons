@@ -13,6 +13,7 @@ onready var secondary_name = $"%SecondaryName"
 
 onready var primary_ammo = $"%PrimaryAmmo"
 onready var secondary_ammo = $"%SecondaryAmmo"
+
 onready var health_bar = $"%HealthBar"
 
 var plane_body
@@ -22,6 +23,7 @@ func _ready():
 	
 	health_bar.max_value = plane_body.details.max_health
 	primary_name.text = plane_body.get_node(plane_body.artillery_component).primary_weapon.weapon_name
+	secondary_name.text = plane_body.get_node(plane_body.artillery_component).secondary_weapon.weapon_name
 	
 	fuel_slider.max_value = plane_body.details.max_fuel
 	
@@ -37,12 +39,16 @@ func _ready():
 
 func _physics_process(delta):
 	if plane_body.is_player:
-		primary_ammo.text = str(plane_body.get_node(plane_body.artillery_component).primary_ammo_count)
+		primary_ammo.text = str(plane_body.get_node(plane_body.artillery_component).primary_ammo_count).pad_zeros(4)
+		secondary_ammo.text = str(plane_body.get_node(plane_body.artillery_component).secondary_ammo_count).pad_zeros(4)
+		
 		health_bar.value = plane_body.get_node(plane_body.health_component).current_health
+		
 		fuel_slider.value = plane_body.get_node(plane_body.movement_component).fuel
 		flight_time_label.text = str(plane_body.get_node(plane_body.movement_component).total_flight_time)
 		
 		tween_hud_color(primary_ammo, plane_body.get_node(plane_body.artillery_component).primary_heat)
+		tween_hud_color(secondary_ammo, plane_body.get_node(plane_body.artillery_component).secondary_heat)
 	
 func tween_hud_color(node, value):
 	var changed_value = range_lerp(value, 100, 0, 0, 1)

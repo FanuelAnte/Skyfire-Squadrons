@@ -118,6 +118,8 @@ Each path leads to a bullet scene. Each bullet scene has the following structure
 Whenever one of the fire keys is pressed, a spawn bullet method is called.
 ### Enemy Combat AI
 This combat logic follows the __Movement__ logic I'll set above.
+
+Add raycasts to the weapon positions to check if they are colliding and whether or not you should shoot. use the fanned out rays in the movement component to check range. Then use the individual side rays to decide if you should shoot the left side cannons or left side cannons. I need a way to separate each wing guns. Or I could just remove the fanned out rays all together and just use the per-side raycasts to detect and shoot. Each weapon has a different range, i.e. a different raycast length. If I use the independent rays per-wing, I can bring the detection and shooting code back into the artillery component. By the way, all of this only applies to the AI's shooting code. I will definitely modify the shooting function but it won't change much.
 ### Health and Damage
 Each plane has a health variable. It has a max value of depending on the plane size and armor. Depending on the health value, smoke and fire particles will be emitted.
 When a bullet hits a plane, the damage stat of that specific caliber of that bullet dictates by how much the plane's health goes down. 
