@@ -54,15 +54,18 @@ func _physics_process(delta):
 		burn_fuel(fuel_burn_rate_max, delta)
 		speed = plane_body.details.max_speed
 	
-	if plane_body.is_player:
-		print(total_flight_time)
-		
 func burn_fuel(burn_rate, delta):
 	if fuel > 0:
 		fuel -= burn_rate * delta
+		
+	var flight_time_seconds = stepify((fuel / burn_rate), 1) + coasting_duration_seconds
 	
-	total_flight_time = stepify((fuel / burn_rate), 1) + coasting_duration_seconds
+	var hours = int(flight_time_seconds / 3600)
+	var minutes = int((int(flight_time_seconds) % 3600) / 60)
+	var seconds = int(int(flight_time_seconds) % 60)
 
+	total_flight_time = str(hours).pad_zeros(2) + ":" + str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2)
+	
 func update_enemy_planes():
 	enemy_planes = []
 	var all_planes = get_tree().root.get_node("MainGame").get_node("Planes").get_children()

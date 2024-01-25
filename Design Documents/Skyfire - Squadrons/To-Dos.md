@@ -1,10 +1,12 @@
 These are to be added in the first playable prototype.
 - [ ] Fuel.
 	- [x] burn rates
-	- [ ] flight disable,
+	- [x] throttle toggle PC
+	- [ ] throttle toggle Android
+	- [ ] flight disable and coasting
+	- [x] UI indicator for time and fuel
 - [x] Make the enemies not target the same player. The is_targeted flag did nothing.
 - [ ] Either multi-targeting or random flight pattern towards action zones.
 - [ ] Gs.
 - [ ] Death.
 - [ ] Climbing and diving.
-- [ ] 720???

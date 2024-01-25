@@ -4,6 +4,10 @@ onready var d_pad = $DPad
 onready var action_buttons = $ActionButtons
 onready var mini_map = $"%MiniMap"
 
+onready var fuel_slider = $"%FuelSlider"
+onready var g_force_slider = $"%GForceSlider"
+onready var flight_time_label = $"%FlightTimeLabel"
+
 onready var primary_name = $"%PrimaryName"
 onready var secondary_name = $"%SecondaryName"
 
@@ -19,6 +23,8 @@ func _ready():
 	health_bar.max_value = plane_body.details.max_health
 	primary_name.text = plane_body.get_node(plane_body.artillery_component).primary_weapon.weapon_name
 	
+	fuel_slider.max_value = plane_body.details.max_fuel
+	
 	if !plane_body.is_player:
 		self.hide()
 		
@@ -33,6 +39,9 @@ func _physics_process(delta):
 	if plane_body.is_player:
 		primary_ammo.text = str(plane_body.get_node(plane_body.artillery_component).primary_ammo_count)
 		health_bar.value = plane_body.get_node(plane_body.health_component).current_health
+		fuel_slider.value = plane_body.get_node(plane_body.movement_component).fuel
+		flight_time_label.text = str(plane_body.get_node(plane_body.movement_component).total_flight_time)
+		
 		tween_hud_color(primary_ammo, plane_body.get_node(plane_body.artillery_component).primary_heat)
 	
 func tween_hud_color(node, value):
