@@ -49,7 +49,7 @@ func _ready():
 		action_buttons.hide()
 
 func _physics_process(delta):
-	if plane_body.is_player:
+	if plane_body.is_player and !plane_body.is_dead:
 		primary_ammo.text = str(artillery_component.primary_ammo_count).pad_zeros(4)
 		secondary_ammo.text = str(artillery_component.secondary_ammo_count).pad_zeros(4)
 		

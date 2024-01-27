@@ -186,7 +186,7 @@ Now I need to decide what SFX a plane needs and that will be covered in the Soun
 ### Objective Handling and Fail States
 Objective completion and failure will be handled differently for each mission type. The lowest level of the failure spectrum is death of the plane. Therefore, I need to figure out how to handle death.
 #### Death
-
+To death or not to death, fuuuuuck. 
 # World
 ### Level Loading
 ### World Design

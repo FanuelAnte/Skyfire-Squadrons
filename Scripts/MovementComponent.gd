@@ -55,34 +55,36 @@ func _ready():
 	update_enemy_planes()
 	
 func _physics_process(delta):
-	get_input()
-	apply_rotation(delta)
-	velocity = plane_body.move_and_slide(velocity)
-	update_enemy_planes()
+	if !plane_body.is_dead:
+		get_input()
+		apply_rotation(delta)
+		velocity = plane_body.move_and_slide(velocity)
+		update_enemy_planes()
 	
-	if !full_throttle:
-		burn_fuel(fuel_burn_rate_standard, delta)
-		speed = plane_body.details.cruise_speed
-	else:
-		burn_fuel(fuel_burn_rate_max, delta)
-		speed = plane_body.details.max_speed
-	
-	if g_force > 1 and g_force_increase_factor == 0:
-		g_force -= g_force_decrease_rate * delta
-	
-	if g_force < 10:
-		g_force += g_force_increase_rate * g_force_increase_factor * delta
-		
-		
-	if g_force >= 10:
-		if consciousness > 0:
-			consciousness -= plane_body.pilot.unconsciousness_rate * delta
+		if !full_throttle:
+			burn_fuel(fuel_burn_rate_standard, delta)
+			speed = plane_body.details.cruise_speed
 		else:
-			c_timer.start(plane_body.pilot.unconsciousness_duration)
-			conscious = false
-	else:
-		if consciousness <= 10 and conscious:
-			consciousness += plane_body.pilot.consciousness_rate * delta
+			burn_fuel(fuel_burn_rate_max, delta)
+			speed = plane_body.details.max_speed
+		
+		if g_force > 1 and g_force_increase_factor == 0:
+			g_force -= g_force_decrease_rate * delta
+		
+		if g_force < 10:
+			g_force += g_force_increase_rate * g_force_increase_factor * delta
+			
+			
+		if g_force >= 10:
+			if consciousness > 0:
+				consciousness -= plane_body.pilot.unconsciousness_rate * delta
+			else:
+				c_timer.start(plane_body.pilot.unconsciousness_duration)
+				conscious = false
+				full_throttle = false
+		else:
+			if consciousness <= 10 and conscious:
+				consciousness += plane_body.pilot.consciousness_rate * delta
 			
 	
 func burn_fuel(burn_rate, delta):
@@ -103,7 +105,7 @@ func update_enemy_planes():
 	for plane in all_planes:
 		if plane.details.alignment != plane_body.details.alignment and !plane.targeted:
 			enemy_planes.append(plane)
-
+		
 func get_input():
 	turning = false
 	var turn = 0
@@ -147,29 +149,37 @@ func get_input():
 		if !plane_body.is_being_shot:
 			if plane_body.target_node != "":
 				var target = plane_body.get_parent().get_node(plane_body.target_node)
-				var direction = (target.global_position - plane_body.global_position)
-				var angle = plane_body.transform.x.angle_to(direction)
 				
-				target_angle_difference = stepify(rad2deg(angle), 5)
+				if !target.is_dead:
+					var direction = (target.global_position - plane_body.global_position)
+					var angle = plane_body.transform.x.angle_to(direction)
+					
+					target_angle_difference = stepify(rad2deg(angle), 5)
+					
+					if abs(target_angle_difference) <= 60:
+						turn += sign(target_angle_difference) * 1
+						g_force_increase_factor += base_g_force_turn_factor
+					elif abs(target_angle_difference) >= 60 and abs(target_angle_difference) <= 100:
+						turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
+						g_force_increase_factor += max_g_force_turn_factor
+					else:
+						turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
+						g_force_increase_factor += max_g_force_turn_factor
+						target.targeted = false
+						plane_body.target_node = ""
 				
-				if abs(target_angle_difference) <= 60:
-					turn += sign(target_angle_difference) * 1
-					g_force_increase_factor += base_g_force_turn_factor
-				elif abs(target_angle_difference) >= 60 and abs(target_angle_difference) <= 100:
-					turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
-					g_force_increase_factor += max_g_force_turn_factor
 				else:
 					turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
 					g_force_increase_factor += max_g_force_turn_factor
-					target.targeted = false
 					plane_body.target_node = ""
-					
+				
 			else:
 				var value = rng.randi_range(0, 5)
 				if value == 1:
 					if enemy_planes.size() != 0:
 						var target = enemy_planes[rng.randi_range(0, enemy_planes.size() - 1)]
-						if !target.targeted:
+#						if is_instance_valid(target):					
+						if !target.targeted and !target.is_dead:
 							plane_body.target_node = target.name
 							target.targeted = true
 						

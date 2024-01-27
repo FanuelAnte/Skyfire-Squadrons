@@ -24,7 +24,7 @@ func damage_smoke(hit_position):
 	smoke.global_position = hit_position
 
 func _on_HurtboxComponent_area_entered(area):
-	if area.is_in_group("bullet"):
+	if area.is_in_group("bullet") and !plane_body.is_dead:
 		var damage = area.weapon_details.damage
 #		damage_smoke(area.global_position)
 		area.queue_free()

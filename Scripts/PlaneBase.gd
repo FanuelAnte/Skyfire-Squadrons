@@ -14,3 +14,8 @@ export(NodePath) var movement_component
 var targeted = false
 var is_being_shot = false
 var is_dead = false
+
+func _physics_process(delta):
+	if is_dead:
+		$Explosion.show()
+		$AnimationPlayer.play("explosion")

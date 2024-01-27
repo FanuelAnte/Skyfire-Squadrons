@@ -6,6 +6,6 @@
 script = ExtResource( 1 )
 name = "Alexander Harrington"
 nickname = "Ace"
-unconsciousness_rate = 5.0
-consciousness_rate = 10.0
+unconsciousness_rate = 2.0
+consciousness_rate = 5.0
 unconsciousness_duration = 3.0

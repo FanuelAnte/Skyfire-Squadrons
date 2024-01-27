@@ -42,3 +42,8 @@ unique_name_in_owner = true
 visible = false
 position = Vector2( 32, 27 )
 texture = ExtResource( 5 )
+
+[node name="Icons" type="Control" parent="."]
+unique_name_in_owner = true
+margin_right = 64.0
+margin_bottom = 64.0

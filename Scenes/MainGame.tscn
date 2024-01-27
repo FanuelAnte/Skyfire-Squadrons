@@ -10,7 +10,12 @@
 [node name="Planes" type="Node2D" parent="."]
 
 [node name="PlaneBase" parent="Planes" instance=ExtResource( 3 )]
-position = Vector2( -392, 200 )
+position = Vector2( -498, -168 )
+details = ExtResource( 4 )
+
+[node name="PlaneBase3" parent="Planes" instance=ExtResource( 3 )]
+position = Vector2( -26, 500 )
+is_player = false
 details = ExtResource( 4 )
 
 [node name="PlaneBase2" parent="Planes" instance=ExtResource( 3 )]
@@ -44,6 +49,6 @@ tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 1, 0, 
 [node name="Bullets" type="Node2D" parent="."]
 
 [node name="Camera2D2" type="Camera2D" parent="."]
-position = Vector2( -378, 182 )
+position = Vector2( -514, -224 )
 current = true
 zoom = Vector2( 4, 4 )

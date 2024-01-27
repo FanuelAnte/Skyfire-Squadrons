@@ -17,4 +17,4 @@ These are to be added in the first playable prototype.
 - [ ] Add a new targeting system. Each plane has a circular area around it and it can only target the planes that are intersecting with the area. If no bodies are intersecting with the area, it picks a random target.
 - [ ] Plane Classes.
 - [ ] Flak rounds for bombers and ground units
-- [ ] 
+- [ ] add owners to bullets.

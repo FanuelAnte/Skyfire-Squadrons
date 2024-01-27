@@ -45,7 +45,9 @@ func get_rays():
 				secondary_rays.append(ray)
 				
 func _physics_process(delta):
-	get_input()
+	if plane_body.get_node(plane_body.movement_component).conscious:
+		get_input()
+	
 	if primary_heat >= primary_weapon.max_heat:
 		primary_is_overheated = true
 
@@ -71,37 +73,40 @@ func _physics_process(delta):
 			secondary_is_overheated = false
 	
 func get_input():
-	if plane_body.is_player:
-		if Input.is_action_pressed("fire_primary") and !primary_is_overheated:
-			shoot_primary()
-			
-		if Input.is_action_pressed("fire_secondary") and !secondary_is_overheated:
-			shoot_secondary()
-			
-		if Input.is_action_just_pressed("fire_tertiary"):
-			pass
-			
-	else:
-		check_rays()
-		if can_shoot_primary and !primary_is_overheated:
-			shoot_primary()
-		if can_shoot_secondary and !primary_is_overheated:
-			shoot_secondary()
+	if !plane_body.is_dead:
+		if plane_body.is_player:
+			if Input.is_action_pressed("fire_primary") and !primary_is_overheated:
+				shoot_primary()
+				
+			if Input.is_action_pressed("fire_secondary") and !secondary_is_overheated:
+				shoot_secondary()
+				
+			if Input.is_action_just_pressed("fire_tertiary"):
+				pass
+				
+		else:
+			check_rays()
+			if can_shoot_primary and !primary_is_overheated:
+				shoot_primary()
+			if can_shoot_secondary and !primary_is_overheated:
+				shoot_secondary()
 		
 func check_rays():
 	for ray in primary_rays:
 		ray.force_raycast_update()
 		if ray.is_colliding():
-			can_shoot_primary = true
-			break
+			if ray.get_collider().get_parent().details.alignment != plane_body.details.alignment:
+				can_shoot_primary = true
+				break
 		else:
 			can_shoot_primary = false
 			
 	for ray in secondary_rays:
 		ray.force_raycast_update()
 		if ray.is_colliding():
-			can_shoot_secondary = true
-			break
+			if ray.get_collider().get_parent().details.alignment != plane_body.details.alignment:
+				can_shoot_secondary = true
+				break
 		else:
 			can_shoot_secondary = false
 			
