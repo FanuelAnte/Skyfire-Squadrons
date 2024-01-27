@@ -74,7 +74,6 @@ func _physics_process(delta):
 		if g_force < 10:
 			g_force += g_force_increase_rate * g_force_increase_factor * delta
 			
-			
 		if g_force >= 10:
 			if consciousness > 0:
 				consciousness -= plane_body.pilot.unconsciousness_rate * delta
@@ -86,7 +85,6 @@ func _physics_process(delta):
 			if consciousness <= 10 and conscious:
 				consciousness += plane_body.pilot.consciousness_rate * delta
 			
-	
 func burn_fuel(burn_rate, delta):
 	if fuel > 0:
 		fuel -= burn_rate * delta
@@ -156,10 +154,18 @@ func get_input():
 					
 					target_angle_difference = stepify(rad2deg(angle), 5)
 					
+					if g_force < 8:
+						if direction.length() > 300:
+							full_throttle = true
+						else:
+							full_throttle = false
+					else:
+						full_throttle = false
+					
 					if abs(target_angle_difference) <= 60:
 						turn += sign(target_angle_difference) * 1
 						g_force_increase_factor += base_g_force_turn_factor
-					elif abs(target_angle_difference) >= 60 and abs(target_angle_difference) <= 100:
+					elif abs(target_angle_difference) >= 60 and abs(target_angle_difference) <= 150:
 						turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
 						g_force_increase_factor += max_g_force_turn_factor
 					else:
@@ -167,7 +173,7 @@ func get_input():
 						g_force_increase_factor += max_g_force_turn_factor
 						target.targeted = false
 						plane_body.target_node = ""
-				
+					
 				else:
 					turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
 					g_force_increase_factor += max_g_force_turn_factor
@@ -178,7 +184,6 @@ func get_input():
 				if value == 1:
 					if enemy_planes.size() != 0:
 						var target = enemy_planes[rng.randi_range(0, enemy_planes.size() - 1)]
-#						if is_instance_valid(target):					
 						if !target.targeted and !target.is_dead:
 							plane_body.target_node = target.name
 							target.targeted = true

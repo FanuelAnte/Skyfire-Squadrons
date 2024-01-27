@@ -18,11 +18,11 @@ export (int) var g_force_throttle_factor = 3
 
 export (int) var coasting_duration_seconds = 300
 
-export (int) var coasting_speed = 200
-export (int) var cruise_speed = 300
-export (int) var max_speed = 400
+export (int) var coasting_speed = 100
+export (int) var cruise_speed = 200
+export (int) var max_speed = 300
 
-export (int) var bank_angle = 10
+export (int) var bank_angle = 15
 export (float) var max_bank_angle_factor = 1.5
 
 export (float) var max_plane_health = 100

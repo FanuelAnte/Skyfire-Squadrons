@@ -4,6 +4,7 @@ onready var radar_icon_enemy = $"%RadarIconEnemy"
 onready var radar_icon_ally = $"%RadarIconAlly"
 onready var grid = $"%Grid"
 onready var icons_controller = $"%Icons"
+onready var timer = $"%Timer"
 
 export var zoom = 10
 var player
@@ -37,17 +38,16 @@ func update_planes_list():
 				new_marker.show()
 				markers[object] = new_marker
 	
-func _process(delta):
+func _on_Timer_timeout():
 	if !player.is_dead:
 		if !player:
 			return
-			
+		
 		update_planes_list()
-			
+		
 		for marker in markers:
 			if !marker.is_dead:
 				var object_position = (marker.position - player.position) * grid_scale + grid.rect_size / 2
 				object_position.x = clamp(object_position.x, 4, grid.rect_size.x - 4)
 				object_position.y = clamp(object_position.y, 4, grid.rect_size.y - 4)
 				markers[marker].position = object_position
-

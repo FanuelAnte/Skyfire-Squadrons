@@ -5,11 +5,11 @@
 [resource]
 script = ExtResource( 1 )
 weapon_name = "37 mm"
-speed = 2000
+speed = 1500
 damage = 2
 frame = 1
-max_ammo_count = 80
-delay_between_shots = 200
+max_ammo_count = 200
+delay_between_shots = 100
 effective_range = 192
 cooling_rate = 5.0
 heating_rate = 5.0

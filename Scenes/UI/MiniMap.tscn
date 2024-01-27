@@ -47,3 +47,10 @@ texture = ExtResource( 5 )
 unique_name_in_owner = true
 margin_right = 64.0
 margin_bottom = 64.0
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

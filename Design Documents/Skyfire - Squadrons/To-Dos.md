@@ -20,3 +20,8 @@ These are to be added in the first playable prototype.
 - [x] Plane Classes.
 - [ ] Flak rounds for bombers and ground units
 - [x] add owners to bullets.
+- [ ] Bound the playable area.
+	- [ ] Add world
+	- [ ] Add world limits
+	- [ ] Add world art.
+- [x] Add throttling for enemies if their target is too far away.
