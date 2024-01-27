@@ -25,13 +25,14 @@ func damage_smoke(hit_position):
 
 func _on_HurtboxComponent_area_entered(area):
 	if area.is_in_group("bullet") and !plane_body.is_dead:
-		var damage = area.weapon_details.damage
-#		damage_smoke(area.global_position)
-		area.queue_free()
-		health_component.take_damage(damage)
-		yield(get_tree().create_timer(stepify(rng.randf_range(0, 0.2), 0.1)), "timeout")
-		plane_body.is_being_shot = true
-		timer.start()
+		if area.who_shot_me != plane_body:
+			var damage = area.weapon_details.damage
+	#		damage_smoke(area.global_position)
+			area.queue_free()
+			health_component.take_damage(damage)
+			yield(get_tree().create_timer(stepify(rng.randf_range(0, 0.2), 0.1)), "timeout")
+			plane_body.is_being_shot = true
+			timer.start()
 	
 func _on_Timer_timeout():
 	plane_body.is_being_shot = false

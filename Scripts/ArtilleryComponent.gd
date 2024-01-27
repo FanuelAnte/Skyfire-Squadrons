@@ -132,6 +132,7 @@ func spawn_bullet(bullet_resource, weapon_group):
 	for muzzle in get_child(weapon_group).get_children():
 		var bullet = bullet_scene.instance()
 		bullet.weapon_details = bullet_resource
+		bullet.who_shot_me = plane_body
 		get_tree().root.get_node("MainGame").get_node("Bullets").add_child(bullet)
 		bullet.transform = muzzle.global_transform
 		

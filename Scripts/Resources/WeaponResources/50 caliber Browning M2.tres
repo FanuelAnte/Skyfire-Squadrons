@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 weapon_name = ".50 Cal"
 speed = 2000
-damage = 10
+damage = 1
 frame = 0
 max_ammo_count = 2400
 delay_between_shots = 50

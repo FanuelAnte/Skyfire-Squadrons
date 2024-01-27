@@ -2,12 +2,13 @@ To figure out what is going to be included in this version, I'm going to divide 
 #### Gameplay
 - [x] Plane Controls and Movement
 - [x] Enemy Movement AI
-- [ ] G-forces
+- [x] G-forces
 - [x] Combat Controls
 - [x] Enemy Combat AI
-- [ ] Health and Damage
-- [ ] Fuel and Ammunition
-- [ ] Pilots
+- [x] Health and Damage
+- [x] Fuel and Ammunition
+- [x] Pilots
+- [x] Death
 #### Tech
 - [x] Heads Up Display
 - [ ] Menus
@@ -186,7 +187,7 @@ Now I need to decide what SFX a plane needs and that will be covered in the Soun
 ### Objective Handling and Fail States
 Objective completion and failure will be handled differently for each mission type. The lowest level of the failure spectrum is death of the plane. Therefore, I need to figure out how to handle death.
 #### Death
-To death or not to death, fuuuuuck. 
+To death or not to death, fuuuuuck. When a plane's health gets depleted, the is_dead Boolean is flagged as true and everything from movement to shooting to being targeted to showing up on the radar is disabled. 
 # World
 ### Level Loading
 ### World Design

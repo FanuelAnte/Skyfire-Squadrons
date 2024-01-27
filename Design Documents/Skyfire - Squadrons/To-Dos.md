@@ -10,11 +10,13 @@ These are to be added in the first playable prototype.
 - [x] Gs.
 - [x] G-Force Effects
 - [x] Pilot consciousness bar
-- [ ] Death.
+- [x] Death.
+	- [ ] radar icon removal
+	- [ ] not targeting the dead
 - [ ] Map coordinates HUD
 - [ ] Map extents
 - [ ] Climbing and diving maneuvers.
 - [ ] Add a new targeting system. Each plane has a circular area around it and it can only target the planes that are intersecting with the area. If no bodies are intersecting with the area, it picks a random target.
-- [ ] Plane Classes.
+- [x] Plane Classes.
 - [ ] Flak rounds for bombers and ground units
-- [ ] add owners to bullets.
+- [x] add owners to bullets.
