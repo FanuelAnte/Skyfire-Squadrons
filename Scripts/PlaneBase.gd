@@ -5,6 +5,7 @@ onready var hud = $CanvasLayer/HUD
 
 export (bool) var is_player = true
 export (Resource) var details
+export (Resource) var pilot
 export(NodePath) var target_node
 export(NodePath) var artillery_component
 export(NodePath) var health_component

@@ -7,3 +7,9 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [ 232.0 ]
 }
+
+[node name="CTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="CTimer" to="." method="_on_CTimer_timeout"]

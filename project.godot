@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Resource",
+"class": "pilot_resource",
+"language": "GDScript",
+"path": "res://Scripts/Resources/pilot_stats.gd"
+}, {
+"base": "Resource",
 "class": "plane_resource",
 "language": "GDScript",
 "path": "res://Scripts/Resources/plane_stats.gd"
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/Resources/weapon_stats.gd"
 } ]
 _global_script_class_icons={
+"pilot_resource": "",
 "plane_resource": "",
 "weapon_resource": ""
 }
@@ -37,7 +43,6 @@ window/size/height=360
 window/size/test_width=1280
 window/size/test_height=720
 window/dpi/allow_hidpi=true
-window/vsync/vsync_via_compositor=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 

@@ -3,10 +3,18 @@ These are to be added in the first playable prototype.
 	- [x] burn rates
 	- [x] throttle toggle PC
 	- [x] throttle toggle Android
-	- [ ] flight disable and coasting
+	- [ ] flight disable and coasting (this comes after death is implemented.)
 	- [x] UI indicator for time and fuel
 - [x] Make the enemies not target the same player. The is_targeted flag did nothing.
 - [ ] Either multi-targeting or random flight pattern towards action zones.
-- [ ] Gs.
+- [x] Gs.
+- [x] G-Force Effects
+- [x] Pilot consciousness bar
 - [ ] Death.
-- [ ] Climbing and diving.
+- [ ] Map coordinates HUD
+- [ ] Map extents
+- [ ] Climbing and diving maneuvers.
+- [ ] Add a new targeting system. Each plane has a circular area around it and it can only target the planes that are intersecting with the area. If no bodies are intersecting with the area, it picks a random target.
+- [ ] Plane Classes.
+- [ ] Flak rounds for bombers and ground units
+- [ ] 

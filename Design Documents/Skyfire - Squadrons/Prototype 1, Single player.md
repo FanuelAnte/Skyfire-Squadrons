@@ -2,10 +2,12 @@ To figure out what is going to be included in this version, I'm going to divide 
 #### Gameplay
 - [x] Plane Controls and Movement
 - [x] Enemy Movement AI
+- [ ] G-forces
 - [x] Combat Controls
 - [x] Enemy Combat AI
 - [ ] Health and Damage
 - [ ] Fuel and Ammunition
+- [ ] Pilots
 #### Tech
 - [x] Heads Up Display
 - [ ] Menus
@@ -84,6 +86,10 @@ If target locked, follow. Else, Go into a random searching pattern. What's the r
 2. ___Evade mode___ - If targeted for too long, and is being shot at, turn left at max_bank.
 
 A little modification to the targeting code. If there is an imbalance between the ally and enemy planes, there should be a a "gang up" mode. 
+
+Add a Area 2D to the movement component to detect enemy planes. Add an export variable to exclude the detection of the parent plane(self).
+### G-Forces
+Different planes classes have different maneuverability and therefore the pilots experience  G-forces differently.
 ### Combat Controls
 Depending on the class of the plane, a given plane might carry no weapons or at most 3 different types of weapons. This means there will be a ___primary weapon___, a ___secondary weapon___, and a ___tertiary weapon___. This is independent of positioning i.e. where the gun is physically on the plane. Bombers for instance may have the same weapon type mounted in two different positions (real and front). 
 #### Artillery Component
@@ -126,9 +132,14 @@ When a bullet hits a plane, the damage stat of that specific caliber of that bul
 Crashing the plane into another one results in an immediate explosion. Crashing completely is at the bottom of the failure spectrum. You can go back to a base or to a carrier to repair your plane but that costs time and that may lead to failure of some time-sensitive objectives.
 ### Fuel and Ammunition
 These are also variables. Very simple. Fuel goes down at a pre-determined rate i.e. the longer you fly, the more fuel you consume. Running out of fuel results in the plane coasting and eventually crashing. Just like repairs, you can go back to bases or carriers to refuel and rearm.
+### Pilots
+The pilot you choose dictates (Gameplay-wise):
+1. ___The "passing-out resistance"___ - Time it takes for the pilot to lose consciousness after experiencing max G-forces. This is called ___time_to_unconsciousness___.
+2. ___Consciousness recovery time___ - Time it takes for the pilot to regain consciousness after G-force stabilization. This is called ___time_to_consciousness___.
+How are G-forces going to affect gameplay? After max G-forces are sustained, a timer starts with the duration of ___time_to_unconsciousness___. If the G-forces don't level out by the time the timer times out, a Boolean value called ___passed_out___. If G-forces do level out before the timer runs out, ___consiousness___ levels back out.
 # Tech
 ### HUD
-I'm going to keep the in-game HUD as minimal as possible. The main things that need to be shown are:
+I'm going to keep the in-game HUD as minimal as possible.
 ##### PC
 -  Plane Heath
 - Ammo Count
