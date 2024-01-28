@@ -26,7 +26,10 @@ var secondary_rays = []
 var can_shoot_primary = false
 var can_shoot_secondary = false
 
+var rng = RandomNumberGenerator.new()
+
 func _ready():
+	rng.randomize()
 	plane_body = get_parent()
 	primary_ammo_count = primary_weapon.max_ammo_count
 	secondary_ammo_count = secondary_weapon.max_ammo_count

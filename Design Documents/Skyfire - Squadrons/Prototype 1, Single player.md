@@ -1,11 +1,13 @@
 To figure out what is going to be included in this version, I'm going to divide it up into Gameplay, Tech, World, Art, Sound and Music.
 #### Gameplay
 - [x] Plane Controls and Movement
+- [ ] Plane class dependent evasive maneuvers
 - [x] Enemy Movement AI
 - [x] G-forces
 - [x] Combat Controls
 - [x] Enemy Combat AI
 - [x] Health and Damage
+- [ ] Damage Criticality
 - [x] Fuel and Ammunition
 - [x] Pilots
 - [x] Death
@@ -131,6 +133,31 @@ Add raycasts to the weapon positions to check if they are colliding and whether 
 Each plane has a health variable. It has a max value of depending on the plane size and armor. Depending on the health value, smoke and fire particles will be emitted.
 When a bullet hits a plane, the damage stat of that specific caliber of that bullet dictates by how much the plane's health goes down. 
 Crashing the plane into another one results in an immediate explosion. Crashing completely is at the bottom of the failure spectrum. You can go back to a base or to a carrier to repair your plane but that costs time and that may lead to failure of some time-sensitive objectives.
+### Damage Criticality
+Bullet's, when instanced, are assigned a damage value. This damage value is dictated by a function inside of the bullet script. How is it decided?  very good question.
+
+Each weapon resource has:
+- base damage
+- max damage
+- criticality curve
+The criticality function:
+- picks a random number from 0 - 1
+- samples the criticality curve at that random number
+- maps the sample from 1 to max damage
+- multiplies the mapped value with base damage
+- then finally returns final damage.
+If the criticality curve is, for instance, a logarithmic curve, most hits are critical, meaning the probability of a high criticality shot is high. On the contrary, if it is an exponential curve, most hits are not that critical. 
+
+To make things even more interesting, I could use another RNG check to decide if the base damage is applied as is or if I should pick a criticality value. Meaning:
+- pick a random number from 0 - 5
+- if the number is greater that 3
+	- picks a random number from 0 - 1
+	- samples the criticality curve at that random number
+	- maps the sample from 1 to max damage
+	- multiplies the mapped value with base damage
+	- then finally returns final damage.
+- else
+	- final damage = base damage
 ### Fuel and Ammunition
 These are also variables. Very simple. Fuel goes down at a pre-determined rate i.e. the longer you fly, the more fuel you consume. Running out of fuel results in the plane coasting and eventually crashing. Just like repairs, you can go back to bases or carriers to refuel and rearm.
 ### Pilots

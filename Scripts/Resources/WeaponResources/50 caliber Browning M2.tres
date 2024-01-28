@@ -1,12 +1,17 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Resources/weapon_stats.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.658136, 0.186321 ), 0.829346, 0.829346, 0, 0, Vector2( 1, 1 ), 5.97271, 0.0, 0, 0 ]
 
 [resource]
 script = ExtResource( 1 )
 weapon_name = ".50 Cal"
 speed = 1500
-damage = 1
+base_damage = 0.2
+max_damage = 5.0
+criticality_curve = SubResource( 1 )
 frame = 0
 max_ammo_count = 2400
 delay_between_shots = 50

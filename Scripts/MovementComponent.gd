@@ -37,6 +37,7 @@ var enemy_planes = []
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	rng.randomize()
 	plane_body = get_parent()
 	
 	speed = plane_body.details.cruise_speed

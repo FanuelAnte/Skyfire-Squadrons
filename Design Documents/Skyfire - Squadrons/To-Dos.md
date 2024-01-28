@@ -11,10 +11,9 @@ These are to be added in the first playable prototype.
 - [x] G-Force Effects
 - [x] Pilot consciousness bar
 - [x] Death.
-	- [ ] radar icon removal
-	- [ ] not targeting the dead
+	- [x] radar icon removal
+	- [x] not targeting the dead
 - [ ] Map coordinates HUD
-- [ ] Map extents
 - [ ] Climbing and diving maneuvers.
 - [ ] Add a new targeting system. Each plane has a circular area around it and it can only target the planes that are intersecting with the area. If no bodies are intersecting with the area, it picks a random target.
 - [x] Plane Classes.
@@ -25,3 +24,10 @@ These are to be added in the first playable prototype.
 	- [ ] Add world limits
 	- [ ] Add world art.
 - [x] Add throttling for enemies if their target is too far away.
+- [ ] Shot criticality
+	- [x] Not all bullet hits do the same amount of damage
+		- [x] Based on RNG, make some shots do more damage
+	- [ ] Consecutive shots do more damage.
+	- [ ] Glass breaking effects after critical hits
+	- [ ] Smoke effects after critical hits
+- [ ] Fan out bullets a little bit. Give them travel angle variation.

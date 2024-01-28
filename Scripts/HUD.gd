@@ -18,6 +18,9 @@ onready var secondary_ammo = $"%SecondaryAmmo"
 onready var health_bar = $"%HealthBar"
 onready var consciousness_bar = $"%ConsciousnessBar"
 
+onready var passing_out_filter = $"%PassingOutFilter"
+onready var pass_out = $"%PassOut"
+
 onready var framerate = $"%Framerate"
 
 var plane_body
@@ -66,11 +69,22 @@ func _physics_process(delta):
 		
 		tween_hud_color(primary_ammo, artillery_component.primary_heat)
 		tween_hud_color(secondary_ammo, artillery_component.secondary_heat)
+		
+		tween_pass_out_filter(movement_component.consciousness)
 	
 func tween_hud_color(node, value):
 	var changed_value = range_lerp(value, 100, 0, 0, 1)
-	node.modulate = Color(1, changed_value, changed_value)
+	node.self_modulate = Color(1, changed_value, changed_value)
 
+func tween_pass_out_filter(value):
+	var changed_value_scale = range_lerp(value, 10, 0, 1, 0.5)
+	var changed_value_softness = range_lerp(value, 10, 0, 1.5, 1)
+#	passing_out_filter.self_modulate = Color(1, 1, 1, changed_value)
+#	print(pass_out.material.get_shader_param("SCALE"))
+	pass_out.material.set_shader_param("SCALE", changed_value_scale)
+	pass_out.material.set_shader_param("SOFTNESS", changed_value_softness)
+	
+	
 func vibrate():
 	Input.vibrate_handheld(40)
 

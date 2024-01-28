@@ -11,6 +11,7 @@ var plane_body
 var rng = RandomNumberGenerator.new()
 
 func _ready():
+	rng.randomize()
 	plane_body = get_parent()
 	health_component = get_node(HealthComponentPath)
 
@@ -26,7 +27,7 @@ func damage_smoke(hit_position):
 func _on_HurtboxComponent_area_entered(area):
 	if area.is_in_group("bullet") and !plane_body.is_dead:
 		if area.who_shot_me != plane_body:
-			var damage = area.weapon_details.damage
+			var damage = area.damage
 	#		damage_smoke(area.global_position)
 			area.queue_free()
 			health_component.take_damage(damage)
