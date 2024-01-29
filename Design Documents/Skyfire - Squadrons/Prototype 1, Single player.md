@@ -7,7 +7,7 @@ To figure out what is going to be included in this version, I'm going to divide 
 - [x] Combat Controls
 - [x] Enemy Combat AI
 - [x] Health and Damage
-- [ ] Damage Criticality
+- [x] Damage Criticality
 - [x] Fuel and Ammunition
 - [x] Pilots
 - [x] Death

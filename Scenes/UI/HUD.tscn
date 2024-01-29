@@ -253,10 +253,10 @@ alignment = 2
 
 [node name="FramerateLbl" type="Label" parent="AmmoSection/FramerateRow"]
 unique_name_in_owner = true
-margin_left = 66.0
+margin_left = 102.0
 margin_right = 120.0
 margin_bottom = 6.0
-text = "Framerate"
+text = "FPS"
 align = 2
 
 [node name="Framerate" type="Label" parent="AmmoSection/FramerateRow"]

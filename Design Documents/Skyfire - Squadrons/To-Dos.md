@@ -4,6 +4,7 @@ These are to be added in the first playable prototype.
 	- [x] throttle toggle PC
 	- [x] throttle toggle Android
 	- [ ] flight disable and coasting (this comes after death is implemented.)
+		- [ ] If coasting, turning costs you speed. Therefore you need to be frugal with the maneuvers you make. coasting speed starts off at the base speed, if coasting, there is no throttling, and coasting speed gradually decreases if just flying in a straight line, and dramatically if maneuvering and turning, If coasting speed reaches zero, you either crash into the ocean on on land or somewhere. 
 	- [x] UI indicator for time and fuel
 - [x] Make the enemies not target the same player. The is_targeted flag did nothing.
 - [ ] Either multi-targeting or random flight pattern towards action zones.
@@ -14,7 +15,8 @@ These are to be added in the first playable prototype.
 	- [x] radar icon removal
 	- [x] not targeting the dead
 - [ ] Map coordinates HUD
-- [ ] Climbing and diving maneuvers.
+- [ ] Climbing and diving maneuvers
+	- [ ] Class dependent maneuvers
 - [ ] Add a new targeting system. Each plane has a circular area around it and it can only target the planes that are intersecting with the area. If no bodies are intersecting with the area, it picks a random target.
 - [x] Plane Classes.
 - [ ] Flak rounds for bombers and ground units
@@ -31,3 +33,17 @@ These are to be added in the first playable prototype.
 	- [ ] Glass breaking effects after critical hits
 	- [ ] Smoke effects after critical hits
 - [ ] Fan out bullets a little bit. Give them travel angle variation.
+- [ ] 1280 asset port.
+	- [ ] Minimap
+	- [ ] Android Controls
+	- [ ] Bars
+	- [ ] Text
+	- [ ] Guides
+- [ ] The AI doesn't know how to pace itself when it comes to using the throttle. They keep passing out too quickly.
+- [ ] Menus
+	- [ ] main menu
+	- [ ] Settings
+	- [ ] ...
+- [ ] Divebombing
+- [ ] Bomber artillery
+- [ ] Tween when throttling

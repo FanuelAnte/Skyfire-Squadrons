@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource( 1 )
 plane_name = "A6M Zero"
-wingspan = 50
+wingspan = 40
 alignment = "Axis"
 country = "Japan"
 classification = "Small Fighter"
