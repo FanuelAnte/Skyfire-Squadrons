@@ -93,7 +93,7 @@
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       },
       {
         "id": "6a950672831268e0",
@@ -178,7 +178,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Unformatted Ideas.md",
+                "file": "To-Dos.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -195,7 +195,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Unformatted Ideas.md",
+                "file": "To-Dos.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -218,7 +218,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Unformatted Ideas.md"
+                "file": "To-Dos.md"
               }
             }
           }
@@ -239,10 +239,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3e85ae842b9f054c",
+  "active": "d25f0a53fa5462bc",
   "lastOpenFiles": [
-    "Planes.md",
     "Unformatted Ideas.md",
+    "Planes.md",
     "To-Dos.md",
     "Prototype 1, Single player.md",
     "Research.md",

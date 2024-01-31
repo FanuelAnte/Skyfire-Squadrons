@@ -45,5 +45,7 @@ These are to be added in the first playable prototype.
 	- [ ] Settings
 	- [ ] ...
 - [ ] Divebombing
-- [ ] Bomber artillery
+- [ ] Bomber behavior
+	- [ ] targeting (ground)
+	- [ ] defense artillery
 - [ ] Tween when throttling
