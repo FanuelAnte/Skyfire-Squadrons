@@ -35,3 +35,16 @@ This is the other essential gameplay mechanic. This involves:
 > Bullets have owners to signify who shot them to allow for identification of who got the kill.
 
 > Use the parallax effect set at different values to determine the height of the plane instead of the scale of objects.
+
+### Questions
+1. What do I want the visual aspect of the game to look like?
+	1. environments
+	2. HUD
+	3. planes
+	4. Mobile Controls
+2. How much detail is required form the planes? What resolution fits best?
+3. What is affected by the resolution change? What are the gameplay effects? 
+4. How to bridge the gap between the maximum and minimum resolution.
+5. How to get the screen visibility of 1280 in 640?
+	1. Smaller plane sprites
+	2. just use 1280. (avoid)
