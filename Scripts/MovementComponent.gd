@@ -112,7 +112,6 @@ func get_input():
 	g_force_increase_factor = 0
 	
 	if plane_body.is_player and conscious:
-		plane_body.camera.current = true
 		if Input.is_action_pressed("turn_right"):
 			turn += 1
 			g_force_increase_factor += base_g_force_turn_factor

@@ -1,0 +1,38 @@
+extends Node2D
+
+var plane_body
+var camera
+
+var zoom_max = 1
+var zoom_min = 2
+
+func _ready():
+	plane_body = get_parent()
+	camera = get_child(0)
+	
+	if plane_body.is_player:
+		camera.current = true
+		
+func _physics_process(delta):
+	if plane_body.is_player and !plane_body.is_dead:
+		get_input()
+	
+func get_input():
+	if Input.is_action_just_pressed("zoom_max"):
+		tween_camera_zoom(Vector2(1, 1) * lerp(zoom_min, zoom_max, 0))
+
+	if Input.is_action_just_pressed("zoom_four"):
+		tween_camera_zoom(Vector2(1, 1) * lerp(zoom_min, zoom_max, 0.25))
+		
+	if Input.is_action_just_pressed("zoom_mid"):
+		tween_camera_zoom(Vector2(1, 1) * lerp(zoom_min, zoom_max, 0.5))
+		
+	if Input.is_action_just_pressed("zoom_two"):
+		tween_camera_zoom(Vector2(1, 1) * lerp(zoom_min, zoom_max, 0.75))
+		
+	if Input.is_action_just_pressed("zoom_min"):
+		tween_camera_zoom(Vector2(1, 1) * lerp(zoom_min, zoom_max, 1))
+		
+func tween_camera_zoom(zoom_level):
+	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_property(camera, "zoom", zoom_level, 0.5)

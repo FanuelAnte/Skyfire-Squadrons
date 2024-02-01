@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Assets/Exports/HUD/D-Pad#1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Exports/HUD/D-Pad#1(p).png" type="Texture" id=2]
@@ -16,6 +16,11 @@
 [ext_resource path="res://Assets/Exports/HUD/SliderGrabber.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Exports/HUD/SliderGrabber-Mirror.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Exports/HUD/PassingOutFilter.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Exports/HUD/ZoomButton.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Exports/HUD/ZoomButton(p).png" type="Texture" id=18]
+[ext_resource path="res://Assets/Exports/HUD/PilotCBarOver.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Exports/HUD/PilotCBarUnder.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Exports/HUD/PilotCBarProgress.png" type="Texture" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 size = 6
@@ -64,6 +69,7 @@ theme = SubResource( 2 )
 script = ExtResource( 8 )
 
 [node name="DPad" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 24.0
@@ -123,6 +129,7 @@ passby_press = true
 action = "turn_right_max"
 
 [node name="ActionButtons" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -190,6 +197,73 @@ margin_top = 25.0
 margin_right = 8.0
 margin_bottom = 31.0
 text = "C"
+
+[node name="ZoomButtons" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = 84.0
+margin_right = 120.0
+margin_bottom = 116.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Control5" type="Control" parent="ZoomButtons"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="Zoom_min" type="TouchScreenButton" parent="ZoomButtons/Control5"]
+normal = ExtResource( 17 )
+pressed = ExtResource( 18 )
+action = "zoom_min"
+
+[node name="Control4" type="Control" parent="ZoomButtons"]
+margin_left = 52.0
+margin_right = 84.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="Zoom_two" type="TouchScreenButton" parent="ZoomButtons/Control4"]
+normal = ExtResource( 17 )
+pressed = ExtResource( 18 )
+action = "zoom_two"
+
+[node name="Control3" type="Control" parent="ZoomButtons"]
+margin_left = 104.0
+margin_right = 136.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="Zoom_mid" type="TouchScreenButton" parent="ZoomButtons/Control3"]
+normal = ExtResource( 17 )
+pressed = ExtResource( 18 )
+action = "zoom_mid"
+
+[node name="Control2" type="Control" parent="ZoomButtons"]
+margin_left = 156.0
+margin_right = 188.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="Zoom_four" type="TouchScreenButton" parent="ZoomButtons/Control2"]
+normal = ExtResource( 17 )
+pressed = ExtResource( 18 )
+action = "zoom_four"
+
+[node name="Control" type="Control" parent="ZoomButtons"]
+margin_left = 208.0
+margin_right = 240.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="Zoom_max" type="TouchScreenButton" parent="ZoomButtons/Control"]
+normal = ExtResource( 17 )
+pressed = ExtResource( 18 )
+action = "zoom_max"
 
 [node name="AmmoSection" type="VBoxContainer" parent="."]
 anchor_left = 1.0
@@ -289,16 +363,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -64.0
-margin_top = -16.0
-margin_right = 64.0
-margin_bottom = -8.0
+margin_left = -32.0
+margin_top = -22.0
+margin_right = 32.0
+margin_bottom = -16.0
 max_value = 10.0
 step = 0.1
 value = 10.0
-texture_under = ExtResource( 11 )
-texture_over = ExtResource( 9 )
-texture_progress = ExtResource( 10 )
+texture_under = ExtResource( 20 )
+texture_over = ExtResource( 19 )
+texture_progress = ExtResource( 21 )
 
 [node name="MiniMap" parent="." instance=ExtResource( 13 )]
 unique_name_in_owner = true

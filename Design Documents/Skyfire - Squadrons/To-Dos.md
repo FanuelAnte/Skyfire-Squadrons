@@ -10,6 +10,7 @@ These are to be added in the first playable prototype.
 - [ ] Either multi-targeting or random flight pattern towards action zones.
 - [x] Gs.
 - [x] G-Force Effects
+	- [ ] Zoom in camera when passing out or just reset it to 1.
 - [x] Pilot consciousness bar
 - [x] Death.
 	- [x] radar icon removal
@@ -33,12 +34,12 @@ These are to be added in the first playable prototype.
 	- [ ] Glass breaking effects after critical hits
 	- [ ] Smoke effects after critical hits
 - [ ] Fan out bullets a little bit. Give them travel angle variation.
-- [ ] 1280 asset port.
-	- [ ] Minimap
-	- [ ] Android Controls
-	- [ ] Bars
-	- [ ] Text
-	- [ ] Guides
+- [ ] ~~1280 asset port.~~
+	- [ ] ~~Minimap~~
+	- [ ] ~~Android Controls~~
+	- [ ] ~~Bars~~
+	- [ ] ~~Text~~
+	- [ ] ~~Guides~~
 - [ ] The AI doesn't know how to pace itself when it comes to using the throttle. They keep passing out too quickly.
 - [ ] Menus
 	- [ ] main menu
@@ -49,3 +50,16 @@ These are to be added in the first playable prototype.
 	- [ ] targeting (ground)
 	- [ ] defense artillery
 - [ ] Tween when throttling
+- [ ] Avoid pane overlaps by checking proximity
+	- [ ] If within 100 pixels of your target, move away randomly.
+- [ ] Small fighters should do evasive maneuvers instead of turning at max_bank when being shot at.
+- [ ] The pilot you pick dictates how far out you can zoom. Meaning the pilot resource sets the max_zoom level.
+# For Saturday
+- [ ] Dedicated throttle toggle for android
+- [x] Zoom buttons for android
+- [ ] Simple tutorial screen (for controls)
+- [ ] Placeholder world art
+	- [ ] limits
+- [ ] main menu
+- [ ] objectives
+- [ ] Hide tertiary action button accordingly.

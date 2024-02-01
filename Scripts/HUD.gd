@@ -1,7 +1,9 @@
 extends Control
 
-onready var d_pad = $DPad
-onready var action_buttons = $ActionButtons
+onready var d_pad = $"%DPad"
+onready var action_buttons = $"%ActionButtons"
+onready var zoom_buttons = $"%ZoomButtons"
+
 onready var mini_map = $"%MiniMap"
 
 onready var flight_time_label = $"%FlightTimeLabel"
@@ -47,9 +49,11 @@ func _ready():
 	if OS.get_name() == "Android":
 		d_pad.show()
 		action_buttons.show()
+		zoom_buttons.show()
 	else:
 		d_pad.hide()
 		action_buttons.hide()
+		zoom_buttons.hide()
 
 func _physics_process(delta):
 	if plane_body.is_player and !plane_body.is_dead:

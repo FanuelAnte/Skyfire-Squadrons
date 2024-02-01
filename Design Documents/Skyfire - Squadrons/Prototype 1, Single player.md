@@ -11,8 +11,11 @@ To figure out what is going to be included in this version, I'm going to divide 
 - [x] Fuel and Ammunition
 - [x] Pilots
 - [x] Death
+- [x] Resolution and Dynamic Camera
 #### Tech
 - [x] Heads Up Display
+	- [ ] Static HUD
+	- [ ] Player markers/names and attached health bars
 - [ ] Menus
 	- [ ] Main Menu
 	- [ ] Game Mode Selection Screen
@@ -164,7 +167,28 @@ These are also variables. Very simple. Fuel goes down at a pre-determined rate i
 The pilot you choose dictates (Gameplay-wise):
 1. ___The "passing-out resistance"___ - Time it takes for the pilot to lose consciousness after experiencing max G-forces. This is called ___time_to_unconsciousness___.
 2. ___Consciousness recovery time___ - Time it takes for the pilot to regain consciousness after G-force stabilization. This is called ___time_to_consciousness___.
-How are G-forces going to affect gameplay? After max G-forces are sustained, a timer starts with the duration of ___time_to_unconsciousness___. If the G-forces don't level out by the time the timer times out, a Boolean value called ___passed_out___. If G-forces do level out before the timer runs out, ___consiousness___ levels back out.
+How are G-forces going to affect gameplay? After max G-forces are sustained, a timer starts with the duration of ___time_to_unconsciousness___. If the G-forces don't level out by the time the timer times out, a Boolean value called ___passed_out___. If G-forces do level out before the timer runs out, ___consciousness___ levels back out.
+##### Vision
+Pilots also dictate how much you can zoom out. Also, zoom level of the camera is reset back to 1 if you pass out.
+##### Shot Criticality
+Pilots also dictate the criticality percentage alongside the weapon resource's criticality values.
+### Resolution
+The games resolution and the plane sprite scale in relation to that resolution is becoming a real problem. The problems specifically are 
+1. If the plane sprites are in the 32 - 64 px range and the game is set to a 640 base resolution,
+	1. The planes are too big and therefore you can't see forward.
+	2. Their movement speed is too quick meaning they go in and out of view very quickly. This results in you not being able to lock on to a target accurately.
+2. If the plane sprites are at 32 - 64 px range and the game is at 1280 base resolution.
+	1. It is no longer pixel art
+
+Solution: dynamic camera zoom. Player controlled. There are going to be 5 different zoom levels:
+
+| Name| Value | Key binding |
+| ---- | ---- | ---- |
+| zoom_min | 2.0 | num 1 |
+| zoom_two | 1.75 | num 2 |
+| zoom_mid | 1.5 | num 3 |
+| zoom_four | 1.25 | num 4 |
+| zoom_max | 1 | num 5 |
 # Tech
 ### HUD
 I'm going to keep the in-game HUD as minimal as possible.

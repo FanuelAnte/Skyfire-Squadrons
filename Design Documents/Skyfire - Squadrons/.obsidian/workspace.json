@@ -6,7 +6,7 @@
       {
         "id": "640079a5e98bd19f",
         "type": "tabs",
-        "dimension": 43.709916132215106,
+        "dimension": 46.71928959052786,
         "children": [
           {
             "id": "d731aa89cb2df78f",
@@ -98,7 +98,7 @@
       {
         "id": "6a950672831268e0",
         "type": "tabs",
-        "dimension": 56.290083867784894,
+        "dimension": 53.28071040947214,
         "children": [
           {
             "id": "81ce41c997a9ad16",
@@ -241,10 +241,10 @@
   },
   "active": "d25f0a53fa5462bc",
   "lastOpenFiles": [
+    "Prototype 1, Single player.md",
+    "To-Dos.md",
     "Unformatted Ideas.md",
     "Planes.md",
-    "To-Dos.md",
-    "Prototype 1, Single player.md",
     "Research.md",
     "Final Design Document.md",
     "Alignments.md",
