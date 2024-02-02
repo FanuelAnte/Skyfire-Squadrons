@@ -241,6 +241,29 @@ Objective completion and failure will be handled differently for each mission ty
 To death or not to death, fuuuuuck. When a plane's health gets depleted, the is_dead Boolean is flagged as true and everything from movement to shooting to being targeted to showing up on the radar is disabled. 
 # World
 ### Level Loading
+##### Levels
+Each level is going to have the following structure.
+- World name (Node2D)
+	- parallax background
+		- parallax layer 1 (water)
+			- sprite
+		- parallax layer 2 (water)
+			- sprite
+		- parallax layer 3 (Clouds 1)
+			- sprite
+		- parallax layer 4 (Clouds 2)
+			- sprite
+		- parallax layer 5 (Clouds 3 above)
+			- sprite
+
+| Layer | Name | Scale | Mirroring |
+| ---- | ---- | ---- | ---- |
+| layer 1 | Water | 0.2 | true |
+| layer 2 | Ground | 0.2 | false |
+| layer 3 | Clouds 1 | 0.6 | true |
+| layer 4 | Clouds 2 | 0.8 | true |
+| layer 5 | Clouds 4 above | 1.2 | true |
+
 ### World Design
 ### Objective and Mission Design
 # Art

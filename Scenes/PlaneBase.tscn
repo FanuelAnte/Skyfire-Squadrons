@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Assets/Exports/TestPlane6.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Exports/TestPlane4.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/PlaneBase.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Components/MovementComponent.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Components/ArtilleryComponent.tscn" type="PackedScene" id=4]
@@ -117,17 +117,17 @@ collide_with_areas = true
 position = Vector2( 3, -14 )
 
 [node name="Trail" parent="Trails/TrailsParent1" instance=ExtResource( 6 )]
-default_color = Color( 1, 1, 1, 0.705882 )
+default_color = Color( 1, 1, 1, 0.784314 )
 gradient = null
-max_trail_length = 50
+max_trail_length = 100
 
 [node name="TrailsParent2" type="Position2D" parent="Trails"]
 position = Vector2( 3, 14 )
 
 [node name="Trail" parent="Trails/TrailsParent2" instance=ExtResource( 6 )]
-default_color = Color( 1, 1, 1, 0.705882 )
+default_color = Color( 1, 1, 1, 0.784314 )
 gradient = null
-max_trail_length = 50
+max_trail_length = 100
 
 [node name="HealthComponent" parent="." instance=ExtResource( 7 )]
 
