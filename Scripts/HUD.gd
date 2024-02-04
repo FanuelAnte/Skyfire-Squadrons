@@ -25,6 +25,13 @@ onready var pass_out = $"%PassOut"
 
 onready var framerate = $"%Framerate"
 
+onready var fire_primary = $"%FirePrimary"
+onready var fire_secondary = $"%FireSecondary"
+onready var fire_tertiary = $"%FireTertiary"
+
+
+onready var throttle_button = $"%ThrottleButton"
+
 onready var label = $"%Label"
 
 var plane_body
@@ -50,10 +57,28 @@ func _ready():
 		
 	if OS.get_name() == "Android":
 #		d_pad.show()
+		throttle_button.show()
 		action_buttons.show()
 		zoom_buttons.show()
+		
+		if plane_body.details.classification == "Small Fighter":
+			fire_primary.show()
+			fire_secondary.show()
+			fire_tertiary.hide()
+		
+		elif plane_body.details.classification == "Medium Fighter":
+			fire_primary.show()
+			fire_secondary.show()
+			fire_tertiary.show()
+		
+		elif plane_body.details.classification == "Bomber":
+			fire_primary.hide()
+			fire_secondary.hide()
+			fire_tertiary.show()
+		
 	else:
 		d_pad.hide()
+		throttle_button.hide()
 		action_buttons.hide()
 		zoom_buttons.hide()
 

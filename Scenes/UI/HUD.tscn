@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Exports/HUD/D-Pad#1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Exports/HUD/D-Pad#1(p).png" type="Texture" id=2]
@@ -6,14 +6,13 @@
 [ext_resource path="res://Assets/Exports/HUD/D-Pad#2(p).png" type="Texture" id=4]
 [ext_resource path="res://Assets/Exports/HUD/ActionButton(p).png" type="Texture" id=5]
 [ext_resource path="res://Assets/Exports/HUD/ActionButton.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Fonts/BLOCKYV2.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Scenes/Themes/PrototypeTheme.tres" type="Theme" id=7]
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=8]
 [ext_resource path="res://Assets/Exports/HUD/HealthBarOver.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Exports/HUD/HealthBarProgress.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Exports/HUD/HealthBarUnder.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Exports/HUD/Guides.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/UI/MiniMap.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Assets/Exports/HUD/SliderGrabber.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Exports/HUD/SliderGrabber-Mirror.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Exports/HUD/PassingOutFilter.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Exports/HUD/ZoomButton.png" type="Texture" id=17]
@@ -21,22 +20,6 @@
 [ext_resource path="res://Assets/Exports/HUD/PilotCBarOver.png" type="Texture" id=19]
 [ext_resource path="res://Assets/Exports/HUD/PilotCBarUnder.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Exports/HUD/PilotCBarProgress.png" type="Texture" id=21]
-
-[sub_resource type="DynamicFont" id=1]
-size = 6
-font_data = ExtResource( 7 )
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.6, 0.6, 0.6, 0 )
-
-[sub_resource type="Theme" id=2]
-Label/fonts/font = SubResource( 1 )
-VSlider/icons/grabber = ExtResource( 14 )
-VSlider/icons/grabber_disabled = ExtResource( 14 )
-VSlider/icons/grabber_highlight = ExtResource( 14 )
-VSlider/styles/grabber_area = SubResource( 3 )
-VSlider/styles/grabber_area_highlight = SubResource( 3 )
-VSlider/styles/slider = SubResource( 3 )
 
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
@@ -65,7 +48,7 @@ shader_param/SOFTNESS = 1.5
 [node name="HUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 2 )
+theme = ExtResource( 7 )
 script = ExtResource( 8 )
 
 [node name="DPad" type="HBoxContainer" parent="."]
@@ -130,70 +113,102 @@ pressed = ExtResource( 2 )
 passby_press = true
 action = "turn_right_max"
 
-[node name="ActionButtons" type="HBoxContainer" parent="."]
+[node name="ThrottleButton" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -176.0
-margin_top = -64.0
-margin_right = -16.0
-margin_bottom = -16.0
-grow_horizontal = 0
-custom_constants/separation = 8
-alignment = 2
+margin_left = -128.0
+margin_top = -72.0
+margin_right = -80.0
+margin_bottom = -24.0
 
-[node name="Control" type="Control" parent="ActionButtons"]
+[node name="Throttle" type="Control" parent="ThrottleButton"]
+unique_name_in_owner = true
 margin_right = 48.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 48 )
 
-[node name="FirePrimary" type="TouchScreenButton" parent="ActionButtons/Control"]
+[node name="Throttle" type="TouchScreenButton" parent="ThrottleButton/Throttle"]
+normal = ExtResource( 6 )
+pressed = ExtResource( 5 )
+passby_press = true
+action = "throttle"
+
+[node name="Label" type="Label" parent="ThrottleButton/Throttle"]
+margin_left = 2.0
+margin_top = 41.0
+margin_right = 8.0
+margin_bottom = 47.0
+text = "T"
+
+[node name="ActionButtons" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -72.0
+margin_top = -184.0
+margin_right = -24.0
+margin_bottom = -24.0
+custom_constants/separation = 8
+alignment = 2
+
+[node name="FirePrimary" type="Control" parent="ActionButtons"]
+unique_name_in_owner = true
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="FirePrimary" type="TouchScreenButton" parent="ActionButtons/FirePrimary"]
 normal = ExtResource( 6 )
 pressed = ExtResource( 5 )
 passby_press = true
 action = "fire_primary"
 
-[node name="Label" type="Label" parent="ActionButtons/Control"]
+[node name="Label" type="Label" parent="ActionButtons/FirePrimary"]
 margin_left = 2.0
 margin_top = 41.0
 margin_right = 8.0
 margin_bottom = 47.0
 text = "A"
 
-[node name="Control2" type="Control" parent="ActionButtons"]
-margin_left = 56.0
-margin_right = 104.0
-margin_bottom = 48.0
+[node name="FireSecondary" type="Control" parent="ActionButtons"]
+unique_name_in_owner = true
+margin_top = 56.0
+margin_right = 48.0
+margin_bottom = 104.0
 rect_min_size = Vector2( 48, 48 )
 
-[node name="FireSecondary" type="TouchScreenButton" parent="ActionButtons/Control2"]
+[node name="FireSecondary" type="TouchScreenButton" parent="ActionButtons/FireSecondary"]
 normal = ExtResource( 6 )
 pressed = ExtResource( 5 )
 passby_press = true
 action = "fire_secondary"
 
-[node name="Label2" type="Label" parent="ActionButtons/Control2"]
+[node name="Label2" type="Label" parent="ActionButtons/FireSecondary"]
 margin_left = 2.0
 margin_top = 41.0
 margin_right = 8.0
 margin_bottom = 47.0
 text = "B"
 
-[node name="Control3" type="Control" parent="ActionButtons"]
-margin_left = 112.0
-margin_right = 160.0
-margin_bottom = 48.0
+[node name="FireTertiary" type="Control" parent="ActionButtons"]
+unique_name_in_owner = true
+margin_top = 112.0
+margin_right = 48.0
+margin_bottom = 160.0
 rect_min_size = Vector2( 48, 48 )
 
-[node name="FireTertiary" type="TouchScreenButton" parent="ActionButtons/Control3"]
+[node name="FireTertiary" type="TouchScreenButton" parent="ActionButtons/FireTertiary"]
 normal = ExtResource( 6 )
 pressed = ExtResource( 5 )
 passby_press = true
-action = "toggle_throttle"
+action = "fire_tertiary"
 
-[node name="Label3" type="Label" parent="ActionButtons/Control3"]
+[node name="Label3" type="Label" parent="ActionButtons/FireTertiary"]
 margin_left = 2.0
 margin_top = 41.0
 margin_right = 8.0
@@ -465,6 +480,7 @@ visible = false
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+input_pass_on_modal_close_click = false
 texture = ExtResource( 16 )
 expand = true
 stretch_mode = 1
@@ -477,6 +493,7 @@ unique_name_in_owner = true
 material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+input_pass_on_modal_close_click = false
 color = Color( 0, 0, 0, 0 )
 
 [node name="Label" type="Label" parent="."]

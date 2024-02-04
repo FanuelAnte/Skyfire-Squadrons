@@ -55,6 +55,7 @@ These are to be added in the first playable prototype.
 - [ ] Small fighters should do evasive maneuvers instead of turning at max_bank when being shot at.
 - [ ] The pilot you pick dictates how far out you can zoom. Meaning the pilot resource sets the max_zoom level.
 - [ ] dithering for pass-out shader 
+- [ ] drag indicators for android
 # For Saturday
 - [ ] Dedicated throttle toggle for android
 - [x] Zoom buttons for android

@@ -74,9 +74,6 @@ func _physics_process(delta):
 		velocity = plane_body.move_and_slide(velocity)
 		update_enemy_planes()
 		
-#		if !is_dragging:
-#			drag_start_position = null
-	
 		if !full_throttle:
 			burn_fuel(fuel_burn_rate_standard, delta)
 			speed = plane_body.details.cruise_speed
@@ -128,16 +125,16 @@ func _input(event):
 			else:
 				if !is_dragging:
 					drag_start_position = null
-
 		else:
 			events.erase(event.index)
 			
 	if event is InputEventScreenDrag:
 		events[event.index] = event
-		if drag_start_position != null:
-			drag_distance = (drag_start_position - events[0].position).x * -1
+		if drag_start_position != null and event.position.x < int(get_viewport_rect().size.x/2):
+			drag_distance = (drag_start_position - event.position).x * -1
 			
-	curr_f_pos = str(events.keys().size()) + " " + str(drag_distance) + " " + str(is_dragging)
+#	curr_f_pos = str(events.keys().size()) + " " + str(drag_distance) + " " + str(drag_start_position)
+#	curr_f_pos = drag_start_position
 	
 	if events.size() == 0:
 		is_dragging = false
@@ -149,6 +146,7 @@ func get_input():
 	turning = false
 	turn = 0
 	g_force_increase_factor = 0
+	full_throttle = false
 	
 	if plane_body.is_player and conscious:
 		if Input.is_action_pressed("turn_right") or (drag_distance > drag_lower_limit and drag_distance < drag_upper_limit and is_dragging):
@@ -161,15 +159,10 @@ func get_input():
 			g_force_increase_factor += base_g_force_turn_factor
 			turning = true
 
-		if full_throttle:
+		if Input.is_action_pressed("throttle"):
+			full_throttle = true
 			g_force_increase_factor += g_force_throttle_factor
-
-		if Input.is_action_just_pressed("toggle_throttle"):
-			if full_throttle:
-				full_throttle = false
-			else:
-				full_throttle = true
-
+			
 		if Input.is_action_pressed("increase_bank") and turning:
 			turn *= plane_body.details.max_bank_angle_factor
 			g_force_increase_factor += max_g_force_turn_factor
