@@ -25,6 +25,8 @@ onready var pass_out = $"%PassOut"
 
 onready var framerate = $"%Framerate"
 
+onready var label = $"%Label"
+
 var plane_body
 var artillery_component
 var movement_component
@@ -47,7 +49,7 @@ func _ready():
 		self.hide()
 		
 	if OS.get_name() == "Android":
-		d_pad.show()
+#		d_pad.show()
 		action_buttons.show()
 		zoom_buttons.show()
 	else:
@@ -70,6 +72,7 @@ func _physics_process(delta):
 		g_force_label.text = str(stepify((movement_component.g_force), 0.1)).pad_zeros(2).pad_decimals(1) + " G"
 		
 		framerate.text = str(Engine.get_frames_per_second())
+		label.text = str(movement_component.curr_f_pos)
 		
 		tween_hud_color(primary_ammo, artillery_component.primary_heat)
 		tween_hud_color(secondary_ammo, artillery_component.secondary_heat)

@@ -70,6 +70,8 @@ rotation = new_heading.angle()
 I'm thinking of making the movement controller it's own component. I have two possible ways of approaching it:
 1. Use get_parent() to get the plane body and apply move_and_slide() and the rotation.
 2. Use an export variable to get the parent node.
+##### Mobile Controls.
+The buttons for movement just aren't going to cut it I need to do something more intuitive. Hear me out: free dragging on the screen. Drag left and right on any part of the screen and depending on how far away you finger is from the drag_start_position, the turn variable is set accordingly.
 ### Enemy Movement AI
 This applies to both ___Enemy___ and ___Ally___ AI. The behavior I have so far is that once a target is set, which is set by me at the moment, the plane follows it. It utilizes the same movement logic as the player controller, the only difference being that the turn angle is set based on the angle between the heading of the plane itself and the target.
 ```GDScript

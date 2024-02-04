@@ -70,17 +70,19 @@ script = ExtResource( 8 )
 
 [node name="DPad" type="HBoxContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 24.0
-margin_top = -56.0
-margin_right = 164.0
-margin_bottom = -24.0
+margin_left = 16.0
+margin_top = -64.0
+margin_right = 214.0
+margin_bottom = -16.0
+custom_constants/separation = 2
 
 [node name="Control" type="Control" parent="DPad"]
-margin_right = 32.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
 
 [node name="TurnLeftMax" type="TouchScreenButton" parent="DPad/Control"]
 normal = ExtResource( 1 )
@@ -89,10 +91,10 @@ passby_press = true
 action = "turn_left_max"
 
 [node name="Control3" type="Control" parent="DPad"]
-margin_left = 36.0
-margin_right = 68.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
+margin_left = 50.0
+margin_right = 98.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
 
 [node name="TurnLeft" type="TouchScreenButton" parent="DPad/Control3"]
 normal = ExtResource( 3 )
@@ -101,13 +103,13 @@ passby_press = true
 action = "turn_left"
 
 [node name="Control4" type="Control" parent="DPad"]
-margin_left = 72.0
-margin_right = 104.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
+margin_left = 100.0
+margin_right = 148.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
 
 [node name="TurnRigh" type="TouchScreenButton" parent="DPad/Control4"]
-position = Vector2( 32, 32 )
+position = Vector2( 48, 48 )
 rotation = -3.14159
 normal = ExtResource( 3 )
 pressed = ExtResource( 4 )
@@ -115,13 +117,13 @@ passby_press = true
 action = "turn_right"
 
 [node name="Control2" type="Control" parent="DPad"]
-margin_left = 108.0
-margin_right = 140.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
+margin_left = 150.0
+margin_right = 198.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
 
 [node name="TurnRighMax" type="TouchScreenButton" parent="DPad/Control2"]
-position = Vector2( 32, 32 )
+position = Vector2( 48, 48 )
 rotation = -3.14159
 normal = ExtResource( 1 )
 pressed = ExtResource( 2 )
@@ -134,18 +136,18 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -128.0
-margin_top = -56.0
-margin_right = -24.0
-margin_bottom = -24.0
+margin_left = -176.0
+margin_top = -64.0
+margin_right = -16.0
+margin_bottom = -16.0
 grow_horizontal = 0
-custom_constants/separation = 16
+custom_constants/separation = 8
 alignment = 2
 
 [node name="Control" type="Control" parent="ActionButtons"]
-margin_right = 32.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
 
 [node name="FirePrimary" type="TouchScreenButton" parent="ActionButtons/Control"]
 normal = ExtResource( 6 )
@@ -155,16 +157,16 @@ action = "fire_primary"
 
 [node name="Label" type="Label" parent="ActionButtons/Control"]
 margin_left = 2.0
-margin_top = 25.0
+margin_top = 41.0
 margin_right = 8.0
-margin_bottom = 31.0
+margin_bottom = 47.0
 text = "A"
 
 [node name="Control2" type="Control" parent="ActionButtons"]
-margin_left = 48.0
-margin_right = 80.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
+margin_left = 56.0
+margin_right = 104.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
 
 [node name="FireSecondary" type="TouchScreenButton" parent="ActionButtons/Control2"]
 normal = ExtResource( 6 )
@@ -174,16 +176,16 @@ action = "fire_secondary"
 
 [node name="Label2" type="Label" parent="ActionButtons/Control2"]
 margin_left = 2.0
-margin_top = 25.0
+margin_top = 41.0
 margin_right = 8.0
-margin_bottom = 31.0
+margin_bottom = 47.0
 text = "B"
 
 [node name="Control3" type="Control" parent="ActionButtons"]
-margin_left = 96.0
-margin_right = 128.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
+margin_left = 112.0
+margin_right = 160.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
 
 [node name="FireTertiary" type="TouchScreenButton" parent="ActionButtons/Control3"]
 normal = ExtResource( 6 )
@@ -193,9 +195,9 @@ action = "toggle_throttle"
 
 [node name="Label3" type="Label" parent="ActionButtons/Control3"]
 margin_left = 2.0
-margin_top = 25.0
+margin_top = 41.0
 margin_right = 8.0
-margin_bottom = 31.0
+margin_bottom = 47.0
 text = "C"
 
 [node name="ZoomButtons" type="HBoxContainer" parent="."]
@@ -476,6 +478,13 @@ material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+margin_left = 24.0
+margin_top = 96.0
+margin_right = 64.0
+margin_bottom = 102.0
 
 [connection signal="pressed" from="DPad/Control/TurnLeftMax" to="." method="_on_TurnLeftMax_pressed"]
 [connection signal="pressed" from="DPad/Control3/TurnLeft" to="." method="_on_TurnLeft_pressed"]

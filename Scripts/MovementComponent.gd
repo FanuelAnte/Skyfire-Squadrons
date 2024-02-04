@@ -8,6 +8,8 @@ var velocity = Vector2.ZERO
 var steer_angle
 var target_angle_difference = 0
 
+var turn = 0
+
 var fuel = 0
 var fuel_burn_rate_standard = 0
 var fuel_burn_rate_max = 0
@@ -15,6 +17,16 @@ var total_flight_time
 var coasting_duration_seconds
 
 var full_throttle = false
+
+var drag_start_position = Vector2.ZERO
+var drag_distance = 0
+var	is_dragging = false
+var events = {}
+
+var drag_lower_limit = 10
+var drag_upper_limit = 110
+
+var curr_f_pos = 0
 
 var speed = 0
 var evade_direction = 1
@@ -61,6 +73,9 @@ func _physics_process(delta):
 		apply_rotation(delta)
 		velocity = plane_body.move_and_slide(velocity)
 		update_enemy_planes()
+		
+#		if !is_dragging:
+#			drag_start_position = null
 	
 		if !full_throttle:
 			burn_fuel(fuel_burn_rate_standard, delta)
@@ -105,40 +120,64 @@ func update_enemy_planes():
 		if plane.details.alignment != plane_body.details.alignment and !plane.targeted:
 			enemy_planes.append(plane)
 		
+func _input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			if event.position.x < int(get_viewport_rect().size.x/3):
+				drag_start_position = event.position
+			else:
+				if !is_dragging:
+					drag_start_position = null
+
+		else:
+			events.erase(event.index)
+			
+	if event is InputEventScreenDrag:
+		events[event.index] = event
+		if drag_start_position != null:
+			drag_distance = (drag_start_position - events[0].position).x * -1
+			
+	curr_f_pos = str(events.keys().size()) + " " + str(drag_distance) + " " + str(is_dragging)
+	
+	if events.size() == 0:
+		is_dragging = false
+		drag_distance = 0
+	else:
+		is_dragging = true
+		
 func get_input():
 	turning = false
-	var turn = 0
-	
+	turn = 0
 	g_force_increase_factor = 0
 	
 	if plane_body.is_player and conscious:
-		if Input.is_action_pressed("turn_right"):
+		if Input.is_action_pressed("turn_right") or (drag_distance > drag_lower_limit and drag_distance < drag_upper_limit and is_dragging):
 			turn += 1
 			g_force_increase_factor += base_g_force_turn_factor
 			turning = true
-			
-		elif Input.is_action_pressed("turn_left"):
+
+		elif Input.is_action_pressed("turn_left") or (drag_distance < -drag_lower_limit and drag_distance > -drag_upper_limit and is_dragging):
 			turn -= 1
 			g_force_increase_factor += base_g_force_turn_factor
 			turning = true
-			
+
 		if full_throttle:
 			g_force_increase_factor += g_force_throttle_factor
-			 
+
 		if Input.is_action_just_pressed("toggle_throttle"):
 			if full_throttle:
 				full_throttle = false
 			else:
 				full_throttle = true
-				
+
 		if Input.is_action_pressed("increase_bank") and turning:
 			turn *= plane_body.details.max_bank_angle_factor
 			g_force_increase_factor += max_g_force_turn_factor
-			
-		if Input.is_action_pressed("turn_right_max"):
+
+		if Input.is_action_pressed("turn_right_max") or (drag_distance >= drag_upper_limit and is_dragging):
 			turn += 1 * plane_body.details.max_bank_angle_factor
 			g_force_increase_factor += g_force_throttle_factor
-		elif Input.is_action_pressed("turn_left_max"):
+		elif Input.is_action_pressed("turn_left_max") or (drag_distance <= -drag_upper_limit and is_dragging):
 			turn -= 1 * plane_body.details.max_bank_angle_factor
 			g_force_increase_factor += g_force_throttle_factor
 		
