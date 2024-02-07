@@ -109,8 +109,8 @@ func _physics_process(delta):
 			if movement_component.is_dragging:
 				drag_s.show()
 				drag_c.show()
-				drag_s.global_position = movement_component.drag_start_position
-				drag_c.global_position = movement_component.current_drag_position
+				drag_s.global_position = movement_component.drag_start_position - Vector2 (0, 64)
+				drag_c.global_position.x = movement_component.current_drag_position.x
 			else:
 				drag_s.hide()
 				drag_c.hide()

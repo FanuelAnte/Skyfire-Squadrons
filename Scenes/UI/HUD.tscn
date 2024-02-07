@@ -127,7 +127,7 @@ unique_name_in_owner = true
 visible = false
 texture = ExtResource( 14 )
 
-[node name="DragC" type="Sprite" parent="DragControls"]
+[node name="DragC" type="Sprite" parent="DragControls/DragS"]
 unique_name_in_owner = true
 visible = false
 texture = ExtResource( 22 )

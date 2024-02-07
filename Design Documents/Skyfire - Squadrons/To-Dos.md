@@ -60,12 +60,13 @@ These are to be added in the first playable prototype.
 		- [x] turn amount should be finessed but the effects and turn animations should stay the same.
 		- [x] if dragging, multiply the turn amount by a range_lerp value set between 0 and max_turn angle.
 - [ ] Settings globals.
+- [ ] Sound Effects.
 # For Saturday
-- [ ] Dedicated throttle toggle for android
+- [x] Dedicated throttle toggle for android
 - [x] Zoom buttons for android
 - [ ] Simple tutorial screen (for controls)
-- [ ] Placeholder world art
+- [x] Placeholder world art
 	- [ ] limits
 - [ ] main menu
 - [ ] objectives
-- [ ] Hide tertiary action button accordingly.
+- [x] Hide tertiary action button accordingly.
