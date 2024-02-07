@@ -19,14 +19,15 @@ var coasting_duration_seconds
 var full_throttle = false
 
 var drag_start_position = Vector2.ZERO
+var current_drag_position = Vector2.ZERO
 var drag_distance = 0
 var	is_dragging = false
 var events = {}
 
+# Move game-play setting values to a Settings Globals autoload. This extends to things such as controller and visual modifications. 
 var drag_lower_limit = 10
-var drag_upper_limit = 110
-
-var curr_f_pos = 0
+var drag_upper_limit = 80
+var drag_max_limit = 150
 
 var speed = 0
 var evade_direction = 1
@@ -131,11 +132,9 @@ func _input(event):
 	if event is InputEventScreenDrag:
 		events[event.index] = event
 		if drag_start_position != null and event.position.x < int(get_viewport_rect().size.x/2):
+			current_drag_position = event.position
 			drag_distance = (drag_start_position - event.position).x * -1
-			
-#	curr_f_pos = str(events.keys().size()) + " " + str(drag_distance) + " " + str(drag_start_position)
-#	curr_f_pos = drag_start_position
-	
+		
 	if events.size() == 0:
 		is_dragging = false
 		drag_distance = 0
@@ -148,14 +147,22 @@ func get_input():
 	g_force_increase_factor = 0
 	full_throttle = false
 	
+	
 	if plane_body.is_player and conscious:
+		var drag_clampped_min = range_lerp(abs(drag_distance), drag_lower_limit, drag_upper_limit, 0, 1)
 		if Input.is_action_pressed("turn_right") or (drag_distance > drag_lower_limit and drag_distance < drag_upper_limit and is_dragging):
-			turn += 1
+			if is_dragging:
+				turn += 1 * drag_clampped_min
+			else:
+				turn += 1
 			g_force_increase_factor += base_g_force_turn_factor
 			turning = true
 
 		elif Input.is_action_pressed("turn_left") or (drag_distance < -drag_lower_limit and drag_distance > -drag_upper_limit and is_dragging):
-			turn -= 1
+			if is_dragging:
+				turn -= 1 * drag_clampped_min
+			else:
+				turn -= 1
 			g_force_increase_factor += base_g_force_turn_factor
 			turning = true
 
@@ -167,11 +174,23 @@ func get_input():
 			turn *= plane_body.details.max_bank_angle_factor
 			g_force_increase_factor += max_g_force_turn_factor
 
+#		var drag_clampped_max = clamp(range_lerp(abs(drag_distance), drag_upper_limit, drag_max_limit, 0, 1), 0, 1)
 		if Input.is_action_pressed("turn_right_max") or (drag_distance >= drag_upper_limit and is_dragging):
 			turn += 1 * plane_body.details.max_bank_angle_factor
+			
+#			if is_dragging:
+#				turn += 1 * plane_body.details.max_bank_angle_factor * drag_clampped_max
+#			else:
+#				turn += 1 * plane_body.details.max_bank_angle_factor
 			g_force_increase_factor += g_force_throttle_factor
+			
 		elif Input.is_action_pressed("turn_left_max") or (drag_distance <= -drag_upper_limit and is_dragging):
 			turn -= 1 * plane_body.details.max_bank_angle_factor
+			
+#			if is_dragging:
+#				turn -= 1 * plane_body.details.max_bank_angle_factor * drag_clampped_max
+#			else:
+#				turn -= 1 * plane_body.details.max_bank_angle_factor
 			g_force_increase_factor += g_force_throttle_factor
 		
 	elif !plane_body.is_player and conscious:

@@ -55,7 +55,11 @@ These are to be added in the first playable prototype.
 - [ ] Small fighters should do evasive maneuvers instead of turning at max_bank when being shot at.
 - [ ] The pilot you pick dictates how far out you can zoom. Meaning the pilot resource sets the max_zoom level.
 - [ ] dithering for pass-out shader 
-- [ ] drag indicators for android
+- [x] drag indicators for android
+	- [x] don't lock turn amount to certain thresholds 
+		- [x] turn amount should be finessed but the effects and turn animations should stay the same.
+		- [x] if dragging, multiply the turn amount by a range_lerp value set between 0 and max_turn angle.
+- [ ] Settings globals.
 # For Saturday
 - [ ] Dedicated throttle toggle for android
 - [x] Zoom buttons for android
