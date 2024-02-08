@@ -121,7 +121,8 @@ func update_enemy_planes():
 func _input(event):
 	if event is InputEventScreenTouch:
 		if event.pressed:
-			if event.position.x < int(get_viewport_rect().size.x/3):
+			if event.position.x < int(get_viewport_rect().size.x/2):
+#				drag_start_position = Vector2((get_viewport_rect().size.x/3)/2 + 32, event.position.y)
 				drag_start_position = event.position
 			else:
 				if !is_dragging:

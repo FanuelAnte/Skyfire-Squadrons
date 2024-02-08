@@ -30,10 +30,11 @@ onready var fire_tertiary = $"%FireTertiary"
 
 onready var drag_s = $"%DragS"
 onready var drag_c = $"%DragC"
+onready var drag_controls = $"%DragControls"
 
 onready var throttle_button = $"%ThrottleButton"
 
-onready var label = $"%Label"
+onready var drag_amount_label = $"%DragAmountLabel"
 
 var plane_body
 var artillery_component
@@ -98,7 +99,7 @@ func _physics_process(delta):
 		g_force_label.text = str(stepify((movement_component.g_force), 0.1)).pad_zeros(2).pad_decimals(1) + " G"
 		
 		framerate.text = str(Engine.get_frames_per_second())
-		label.text = str(movement_component.drag_distance)
+		drag_amount_label.text = str(int(movement_component.drag_distance))
 		
 		tween_hud_color(primary_ammo, artillery_component.primary_heat)
 		tween_hud_color(secondary_ammo, artillery_component.secondary_heat)
@@ -107,13 +108,11 @@ func _physics_process(delta):
 		
 		if OS.get_name() == "Android":
 			if movement_component.is_dragging:
-				drag_s.show()
-				drag_c.show()
+				drag_controls.show()
 				drag_s.global_position = movement_component.drag_start_position - Vector2 (0, 64)
 				drag_c.global_position.x = movement_component.current_drag_position.x
 			else:
-				drag_s.hide()
-				drag_c.hide()
+				drag_controls.hide()
 	
 func tween_hud_color(node, value):
 	var changed_value = range_lerp(value, 100, 0, 0, 1)
