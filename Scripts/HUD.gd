@@ -106,13 +106,15 @@ func _physics_process(delta):
 		
 		tween_pass_out_filter(movement_component.consciousness)
 		
-		if OS.get_name() == "Android":
-			if movement_component.is_dragging:
-				drag_controls.show()
-				drag_s.global_position = movement_component.drag_start_position - Vector2 (0, 64)
-				drag_c.global_position.x = movement_component.current_drag_position.x
-			else:
-				drag_controls.hide()
+#		if OS.get_name() == "Android":
+		if movement_component.is_dragging:
+			drag_controls.show()
+			drag_s.global_position = movement_component.drag_start_position - Vector2 (0, 64)
+#				if abs(movement_component.drag_distance) <= movement_component.drag_values["max_limit"]:
+#					drag_c.global_position.x = movement_component.current_drag_position.x
+			drag_c.global_position.x = drag_s.global_position.x + movement_component.drag_distance
+		else:
+			drag_controls.hide()
 	
 func tween_hud_color(node, value):
 	var changed_value = range_lerp(value, 100, 0, 0, 1)
