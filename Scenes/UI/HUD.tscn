@@ -149,10 +149,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -128.0
-margin_top = -72.0
-margin_right = -80.0
-margin_bottom = -24.0
+margin_left = -144.0
+margin_top = -88.0
+margin_right = -96.0
+margin_bottom = -40.0
 
 [node name="Throttle" type="Control" parent="ThrottleButton"]
 unique_name_in_owner = true
@@ -179,10 +179,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -72.0
-margin_top = -184.0
-margin_right = -24.0
-margin_bottom = -24.0
+margin_left = -88.0
+margin_top = -200.0
+margin_right = -40.0
+margin_bottom = -40.0
 custom_constants/separation = 8
 alignment = 2
 

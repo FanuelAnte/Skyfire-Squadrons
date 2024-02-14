@@ -14,7 +14,7 @@ To figure out what is going to be included in this version, I'm going to divide 
 - [x] Resolution and Dynamic Camera
 #### Tech
 - [x] Heads Up Display
-	- [ ] Static HUD
+	- [x] Static HUD
 	- [ ] Player markers/names and attached health bars
 - [ ] Menus
 	- [ ] Main Menu

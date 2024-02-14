@@ -151,8 +151,8 @@ func get_input():
 	full_throttle = false
 	
 	if plane_body.is_player and conscious:
-		var drag_clampped_min = range_lerp(abs(drag_distance), drag_values["lower_limit"], drag_values["upper_limit"], 0, 1)
-#		var drag_clampped_min = 1
+#		var drag_clampped_min = range_lerp(abs(drag_distance), drag_values["lower_limit"], drag_values["upper_limit"], 0, 1)
+		var drag_clampped_min = 1
 		if Input.is_action_pressed("turn_right") or (drag_distance > drag_values["lower_limit"] and drag_distance < drag_values["upper_limit"] and is_dragging):
 			if is_dragging:
 				turn += 1 * drag_clampped_min

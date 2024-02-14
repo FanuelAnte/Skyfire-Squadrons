@@ -60,12 +60,23 @@ These are to be added in the first playable prototype.
 		- [x] turn amount should be finessed but the effects and turn animations should stay the same.
 		- [x] if dragging, multiply the turn amount by a range_lerp value set between 0 and max_turn angle.
 			- [ ] Experiment more with this.
+			- [ ] maybe make it an option to go back and forth between fixed snapping and a gradient.
+``` GDScript
+var drag_clampped_min = range_lerp(abs(drag_distance), drag_values["lower_limit"], drag_values["upper_limit"], 0, 1)
+
+or
+
+var drag_clampped_min = 1
+```
 		- [ ] add a buffer between the upper limit for the normal turn and the lower limit for the maximum turn. and make the variables into one dictionary. 
 		- [x] maybe fix the drag start position along the x axis to the (get_viewport().rect().x/3)/2. It's all over the place. It needs to be more consistent.
 			- [ ] maybe make it an option in the controls settings to go back and forth between the fixed and floating option.
 		- [ ] refine and tweak the min/max values. Movement is a nightmare.
 - [ ] Settings globals.
 - [ ] Sound Effects.
+- [ ] Hit effects
+	- [x] vibration
+	- [ ] smoke
 # For Saturday
 - [x] Dedicated throttle toggle for android
 - [x] Zoom buttons for android

@@ -34,6 +34,9 @@ func _on_HurtboxComponent_area_entered(area):
 			yield(get_tree().create_timer(stepify(rng.randf_range(0, 0.2), 0.1)), "timeout")
 			plane_body.is_being_shot = true
 			timer.start()
+			
+			if OS.get_name() == "Android" and plane_body.is_player:
+				Input.vibrate_handheld(100)
 	
 func _on_Timer_timeout():
 	plane_body.is_being_shot = false

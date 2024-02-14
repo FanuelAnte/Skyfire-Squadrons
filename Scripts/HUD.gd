@@ -107,7 +107,7 @@ func _physics_process(delta):
 		tween_pass_out_filter(movement_component.consciousness)
 		
 #		if OS.get_name() == "Android":
-		if movement_component.is_dragging:
+		if movement_component.is_dragging and movement_component.drag_start_position != null:
 			drag_controls.show()
 			drag_s.global_position = movement_component.drag_start_position - Vector2 (0, 64)
 #				if abs(movement_component.drag_distance) <= movement_component.drag_values["max_limit"]:
