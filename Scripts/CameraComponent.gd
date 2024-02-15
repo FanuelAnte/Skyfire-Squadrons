@@ -33,6 +33,13 @@ func get_input():
 	if Input.is_action_just_pressed("zoom_min"):
 		tween_camera_zoom(Vector2(1, 1) * lerp(zoom_min, zoom_max, 1))
 		
+func move_camera(amount):
+	camera.offset = Vector2(rand_range(-amount.x, amount.x), rand_range(-amount.y, amount.y))
+		
+func camera_shake(length, power):
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_method(self, "move_camera", Vector2(power, power), Vector2(0, 0), length)
+		
 func tween_camera_zoom(zoom_level):
 	var tween = create_tween().set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(camera, "zoom", zoom_level, 0.5)

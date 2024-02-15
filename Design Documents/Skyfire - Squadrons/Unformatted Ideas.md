@@ -48,3 +48,5 @@ This is the other essential gameplay mechanic. This involves:
 5. How to get the screen visibility of 1280 in 640?
 	1. Smaller plane sprites
 	2. just use 1280. (avoid)
+
+> Helldiver's 2 style key combinations to access special abilities.

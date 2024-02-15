@@ -140,4 +140,4 @@ func spawn_bullet(bullet_resource, weapon_group):
 		bullet.transform = muzzle.global_transform
 		
 		if OS.get_name() == "Android" and plane_body.is_player:
-			Input.vibrate_handheld(40)
+			Input.vibrate_handheld(30)

@@ -76,7 +76,12 @@ var drag_clampped_min = 1
 - [ ] Sound Effects.
 - [ ] Hit effects
 	- [x] vibration
+	- [x] camera shake
 	- [ ] smoke
+- [ ] Settings options for
+	- [ ] Shot vibration strength
+	- [ ] Damage vibration strength
+	- [ ] Camera shake intensity
 # For Saturday
 - [x] Dedicated throttle toggle for android
 - [x] Zoom buttons for android

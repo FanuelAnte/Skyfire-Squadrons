@@ -5,6 +5,7 @@ onready var timer = $Timer
 
 export (NodePath) var HealthComponentPath
 var health_component
+var camera_component
 
 var plane_body
 
@@ -14,7 +15,8 @@ func _ready():
 	rng.randomize()
 	plane_body = get_parent()
 	health_component = get_node(HealthComponentPath)
-
+	camera_component =  plane_body.get_node(plane_body.camera_component)
+	
 func _physics_process(delta):
 	pass
 
@@ -35,8 +37,11 @@ func _on_HurtboxComponent_area_entered(area):
 			plane_body.is_being_shot = true
 			timer.start()
 			
-			if OS.get_name() == "Android" and plane_body.is_player:
-				Input.vibrate_handheld(100)
+			if plane_body.is_player:
+				camera_component.camera_shake(0.5, 3)
+				
+				if OS.get_name() == "Android":
+					Input.vibrate_handheld(40)
 	
 func _on_Timer_timeout():
 	plane_body.is_being_shot = false

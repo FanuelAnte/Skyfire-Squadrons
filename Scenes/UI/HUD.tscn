@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Assets/Exports/HUD/D-Pad#1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Exports/HUD/D-Pad#1(p).png" type="Texture" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://Scenes/UI/MiniMap.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/Exports/HUD/DragControls-S.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Exports/HUD/SliderGrabber-Mirror.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Exports/HUD/PassingOutFilter.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Exports/HUD/ZoomButton.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Exports/HUD/ZoomButton(p).png" type="Texture" id=18]
 [ext_resource path="res://Assets/Exports/HUD/PilotCBarOver.png" type="Texture" id=19]
@@ -503,20 +502,6 @@ custom_icons/grabber = ExtResource( 15 )
 max_value = 10.0
 step = 0.1
 editable = false
-
-[node name="PassingOutFilter" type="TextureRect" parent="."]
-unique_name_in_owner = true
-visible = false
-self_modulate = Color( 1, 1, 1, 0 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-input_pass_on_modal_close_click = false
-texture = ExtResource( 16 )
-expand = true
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": true
-}
 
 [node name="PassOut" type="ColorRect" parent="."]
 unique_name_in_owner = true

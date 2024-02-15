@@ -117,7 +117,8 @@ collide_with_areas = true
 position = Vector2( 3, -14 )
 
 [node name="Trail" parent="Trails/TrailsParent1" instance=ExtResource( 6 )]
-default_color = Color( 1, 1, 1, 0.784314 )
+width = 0.5
+default_color = Color( 1, 1, 1, 0.627451 )
 gradient = null
 max_trail_length = 100
 
@@ -125,7 +126,8 @@ max_trail_length = 100
 position = Vector2( 3, 14 )
 
 [node name="Trail" parent="Trails/TrailsParent2" instance=ExtResource( 6 )]
-default_color = Color( 1, 1, 1, 0.784314 )
+width = 0.5
+default_color = Color( 1, 1, 1, 0.627451 )
 gradient = null
 max_trail_length = 100
 
