@@ -31,6 +31,8 @@ var drag_values = {
 	"max_limit": 100
 }
 
+var level_extents = Vector2.ZERO
+
 var speed = 0
 var evade_direction = 1
 
@@ -206,7 +208,7 @@ func get_input():
 					target_angle_difference = stepify(rad2deg(angle), 5)
 					
 					if g_force < 8:
-						if direction.length() > 300:
+						if direction.length() > 200:
 							full_throttle = true
 						else:
 							full_throttle = false
@@ -216,7 +218,7 @@ func get_input():
 					if abs(target_angle_difference) <= 60:
 						turn += sign(target_angle_difference) * 1
 						g_force_increase_factor += base_g_force_turn_factor
-					elif abs(target_angle_difference) >= 60 and abs(target_angle_difference) <= 150:
+					elif abs(target_angle_difference) >= 60:# and abs(target_angle_difference) <= 190:
 						turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
 						g_force_increase_factor += max_g_force_turn_factor
 					else:
@@ -235,7 +237,7 @@ func get_input():
 				if value == 1:
 					if enemy_planes.size() != 0:
 						var target = enemy_planes[rng.randi_range(0, enemy_planes.size() - 1)]
-						if !target.targeted and !target.is_dead:
+						if !target.is_dead:# and !target.targeted:
 							plane_body.target_node = target.name
 							target.targeted = true
 						

@@ -8,6 +8,7 @@ These are to be added in the first playable prototype.
 	- [x] UI indicator for time and fuel
 - [x] Make the enemies not target the same player. The is_targeted flag did nothing.
 - [ ] Either multi-targeting or random flight pattern towards action zones.
+	- [ ] Constant chase loop.
 - [x] Gs.
 - [x] G-Force Effects
 	- [ ] Zoom in camera when passing out or just reset it to 1.
@@ -25,6 +26,7 @@ These are to be added in the first playable prototype.
 - [ ] Bound the playable area.
 	- [ ] Add world
 	- [ ] Add world limits
+		- [ ] Limits only apply to non-player planes. Player-controlled planes will only be given a warning saying that you are leaving the combat area. The AI planes, if they exceed the world limits, they will be forced to make a sharp U-turn.
 	- [ ] Add world art.
 - [x] Add throttling for enemies if their target is too far away.
 - [ ] Shot criticality
@@ -51,8 +53,8 @@ These are to be added in the first playable prototype.
 	- [ ] defense artillery
 - [ ] Tween when throttling
 - [ ] Avoid pane overlaps by checking proximity
-	- [ ] If within 100 pixels of your target, move away randomly.
-- [ ] Small fighters should do evasive maneuvers instead of turning at max_bank when being shot at.
+	- [ ] If within 100 pixels of your target, move away randomly. Or just reset target and turn_max.
+- [ ] Small fighters controlled by AI should do evasive maneuvers instead of turning at max_bank when being shot at.
 - [ ] The pilot you pick dictates how far out you can zoom. Meaning the pilot resource sets the max_zoom level.
 - [ ] dithering for pass-out shader 
 - [x] drag indicators for android
@@ -60,14 +62,7 @@ These are to be added in the first playable prototype.
 		- [x] turn amount should be finessed but the effects and turn animations should stay the same.
 		- [x] if dragging, multiply the turn amount by a range_lerp value set between 0 and max_turn angle.
 			- [ ] Experiment more with this.
-			- [ ] maybe make it an option to go back and forth between fixed snapping and a gradient.
-``` GDScript
-var drag_clampped_min = range_lerp(abs(drag_distance), drag_values["lower_limit"], drag_values["upper_limit"], 0, 1)
-
-or
-
-var drag_clampped_min = 1
-```
+			- [ ] maybe make it an option to go back and forth between fixed snapping and a gradient. (var drag_clampped_min = range_lerp(abs(drag_distance), drag_values["lower_limit"], drag_values["upper_limit"], 0, 1) or var drag_clampped_min = 1)
 		- [ ] add a buffer between the upper limit for the normal turn and the lower limit for the maximum turn. and make the variables into one dictionary. 
 		- [x] maybe fix the drag start position along the x axis to the (get_viewport().rect().x/3)/2. It's all over the place. It needs to be more consistent.
 			- [ ] maybe make it an option in the controls settings to go back and forth between the fixed and floating option.

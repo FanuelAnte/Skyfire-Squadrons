@@ -50,3 +50,5 @@ This is the other essential gameplay mechanic. This involves:
 	2. just use 1280. (avoid)
 
 > Helldiver's 2 style key combinations to access special abilities.
+
+> Bombing runs in which you encounter exclusively ground targets and ground defense units such as Flak cannons and AA guns. Flak guns fire five shots consecutively and you are given a 1 second warning as to what the are of damage looks like around the Flak shots. Kinda like AOE effects in Hades, or the clay pots that shoot mines.

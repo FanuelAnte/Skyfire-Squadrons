@@ -44,3 +44,21 @@ region_rect = Rect2( 0, 0, 5120, 2880 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = 1
+visible = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground2"]
+visible = false
+motion_scale = Vector2( 1.2, 1.2 )
+motion_mirroring = Vector2( 5120, 2880 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground2/ParallaxLayer5"]
+visible = false
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 5120, 2880 )
+__meta__ = {
+"_editor_description_": ""
+}

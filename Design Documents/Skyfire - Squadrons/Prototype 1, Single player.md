@@ -246,7 +246,7 @@ To death or not to death, fuuuuuck. When a plane's health gets depleted, the is_
 ##### Levels
 Each level is going to have the following structure.
 - World name (Node2D)
-	- parallax background
+	- parallax background (layer index = -100)
 		- parallax layer 1 (water)
 			- sprite
 		- parallax layer 2 (water)
@@ -255,8 +255,10 @@ Each level is going to have the following structure.
 			- sprite
 		- parallax layer 4 (Clouds 2)
 			- sprite
+	- parallax background (layer index = 1)
 		- parallax layer 5 (Clouds 3 above)
 			- sprite
+I'm no longer doing foreground clouds. Too Confusing.
 
 | Layer | Name | Scale | Mirroring |
 | ---- | ---- | ---- | ---- |
@@ -265,9 +267,24 @@ Each level is going to have the following structure.
 | layer 3 | Clouds 1 | 0.6 | true |
 | layer 4 | Clouds 2 | 0.8 | true |
 | layer 5 | Clouds 4 above | 1.2 | true |
+The things that change from level to level are
+- All the textures
+- The ground target types
+- The ground target locations
+A single location might host various missions and therefore it's visuals and target placements needs to change on a mission to mission basis. This is going to be a nightmare to implement. Not to worry, COMPOSITION to the rescue.
+- level
+	- World (separate scene that accepts a resource file containing references to all the ground and cloud textures. it basically contains the parallax layers responsible).
+	- Ground Units
+		- Parallax background.
+			- Parallax Layer (same motion scale as layers 1 and 2, water and ground respectively, no mirroring.)
+				- List of ground units.
+Things like limits, map name and other location specific details are kept in the world_recource.
+The level resource contains mission specific details.
 
+So to summarize. the world is going to be built based on a singe static scene that accepts a resource to load sprite textures, the levels(missions) are all unique scenes i.e. each mission has it's own scene.
+##### Ground target
 ### World Design
-### Objective and Mission Design
+### Objective and Mission Design 
 # Art
 ### Plane Sprites and Animation
 ### Level Art
