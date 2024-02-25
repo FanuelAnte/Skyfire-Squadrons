@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Resources/PlaneResources/A6M_Zero.tres" type="Resource" id=1]
-[ext_resource path="res://Scenes/Worlds/Testlevel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Worlds/BaseLevel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/PlaneBase.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Resources/PlaneResources/SupermarineSpitfire.tres" type="Resource" id=4]
 
@@ -74,4 +74,4 @@ position = Vector2( -514, -224 )
 current = true
 zoom = Vector2( 4, 4 )
 
-[node name="Testlevel" parent="." instance=ExtResource( 2 )]
+[node name="Baselevel" parent="." instance=ExtResource( 2 )]

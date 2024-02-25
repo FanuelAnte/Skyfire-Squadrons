@@ -1,4 +1,4 @@
-## Fighters
+ ## Fighters
 
 1. **P-51 Mustang (United States):**
 	- **Classification:** Fighter

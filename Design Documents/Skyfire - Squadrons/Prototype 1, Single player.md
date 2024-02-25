@@ -1,4 +1,4 @@
-To figure out what is going to be included in this version, I'm going to divide it up into Gameplay, Tech, World, Art, Sound and Music.
+To figure out what is going to be included in this version, I'm going to divide it up into Gameplay, Tech, Level, Art, Sound and Music.
 #### Gameplay
 - [x] Plane Controls and Movement
 - [ ] Plane class dependent evasive maneuvers
@@ -27,16 +27,17 @@ To figure out what is going to be included in this version, I'm going to divide 
 - [ ] Plane Variation and Resources
 - [ ] Sound and Music System
 - [ ] Objective Handling and Fail States
-#### World
+#### Levels and Missions
 - [ ] Level loading
-- [ ] World Design
+- [ ] Base Level and Level Resources
+- [ ] Ground target
 - [ ] Objective and Mission Design
 #### Art
 - [ ] Plane Sprites and Animation
 - [ ] Level Art
 - [ ] Explosion and Damage
 #### Sound
-- [ ] In-Game Plane and World SFX
+- [ ] In-Game Plane and Level SFX
 - [ ] Menu SFX
 #### Music
 - [ ] Single 5 - 10 minute Cue
@@ -241,11 +242,11 @@ Now I need to decide what SFX a plane needs and that will be covered in the Soun
 Objective completion and failure will be handled differently for each mission type. The lowest level of the failure spectrum is death of the plane. Therefore, I need to figure out how to handle death.
 #### Death
 To death or not to death, fuuuuuck. When a plane's health gets depleted, the is_dead Boolean is flagged as true and everything from movement to shooting to being targeted to showing up on the radar is disabled. 
-# World
+# Levels and Missions
 ### Level Loading
 ##### Levels
 Each level is going to have the following structure.
-- World name (Node2D)
+- Level name (Node2D)
 	- parallax background (layer index = -100)
 		- parallax layer 1 (water)
 			- sprite
@@ -273,24 +274,26 @@ The things that change from level to level are
 - The ground target locations
 A single location might host various missions and therefore it's visuals and target placements needs to change on a mission to mission basis. This is going to be a nightmare to implement. Not to worry, COMPOSITION to the rescue.
 - level
-	- World (separate scene that accepts a resource file containing references to all the ground and cloud textures. it basically contains the parallax layers responsible).
+	- Level (separate scene that accepts a resource file containing references to all the ground and cloud textures. it basically contains the parallax layers responsible).
 	- Ground Units
 		- Parallax background.
 			- Parallax Layer (same motion scale as layers 1 and 2, water and ground respectively, no mirroring.)
 				- List of ground units.
-Things like limits, map name and other location specific details are kept in the world_recource.
+Things like limits, map name and other location specific details are kept in the level_resource.
 The level resource contains mission specific details.
 
-So to summarize. the world is going to be built based on a singe static scene that accepts a resource to load sprite textures, the levels(missions) are all unique scenes i.e. each mission has it's own scene.
-##### Ground target
-### World Design
+So to summarize. the level is going to be built based on a singe static scene that accepts a resource to load sprite textures, the levels(missions) are all unique scenes i.e. each mission has it's own scene.
+### Base Level and Level Resources
+The base level scene contains the basic parallax scenes and the sprites.
+### Ground target
+
 ### Objective and Mission Design 
 # Art
 ### Plane Sprites and Animation
 ### Level Art
 ### Explosion and Damage
 # Sound
-### In-Game Plane and World SFX
+### In-Game Plane and Level SFX
 ### Menu SFX
 # Music
 ### Single 5 - 10 Minute Cue

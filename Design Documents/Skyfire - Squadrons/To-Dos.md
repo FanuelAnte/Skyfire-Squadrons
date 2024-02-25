@@ -23,11 +23,19 @@ These are to be added in the first playable prototype.
 - [x] Plane Classes.
 - [ ] Flak rounds for bombers and ground units
 - [x] add owners to bullets.
-- [ ] Bound the playable area.
-	- [ ] Add world
-	- [ ] Add world limits
-		- [ ] Limits only apply to non-player planes. Player-controlled planes will only be given a warning saying that you are leaving the combat area. The AI planes, if they exceed the world limits, they will be forced to make a sharp U-turn.
-	- [ ] Add world art.
+- [ ] Levels and Missions
+	- [x] Create the base level scene
+	- [ ] Create the level_resource
+		- [ ] Add level limits
+			- [ ] Limits only apply to non-player planes. Player-controlled planes will only be given a warning saying that you are leaving the combat area. The AI planes, if they exceed the level limits, they will be forced to make a sharp U-turn.
+		- [ ] Add level art.
+	- [ ] Create the mission_resource
+	- [ ] Create a Single level and make a mission.
+		- [ ] Add level and assign level resource
+		- [ ] Assign Mission
+		- [ ] Place ground targets
+			- [ ] placement of ground targets should be on the same parallax layer as the ground.
+- [ ] Create the ground targets.
 - [x] Add throttling for enemies if their target is too far away.
 - [ ] Shot criticality
 	- [x] Not all bullet hits do the same amount of damage
@@ -62,7 +70,7 @@ These are to be added in the first playable prototype.
 		- [x] turn amount should be finessed but the effects and turn animations should stay the same.
 		- [x] if dragging, multiply the turn amount by a range_lerp value set between 0 and max_turn angle.
 			- [ ] Experiment more with this.
-			- [ ] maybe make it an option to go back and forth between fixed snapping and a gradient. (var drag_clampped_min = range_lerp(abs(drag_distance), drag_values["lower_limit"], drag_values["upper_limit"], 0, 1) or var drag_clampped_min = 1)
+			- [ ] maybe make it an option to go back and forth between fixed snapping and a gradient. (___var drag_clampped_min = range_lerp(abs(drag_distance), drag_values["lower_limit"], drag_values["upper_limit"], 0, 1)___ or ___var drag_clampped_min = 1___)
 		- [ ] add a buffer between the upper limit for the normal turn and the lower limit for the maximum turn. and make the variables into one dictionary. 
 		- [x] maybe fix the drag start position along the x axis to the (get_viewport().rect().x/3)/2. It's all over the place. It needs to be more consistent.
 			- [ ] maybe make it an option in the controls settings to go back and forth between the fixed and floating option.
@@ -81,7 +89,7 @@ These are to be added in the first playable prototype.
 - [x] Dedicated throttle toggle for android
 - [x] Zoom buttons for android
 - [ ] Simple tutorial screen (for controls)
-- [x] Placeholder world art
+- [x] Placeholder level art
 	- [ ] limits
 - [ ] main menu
 - [ ] objectives

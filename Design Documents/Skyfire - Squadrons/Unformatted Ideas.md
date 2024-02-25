@@ -52,3 +52,5 @@ This is the other essential gameplay mechanic. This involves:
 > Helldiver's 2 style key combinations to access special abilities.
 
 > Bombing runs in which you encounter exclusively ground targets and ground defense units such as Flak cannons and AA guns. Flak guns fire five shots consecutively and you are given a 1 second warning as to what the are of damage looks like around the Flak shots. Kinda like AOE effects in Hades, or the clay pots that shoot mines.
+
+> Wave-based strategies for both AI and Players (both PvP and PvE). You are allowed a certain amount of planes to take on a given mission and you can either launch all at once or launch them in a wave-like manner depending on your strategy. This may not always be the case for every mission and mission type. Launching may happen either from carriers or from army bases. If the army base of the carrier is attacked, the unlaunched planes may or may not be damaged based on RNG. 
