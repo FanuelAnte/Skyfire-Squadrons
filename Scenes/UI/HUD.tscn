@@ -116,6 +116,7 @@ action = "turn_right_max"
 
 [node name="DragControls" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -180.0

@@ -58,6 +58,7 @@ func _ready():
 		self.hide()
 		
 	if OS.get_name() == "Android":
+#		make it an option in the settings to choose between d-pad and drag controls.
 #		d_pad.show()
 		throttle_button.show()
 		action_buttons.show()
@@ -106,15 +107,13 @@ func _physics_process(delta):
 		
 		tween_pass_out_filter(movement_component.consciousness)
 		
-#		if OS.get_name() == "Android":
-		if movement_component.is_dragging and movement_component.drag_start_position != null:
-			drag_controls.show()
-			drag_s.global_position = movement_component.drag_start_position - Vector2 (0, 64)
-#				if abs(movement_component.drag_distance) <= movement_component.drag_values["max_limit"]:
-#					drag_c.global_position.x = movement_component.current_drag_position.x
-			drag_c.global_position.x = drag_s.global_position.x + movement_component.drag_distance
-		else:
-			drag_controls.hide()
+		if OS.get_name() == "Android":
+			if movement_component.is_dragging and movement_component.drag_start_position != null:
+				drag_controls.show()
+				drag_s.global_position = movement_component.drag_start_position - Vector2 (0, 64)
+				drag_c.global_position.x = drag_s.global_position.x + movement_component.drag_distance
+			else:
+				drag_controls.hide()
 	
 func tween_hud_color(node, value):
 	var changed_value = range_lerp(value, 100, 0, 0, 1)
@@ -123,11 +122,8 @@ func tween_hud_color(node, value):
 func tween_pass_out_filter(value):
 	var changed_value_scale = range_lerp(value, 10, 0, 1, 0.5)
 	var changed_value_softness = range_lerp(value, 10, 0, 1.5, 1)
-#	passing_out_filter.self_modulate = Color(1, 1, 1, changed_value)
-#	print(pass_out.material.get_shader_param("SCALE"))
 	pass_out.material.set_shader_param("SCALE", changed_value_scale)
 	pass_out.material.set_shader_param("SOFTNESS", changed_value_softness)
-	
 	
 func vibrate():
 	Input.vibrate_handheld(40)

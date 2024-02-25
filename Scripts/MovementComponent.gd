@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var c_timer = $"%CTimer"
+onready var search_target_timer = $"%SearchTargetTimer"
 
 var plane_body
 
@@ -9,6 +10,8 @@ var steer_angle
 var target_angle_difference = 0
 
 var turn = 0
+
+var can_search = false
 
 var fuel = 0
 var fuel_burn_rate_standard = 0
@@ -126,6 +129,7 @@ func _input(event):
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			if event.position.x < int(get_viewport_rect().size.x/2):
+# 				The following line fixes the start position to center of the left third of the screen. Make it an in-game control option.
 #				drag_start_position = Vector2((get_viewport_rect().size.x/3)/2, event.position.y)
 				drag_start_position = event.position
 			else:
@@ -153,6 +157,7 @@ func get_input():
 	full_throttle = false
 	
 	if plane_body.is_player and conscious:
+#		Analogue vs digital.
 #		var drag_clampped_min = range_lerp(abs(drag_distance), drag_values["lower_limit"], drag_values["upper_limit"], 0, 1)
 		var drag_clampped_min = 1
 		if Input.is_action_pressed("turn_right") or (drag_distance > drag_values["lower_limit"] and drag_distance < drag_values["upper_limit"] and is_dragging):
@@ -178,7 +183,8 @@ func get_input():
 		if Input.is_action_pressed("increase_bank") and turning:
 			turn *= plane_body.details.max_bank_angle_factor
 			g_force_increase_factor += max_g_force_turn_factor
-		
+
+#		Analogue bs digital.
 #		var drag_clampped_max = clamp(range_lerp(abs(drag_distance), drag_values["upper_limit"], drag_values["max_limit"], 0, 1), 0, 1)
 		var drag_clampped_max = 1
 		if Input.is_action_pressed("turn_right_max") or (drag_distance >= drag_values["upper_limit"] and drag_distance <= drag_values["max_limit"] and is_dragging):
@@ -215,10 +221,10 @@ func get_input():
 					else:
 						full_throttle = false
 					
-					if abs(target_angle_difference) <= 60:
+					if abs(target_angle_difference) <= plane_body.pilot.min_turn_threshold:
 						turn += sign(target_angle_difference) * 1
 						g_force_increase_factor += base_g_force_turn_factor
-					elif abs(target_angle_difference) >= 60:# and abs(target_angle_difference) <= 190:
+					elif abs(target_angle_difference) > plane_body.pilot.min_turn_threshold and abs(target_angle_difference) <= plane_body.pilot.max_turn_threshold:
 						turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
 						g_force_increase_factor += max_g_force_turn_factor
 					else:
@@ -228,19 +234,23 @@ func get_input():
 						plane_body.target_node = ""
 					
 				else:
-					turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
-					g_force_increase_factor += max_g_force_turn_factor
 					plane_body.target_node = ""
 				
 			else:
-				var value = rng.randi_range(0, 5)
-				if value == 1:
-					if enemy_planes.size() != 0:
-						var target = enemy_planes[rng.randi_range(0, enemy_planes.size() - 1)]
-						if !target.is_dead:# and !target.targeted:
-							plane_body.target_node = target.name
-							target.targeted = true
-						
+				search_target_timer.start()
+				if can_search:
+					var value = rng.randi_range(0, 2)
+					if value == 1:
+						if enemy_planes.size() != 0:
+							var target = enemy_planes[rng.randi_range(0, enemy_planes.size() - 1)]
+							if !target.is_dead:# and !target.targeted:
+								plane_body.target_node = target.name
+								target.targeted = true
+								can_search = false
+#				else:
+#					turn += 1 * plane_body.details.max_bank_angle_factor
+#					g_force_increase_factor += max_g_force_turn_factor
+					
 		else:
 			turn += plane_body.details.max_bank_angle_factor * evade_direction
 			g_force_increase_factor += max_g_force_turn_factor
@@ -260,3 +270,6 @@ func apply_rotation(delta):
 
 func _on_CTimer_timeout():
 	conscious = true
+
+func _on_SearchTargetTimer_timeout():
+	can_search = true
