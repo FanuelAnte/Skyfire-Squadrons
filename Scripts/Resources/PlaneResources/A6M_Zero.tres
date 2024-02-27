@@ -21,6 +21,6 @@ max_speed = 250
 bank_angle = 15
 max_bank_angle_factor = 1.5
 max_plane_health = 80.0
-max_fuel = 100.0
+max_fuel = 20.0
 fuel_burn_rate_standard = 0.1
 fuel_burn_rate_max = 0.2

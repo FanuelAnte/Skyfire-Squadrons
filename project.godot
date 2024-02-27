@@ -50,8 +50,8 @@ settings/fps/force_fps=60
 
 window/size/width=640
 window/size/height=360
-window/size/test_width=640
-window/size/test_height=360
+window/size/test_width=1280
+window/size/test_height=720
 window/dpi/allow_hidpi=true
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"

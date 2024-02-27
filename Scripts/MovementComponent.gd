@@ -105,7 +105,10 @@ func _physics_process(delta):
 		else:
 			if consciousness <= 10 and conscious:
 				consciousness += plane_body.pilot.consciousness_rate * delta
-			
+		
+		print(plane_body.name + " " + str(global_position))
+		
+		
 func burn_fuel(burn_rate, delta):
 	if fuel > 0:
 		fuel -= burn_rate * delta
@@ -247,9 +250,28 @@ func get_input():
 								plane_body.target_node = target.name
 								target.targeted = true
 								can_search = false
-#				else:
-#					turn += 1 * plane_body.details.max_bank_angle_factor
-#					g_force_increase_factor += max_g_force_turn_factor
+				else:
+					var target_point = Vector2(0, 0)
+					if enemy_planes.size() > 1:
+						var target_one = enemy_planes[0]
+						var target_two = enemy_planes[1]
+						
+						target_point = Vector2((target_one.global_position.x + target_two.global_position.x) / 2, (target_one.global_position.y + target_two.global_position.y) / 2)
+					else:
+						var target_one = enemy_planes[0]
+						
+						target_point = target_one.global_position
+						
+					var direction = (target_point - plane_body.global_position)
+					var angle = plane_body.transform.x.angle_to(direction)
+					
+					target_angle_difference = stepify(rad2deg(angle), 5)
+					
+					print(plane_body.name + " target: " + str(target_angle_difference))
+					
+					if abs(target_angle_difference) <= plane_body.pilot.min_turn_threshold:
+						turn += sign(target_angle_difference) * 1
+						g_force_increase_factor += base_g_force_turn_factor
 					
 		else:
 			turn += plane_body.details.max_bank_angle_factor * evade_direction

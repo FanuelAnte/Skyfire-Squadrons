@@ -13,11 +13,16 @@ __meta__ = {
 
 [node name="Planes" type="Node2D" parent="."]
 
-[node name="PlaneBase" parent="Planes" instance=ExtResource( 3 )]
+[node name="Player" parent="Planes" instance=ExtResource( 3 )]
 position = Vector2( 340, 244 )
 details = ExtResource( 4 )
 
-[node name="PlaneBase2" parent="Planes" instance=ExtResource( 3 )]
+[node name="Ally" parent="Planes" instance=ExtResource( 3 )]
+position = Vector2( 224, -24 )
+is_player = false
+details = ExtResource( 4 )
+
+[node name="Axis" parent="Planes" instance=ExtResource( 3 )]
 modulate = Color( 1, 0.419608, 0.419608, 1 )
 position = Vector2( -651, -283 )
 is_player = false
