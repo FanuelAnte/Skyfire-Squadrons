@@ -1,7 +1,7 @@
 extends Area2D
 
 var smoke_scene = preload("res://Scenes/SmokeParticles.tscn")
-onready var timer = $Timer
+onready var timer = $"%Timer"
 
 export (NodePath) var HealthComponentPath
 var health_component

@@ -8,8 +8,8 @@ These are to be added in the first playable prototype.
 	- [x] UI indicator for time and fuel
 - [ ] Speed lines when throttling.
 - [x] Make the enemies not target the same player. The is_targeted flag did nothing.
-- [ ] Either multi-targeting or random flight pattern towards action zones.
-	- [ ] Constant chase loop.
+- [x] Either multi-targeting or random flight pattern towards action zones.
+	- [x] Constant chase loop.
 - [x] Gs.
 - [x] G-Force Effects
 	- [ ] Zoom in camera when passing out or just reset it to 1.
@@ -61,7 +61,7 @@ These are to be added in the first playable prototype.
 	- [ ] targeting (ground)
 	- [ ] defense artillery
 - [ ] Tween when throttling
-- [ ] Avoid pane overlaps by checking proximity
+- [x] Avoid pane overlaps by checking proximity
 	- [ ] If within 100 pixels of your target, move away randomly. Or just reset target and turn_max.
 - [ ] Small fighters controlled by AI should do evasive maneuvers instead of turning at max_bank when being shot at.
 - [ ] The pilot you pick dictates how far out you can zoom. Meaning the pilot resource sets the max_zoom level.

@@ -98,7 +98,7 @@ func check_rays():
 	for ray in primary_rays:
 		ray.force_raycast_update()
 		if ray.is_colliding():
-			if ray.get_collider().get_parent().details.alignment != plane_body.details.alignment:
+			if ray.get_collider().get_parent().details.alignment != plane_body.details.alignment and !ray.get_collider().get_parent().is_dead:
 				can_shoot_primary = true
 				break
 		else:
@@ -107,7 +107,7 @@ func check_rays():
 	for ray in secondary_rays:
 		ray.force_raycast_update()
 		if ray.is_colliding():
-			if ray.get_collider().get_parent().details.alignment != plane_body.details.alignment:
+			if ray.get_collider().get_parent().details.alignment != plane_body.details.alignment and !ray.get_collider().get_parent().is_dead:
 				can_shoot_secondary = true
 				break
 		else:

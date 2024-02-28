@@ -115,6 +115,8 @@ New logic
 				1. in the future, limit the targetable planes by an area 2d or by a range vector
 
 Little trouble here. if an enemy is behind you, it enters an infinite search loop.
+
+Fucking Finally!!!! The AI behaves exactly as I want it to.
 ### G-Forces
 Different planes classes have different maneuverability and therefore the pilots experience  G-forces differently.
 ### Combat Controls
