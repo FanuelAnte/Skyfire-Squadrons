@@ -33,8 +33,8 @@ var events = {}
 # Move game-play setting values to a Settings Globals autoload. This extends to things such as controller and visual modifications.
 var drag_values = {
 	"lower_limit": 5,
-	"upper_limit": 80,
-	"max_limit": 100
+	"upper_limit": 45,
+	"max_limit": 50
 }
 
 var level_extents = Vector2.ZERO
@@ -262,7 +262,7 @@ func get_input():
 						
 						if !is_idle:
 							is_idle = true
-							idle_flight_timer.start(rng.randi_range(2, 5))
+							idle_flight_timer.start(rng.randi_range(2, 10))
 						
 				else:
 					if abs(target_angle_difference) <= plane_body.pilot.min_turn_threshold:

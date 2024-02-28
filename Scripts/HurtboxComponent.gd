@@ -1,7 +1,7 @@
 extends Area2D
 
 var smoke_scene = preload("res://Scenes/SmokeParticles.tscn")
-onready var timer = $"%Timer"
+onready var dodge_timer = $"%DodgeTimer"
 
 export (NodePath) var HealthComponentPath
 var health_component
@@ -35,7 +35,7 @@ func _on_HurtboxComponent_area_entered(area):
 			health_component.take_damage(damage)
 			yield(get_tree().create_timer(stepify(rng.randf_range(0, 0.2), 0.1)), "timeout")
 			plane_body.is_being_shot = true
-			timer.start()
+			dodge_timer.start(stepify(rng.randf_range(0.5, plane_body.pilot.dodge_duration), 0.1))
 			
 			if plane_body.is_player:
 				camera_component.camera_shake(0.5, 3)

@@ -11,4 +11,4 @@ export (float) var consciousness_rate
 export (float) var unconsciousness_duration
 
 export (float) var search_timer_duration
-
+export (float) var dodge_duration
