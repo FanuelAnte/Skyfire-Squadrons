@@ -42,7 +42,7 @@ func _on_HurtboxComponent_area_entered(area):
 				
 				if OS.get_name() == "Android":
 					Input.vibrate_handheld(40)
-	
+
 func _on_Timer_timeout():
 	plane_body.is_being_shot = false
 	plane_body.get_node(plane_body.movement_component).evade_direction *= -1

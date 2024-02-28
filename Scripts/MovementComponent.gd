@@ -12,6 +12,7 @@ var target_angle_difference = 0
 var turn = 0
 
 var can_search = false
+var is_searching = false
 
 var fuel = 0
 var fuel_burn_rate_standard = 0
@@ -80,7 +81,6 @@ func _physics_process(delta):
 		get_input()
 		apply_rotation(delta)
 		velocity = plane_body.move_and_slide(velocity)
-		update_enemy_planes()
 		
 		if !full_throttle:
 			burn_fuel(fuel_burn_rate_standard, delta)
@@ -106,9 +106,6 @@ func _physics_process(delta):
 			if consciousness <= 10 and conscious:
 				consciousness += plane_body.pilot.consciousness_rate * delta
 		
-		print(plane_body.name + " " + str(global_position))
-		
-		
 func burn_fuel(burn_rate, delta):
 	if fuel > 0:
 		fuel -= burn_rate * delta
@@ -125,7 +122,7 @@ func update_enemy_planes():
 	enemy_planes = []
 	var all_planes = get_tree().root.get_node("MainGame").get_node("Planes").get_children()
 	for plane in all_planes:
-		if plane.details.alignment != plane_body.details.alignment and !plane.targeted:
+		if plane.details.alignment != plane_body.details.alignment and !plane.is_dead and !plane.targeted:
 			enemy_planes.append(plane)
 		
 func _input(event):
@@ -207,37 +204,46 @@ func get_input():
 	elif !plane_body.is_player and conscious:
 	# Make the detection and targeting logic better.
 		if !plane_body.is_being_shot:
+			var target_point = Vector2(0, 0)
+			
 			if plane_body.target_node != "":
 				var target = plane_body.get_parent().get_node(plane_body.target_node)
+				target_point = target.global_position
+			else:
+				if !can_search:
+					if enemy_planes.size() > 1:
+						var target_one = enemy_planes[0]
+						var target_two = enemy_planes[1]
+						target_point = Vector2((target_one.global_position.x + target_two.global_position.x) / 2, (target_one.global_position.y + target_two.global_position.y) / 2)
+					elif enemy_planes.size() == 1:
+						var target_one = enemy_planes[0]
+						target_point = target_one.global_position
+					else:
+						target_point = Vector2(0, 0)
+						
+			if !is_searching:
+				var direction = (target_point - plane_body.global_position)
+				var angle = plane_body.transform.x.angle_to(direction)
 				
-				if !target.is_dead:
-					var direction = (target.global_position - plane_body.global_position)
-					var angle = plane_body.transform.x.angle_to(direction)
-					
-					target_angle_difference = stepify(rad2deg(angle), 5)
-					
-					if g_force < 8:
-						if direction.length() > 200:
-							full_throttle = true
-						else:
-							full_throttle = false
-					else:
-						full_throttle = false
-					
-					if abs(target_angle_difference) <= plane_body.pilot.min_turn_threshold:
-						turn += sign(target_angle_difference) * 1
-						g_force_increase_factor += base_g_force_turn_factor
-					elif abs(target_angle_difference) > plane_body.pilot.min_turn_threshold and abs(target_angle_difference) <= plane_body.pilot.max_turn_threshold:
-						turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
-						g_force_increase_factor += max_g_force_turn_factor
-					else:
-						turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
-						g_force_increase_factor += max_g_force_turn_factor
-						target.targeted = false
-						plane_body.target_node = ""
-					
-				else:
-					plane_body.target_node = ""
+				target_angle_difference = stepify(rad2deg(angle), 5)
+				
+				print(plane_body.name + " " + str(target_angle_difference))
+				
+				#better balancing
+#				if g_force < 8:
+#					if direction.length() > 200:
+#						full_throttle = true
+#					else:
+#						full_throttle = false
+#				else:
+#					full_throttle = false
+				
+				if abs(target_angle_difference) <= plane_body.pilot.min_turn_threshold:
+					turn += sign(target_angle_difference) * 1
+					g_force_increase_factor += base_g_force_turn_factor
+				elif abs(target_angle_difference) > plane_body.pilot.min_turn_threshold and abs(target_angle_difference) <= plane_body.pilot.max_turn_threshold:
+					turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
+					g_force_increase_factor += max_g_force_turn_factor
 				
 			else:
 				search_target_timer.start()
@@ -246,33 +252,12 @@ func get_input():
 					if value == 1:
 						if enemy_planes.size() != 0:
 							var target = enemy_planes[rng.randi_range(0, enemy_planes.size() - 1)]
-							if !target.is_dead:# and !target.targeted:
+							if !target.is_dead:
 								plane_body.target_node = target.name
 								target.targeted = true
 								can_search = false
-				else:
-					var target_point = Vector2(0, 0)
-					if enemy_planes.size() > 1:
-						var target_one = enemy_planes[0]
-						var target_two = enemy_planes[1]
-						
-						target_point = Vector2((target_one.global_position.x + target_two.global_position.x) / 2, (target_one.global_position.y + target_two.global_position.y) / 2)
-					else:
-						var target_one = enemy_planes[0]
-						
-						target_point = target_one.global_position
-						
-					var direction = (target_point - plane_body.global_position)
-					var angle = plane_body.transform.x.angle_to(direction)
-					
-					target_angle_difference = stepify(rad2deg(angle), 5)
-					
-					print(plane_body.name + " target: " + str(target_angle_difference))
-					
-					if abs(target_angle_difference) <= plane_body.pilot.min_turn_threshold:
-						turn += sign(target_angle_difference) * 1
-						g_force_increase_factor += base_g_force_turn_factor
-					
+								is_searching = false
+				
 		else:
 			turn += plane_body.details.max_bank_angle_factor * evade_direction
 			g_force_increase_factor += max_g_force_turn_factor
@@ -295,3 +280,7 @@ func _on_CTimer_timeout():
 
 func _on_SearchTargetTimer_timeout():
 	can_search = true
+
+func _on_UpdateEnemiesTimer_timeout():
+	update_enemy_planes()
+	

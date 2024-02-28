@@ -428,6 +428,16 @@ margin_top = 24.0
 margin_right = 88.0
 margin_bottom = 88.0
 
+[node name="CoordinatesLabel" type="Label" parent="."]
+unique_name_in_owner = true
+margin_left = 23.0
+margin_top = 96.0
+margin_right = 89.0
+margin_bottom = 102.0
+text = "X:000 Y:000"
+align = 1
+valign = 1
+
 [node name="Guides2" type="Control" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5

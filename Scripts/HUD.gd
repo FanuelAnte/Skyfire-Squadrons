@@ -36,6 +36,8 @@ onready var throttle_button = $"%ThrottleButton"
 
 onready var drag_amount_label = $"%DragAmountLabel"
 
+onready var coordinates_label = $"%CoordinatesLabel"
+
 var plane_body
 var artillery_component
 var movement_component
@@ -98,6 +100,8 @@ func _physics_process(delta):
 		
 		g_force_slider.value = movement_component.g_force
 		g_force_label.text = str(stepify((movement_component.g_force), 0.1)).pad_zeros(2).pad_decimals(1) + " G"
+		
+		coordinates_label.text = "X: " + str(stepify(plane_body.global_position.x, 1)).pad_zeros(3) + " " + "Y: " + str(stepify(plane_body.global_position.y, 1)).pad_zeros(3)
 		
 		framerate.text = str(Engine.get_frames_per_second())
 		drag_amount_label.text = str(int(movement_component.drag_distance))

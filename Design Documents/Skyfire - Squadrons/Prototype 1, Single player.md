@@ -97,6 +97,24 @@ If target locked, follow. Else, Go into a random searching pattern. What's the r
 A little modification to the targeting code. If there is an imbalance between the ally and enemy planes, there should be a a "gang up" mode. 
 
 Add a Area 2D to the movement component to detect enemy planes. Add an export variable to exclude the detection of the parent plane(self).
+
+Move the target angle decision code outside. It is shared by both the code that executes if a plane target is assigned and by the code that executes when the plane is targeting thin air.
+
+New logic
+1. Calculate target vector point
+	1. this can either a plane's actual position,
+	2. this can be a ground target or a base/carrier or
+	3. this can be an average point between two planes
+2. Use that point
+	1. if the angle between the target point and the plane is below the lower threshold, turn slow
+	2. if it is between the the lower threshold and the upper threshold, turn sharply
+	4. if above the max threshold, enter search mode after timeout
+		1. in search mode, set target to ""
+			1. while waiting for timeout, target the midpoint
+			2. after timeout, pick a random plane and target that
+				1. in the future, limit the targetable planes by an area 2d or by a range vector
+
+Little trouble here. if an enemy is behind you, it enters an infinite search loop.
 ### G-Forces
 Different planes classes have different maneuverability and therefore the pilots experience  G-forces differently.
 ### Combat Controls

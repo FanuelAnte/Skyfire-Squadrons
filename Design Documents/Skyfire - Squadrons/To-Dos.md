@@ -17,7 +17,7 @@ These are to be added in the first playable prototype.
 - [x] Death.
 	- [x] radar icon removal
 	- [x] not targeting the dead
-- [ ] Map coordinates HUD
+- [x] Map coordinates HUD
 - [ ] Climbing and diving maneuvers
 	- [ ] Class dependent maneuvers
 - [ ] Add a new targeting system. Each plane has a circular area around it and it can only target the planes that are intersecting with the area. If no bodies are intersecting with the area, it picks a random target.

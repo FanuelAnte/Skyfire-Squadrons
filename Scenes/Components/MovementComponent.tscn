@@ -14,8 +14,13 @@ one_shot = true
 
 [node name="SearchTargetTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 2.0
 one_shot = true
+
+[node name="UpdateEnemiesTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
+autostart = true
 
 [connection signal="timeout" from="CTimer" to="." method="_on_CTimer_timeout"]
 [connection signal="timeout" from="SearchTargetTimer" to="." method="_on_SearchTargetTimer_timeout"]
+[connection signal="timeout" from="UpdateEnemiesTimer" to="." method="_on_UpdateEnemiesTimer_timeout"]
