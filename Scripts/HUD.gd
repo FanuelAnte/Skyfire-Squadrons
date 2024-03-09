@@ -98,6 +98,9 @@ func _physics_process(delta):
 		fuel_slider.value = movement_component.fuel
 		flight_time_label.text = str(movement_component.total_flight_time)
 		
+		if movement_component.fuel_critical:
+			flight_time_label.self_modulate =  Color(1, 0, 0)
+		
 		g_force_slider.value = movement_component.g_force
 		g_force_label.text = str(stepify((movement_component.g_force), 0.1)).pad_zeros(2).pad_decimals(1) + " G"
 		

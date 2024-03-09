@@ -17,7 +17,7 @@ export (int) var base_g_force_turn_factor = 1
 export (int) var max_g_force_turn_factor = 5
 export (int) var g_force_throttle_factor = 3
 
-export (int) var coasting_duration_seconds = 300
+export (int) var coasting_duration_seconds = 60
 
 export (int) var coasting_speed = 100
 export (int) var cruise_speed = 200

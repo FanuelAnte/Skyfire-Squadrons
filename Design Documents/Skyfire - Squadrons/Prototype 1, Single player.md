@@ -195,6 +195,8 @@ How are G-forces going to affect gameplay? After max G-forces are sustained, a t
 Pilots also dictate how much you can zoom out. Also, zoom level of the camera is reset back to 1 if you pass out.
 ##### Shot Criticality
 Pilots also dictate the criticality percentage alongside the weapon resource's criticality values.
+### Fuel and Coasting
+The standard fuel burning is working fine.
 ### Resolution
 The games resolution and the plane sprite scale in relation to that resolution is becoming a real problem. The problems specifically are 
 1. If the plane sprites are in the 32 - 64 px range and the game is set to a 640 base resolution,

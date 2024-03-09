@@ -17,6 +17,7 @@ var is_chasing = false
 var is_idle = true
 
 var fuel = 0
+var fuel_critical = false
 var fuel_burn_rate_standard = 0
 var fuel_burn_rate_max = 0
 var total_flight_time
@@ -64,8 +65,8 @@ func _ready():
 	plane_body = get_parent()
 	
 	speed = plane_body.details.cruise_speed
-	coasting_duration_seconds = plane_body.details.coasting_duration_seconds
 	fuel = plane_body.details.max_fuel
+	coasting_duration_seconds = plane_body.details.coasting_duration_seconds
 	fuel_burn_rate_standard = plane_body.details.fuel_burn_rate_standard
 	fuel_burn_rate_max = plane_body.details.fuel_burn_rate_max
 	
@@ -86,13 +87,21 @@ func _physics_process(delta):
 		apply_rotation(delta)
 		velocity = plane_body.move_and_slide(velocity)
 		
-		if !full_throttle:
-			burn_fuel(fuel_burn_rate_standard, delta)
-			speed = plane_body.details.cruise_speed
-		else:
+		if fuel <= plane_body.details.max_fuel/3:
+			fuel_critical = true
+		
+		if full_throttle:
 			burn_fuel(fuel_burn_rate_max, delta)
 			speed = plane_body.details.max_speed
-		
+		elif !full_throttle:
+			if fuel > 0:
+				burn_fuel(fuel_burn_rate_standard, delta) 
+				speed = plane_body.details.cruise_speed
+			else:
+				if speed >= plane_body.details.cruise_speed:
+					var tween = create_tween().set_trans(Tween.TRANS_LINEAR)
+					tween.tween_property(self, "speed", plane_body.details.coasting_speed, coasting_duration_seconds)
+				
 		if g_force > 1 and g_force_increase_factor == 0:
 			g_force -= g_force_decrease_rate * delta
 		
@@ -113,8 +122,8 @@ func _physics_process(delta):
 func burn_fuel(burn_rate, delta):
 	if fuel > 0:
 		fuel -= burn_rate * delta
-		
-	var flight_time_seconds = int(stepify((fuel / burn_rate), 1) + coasting_duration_seconds)
+	
+	var flight_time_seconds = int(stepify((fuel / burn_rate), 1))
 	
 	var hours = int(flight_time_seconds / 3600)
 	var minutes = int((flight_time_seconds % 3600) / 60)
@@ -140,6 +149,7 @@ func _input(event):
 	if event is InputEventScreenTouch:
 		if event.pressed:
 			if event.position.x < int(get_viewport_rect().size.x/2):
+				Input.vibrate_handheld(60)
 # 				The following line fixes the start position to center of the left third of the screen. Make it an in-game control option.
 #				drag_start_position = Vector2((get_viewport_rect().size.x/3)/2, event.position.y)
 				drag_start_position = event.position
@@ -188,8 +198,9 @@ func get_input():
 			turning = true
 
 		if Input.is_action_pressed("throttle"):
-			full_throttle = true
-			g_force_increase_factor += g_force_throttle_factor
+			if fuel > 0:
+				full_throttle = true
+				g_force_increase_factor += g_force_throttle_factor
 			
 		if Input.is_action_pressed("increase_bank") and turning:
 			turn *= plane_body.details.max_bank_angle_factor
@@ -226,6 +237,9 @@ func get_input():
 						var target_one = enemy_planes[0]
 						var target_two = enemy_planes[1]
 						target_point = Vector2((target_one.global_position.x + target_two.global_position.x) / 2, (target_one.global_position.y + target_two.global_position.y) / 2)
+					elif enemy_planes.size() == 1:
+						var target_one = enemy_planes[0]
+						target_point = target_one.global_position
 					else:
 						target_point = Vector2(0, 0)
 						
