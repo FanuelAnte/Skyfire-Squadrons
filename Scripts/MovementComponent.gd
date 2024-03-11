@@ -23,6 +23,8 @@ var fuel_burn_rate_max = 0
 var total_flight_time
 var coasting_duration_seconds
 
+var is_coasting = true
+
 var full_throttle = false
 
 var drag_start_position = Vector2.ZERO
@@ -95,13 +97,15 @@ func _physics_process(delta):
 			speed = plane_body.details.max_speed
 		elif !full_throttle:
 			if fuel > 0:
+				is_coasting = false
 				burn_fuel(fuel_burn_rate_standard, delta) 
 				speed = plane_body.details.cruise_speed
 			else:
 				if speed >= plane_body.details.cruise_speed:
-					var tween = create_tween().set_trans(Tween.TRANS_LINEAR)
+					is_coasting = true
+					var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 					tween.tween_property(self, "speed", plane_body.details.coasting_speed, coasting_duration_seconds)
-				
+					
 		if g_force > 1 and g_force_increase_factor == 0:
 			g_force -= g_force_decrease_rate * delta
 		
@@ -178,6 +182,8 @@ func get_input():
 	full_throttle = false
 	
 	if plane_body.is_player and conscious:
+#		Maybe optimize this by checking the difference between left and right inputs
+		
 #		Analogue vs digital.
 #		var drag_clampped_min = range_lerp(abs(drag_distance), drag_values["lower_limit"], drag_values["upper_limit"], 0, 1)
 		var drag_clampped_min = 1
@@ -186,7 +192,10 @@ func get_input():
 				turn += 1 * drag_clampped_min
 			else:
 				turn += 1
-			g_force_increase_factor += base_g_force_turn_factor
+			
+			if !is_coasting:
+				g_force_increase_factor += base_g_force_turn_factor
+				
 			turning = true
 
 		elif Input.is_action_pressed("turn_left") or (drag_distance < -drag_values["lower_limit"] and drag_distance > -drag_values["upper_limit"] and is_dragging):
@@ -194,7 +203,10 @@ func get_input():
 				turn -= 1 * drag_clampped_min
 			else:
 				turn -= 1
-			g_force_increase_factor += base_g_force_turn_factor
+				
+			if !is_coasting:
+				g_force_increase_factor += base_g_force_turn_factor
+	
 			turning = true
 
 		if Input.is_action_pressed("throttle"):
@@ -204,8 +216,12 @@ func get_input():
 			
 		if Input.is_action_pressed("increase_bank") and turning:
 			turn *= plane_body.details.max_bank_angle_factor
-			g_force_increase_factor += max_g_force_turn_factor
+			if is_coasting:
+				g_force_increase_factor += base_g_force_turn_factor
+			else:
+				g_force_increase_factor += max_g_force_turn_factor
 
+#		this part is used by the mobile touch inputs.
 #		Analogue bs digital.
 #		var drag_clampped_max = clamp(range_lerp(abs(drag_distance), drag_values["upper_limit"], drag_values["max_limit"], 0, 1), 0, 1)
 		var drag_clampped_max = 1
@@ -214,14 +230,22 @@ func get_input():
 				turn += 1 * plane_body.details.max_bank_angle_factor * drag_clampped_max
 			else:
 				turn += 1 * plane_body.details.max_bank_angle_factor
-			g_force_increase_factor += g_force_throttle_factor
+				
+			if is_coasting:
+				g_force_increase_factor += base_g_force_turn_factor
+			else:
+				g_force_increase_factor += max_g_force_turn_factor
 			
 		elif Input.is_action_pressed("turn_left_max") or (drag_distance <= -drag_values["upper_limit"] and drag_distance <= drag_values["max_limit"] and is_dragging):
 			if is_dragging:
 				turn -= 1 * plane_body.details.max_bank_angle_factor * drag_clampped_max
 			else:
 				turn -= 1 * plane_body.details.max_bank_angle_factor
-			g_force_increase_factor += g_force_throttle_factor
+				
+			if is_coasting:
+				g_force_increase_factor += base_g_force_turn_factor
+			else:
+				g_force_increase_factor += max_g_force_turn_factor
 		
 	elif !plane_body.is_player and conscious:
 		if !plane_body.is_being_shot:
@@ -262,10 +286,19 @@ func get_input():
 				if is_chasing:
 					if abs(target_angle_difference) <= plane_body.pilot.min_turn_threshold:
 						turn += sign(target_angle_difference) * 1
-						g_force_increase_factor += base_g_force_turn_factor
+
+						if !is_coasting:
+							g_force_increase_factor += base_g_force_turn_factor
+
 					elif abs(target_angle_difference) > plane_body.pilot.min_turn_threshold and abs(target_angle_difference) <= plane_body.pilot.max_turn_threshold:
 						turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
-						g_force_increase_factor += max_g_force_turn_factor
+					
+						if is_coasting:
+							g_force_increase_factor += base_g_force_turn_factor
+						else:
+							g_force_increase_factor += max_g_force_turn_factor
+						
+					
 					else:
 						if plane_body.target_node != "":
 							plane_body.get_parent().get_node(plane_body.target_node).targeted = false
@@ -281,14 +314,25 @@ func get_input():
 				else:
 					if abs(target_angle_difference) <= plane_body.pilot.min_turn_threshold:
 						turn += sign(target_angle_difference) * 1
-						g_force_increase_factor += base_g_force_turn_factor
+						
+						if !is_coasting:
+							g_force_increase_factor += base_g_force_turn_factor
+						
 					elif abs(target_angle_difference) > plane_body.pilot.min_turn_threshold:
 						turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
-						g_force_increase_factor += max_g_force_turn_factor
+						
+						if is_coasting:
+							g_force_increase_factor += base_g_force_turn_factor
+						else:
+							g_force_increase_factor += max_g_force_turn_factor
 				
 		else:
 			turn += plane_body.details.max_bank_angle_factor * evade_direction
-			g_force_increase_factor += max_g_force_turn_factor
+
+			if is_coasting:
+				g_force_increase_factor += base_g_force_turn_factor
+			else:
+				g_force_increase_factor += max_g_force_turn_factor
 			
 	steer_angle = turn * deg2rad(plane_body.details.bank_angle)
 	velocity = Vector2.ZERO
