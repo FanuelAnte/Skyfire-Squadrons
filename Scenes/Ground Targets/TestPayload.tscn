@@ -8,12 +8,13 @@ radius = 16.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "shrink"
+length = 0.2
 
 [node name="TestPayload" type="Area2D" groups=["payloads"]]
 script = ExtResource( 1 )
 
 [node name="Icon" type="Sprite" parent="."]
-scale = Vector2( 0.25, 0.25 )
+unique_name_in_owner = true
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
