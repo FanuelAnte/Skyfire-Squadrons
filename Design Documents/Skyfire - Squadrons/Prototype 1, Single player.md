@@ -117,6 +117,7 @@ New logic
 Little trouble here. if an enemy is behind you, it enters an infinite search loop.
 
 Fucking Finally!!!! The AI behaves exactly as I want it to.
+I can set the priority of targets.
 ### G-Forces
 Different planes classes have different maneuverability and therefore the pilots experience  G-forces differently.
 ### Combat Controls
@@ -308,7 +309,19 @@ So to summarize. the level is going to be built based on a singe static scene th
 ### Base Level and Level Resources
 The base level scene contains the basic parallax scenes and the sprites.
 ### Ground target
+These ground targets will be on the same level as the ground.
+##### Damage of ground targets
+When the player presses the tertiary bombing button, a payload scene is instanced as a child of the base level. The payload scene has a timer on it that counts down and when it times out, it emits a signal to tell the base level to relocate it to the next parallax layer. It has a variable that holds the current level it is at and whenever it is relocated, that variable is changed. Relocation stops when the current_level variable is equal to "ground". Once it reaches ground, it plays the explosion animation and if it is overlapping with any ground targets, the ground targets take damage. I need to add a few more parallax layers to make the transition of the payload smoother and I also need to scale the sprite of the payload as it goes further down.
 
+So the core loop is as follows.
+1. Press ___C___
+2. Instance payload as a child of the base level
+3. Play the shrinking animation of the payload based on the level it is at
+4. When the animation finishes playing
+	1. If it is not at the ground level
+		1. Emit a signal to the base level to tell it to relocate it
+	2. If it is at the ground level
+		1. It'll play the explode animation and check for collisions and then queue free itself.
 ### Objective and Mission Design 
 # Art
 ### Plane Sprites and Animation
