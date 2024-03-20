@@ -37,7 +37,7 @@ These are to be added in the first playable prototype.
 		- [ ] Place ground targets
 			- [ ] placement of ground targets should be on the same parallax layer as the ground.
 	- [ ] Ground target damage
-		- [ ] Move the bombs between the different layers at runtime. starting from the main game's level down to the ground level.
+		- [x] Move the bombs between the different layers at runtime. starting from the main game's level down to the ground level.
 - [ ] Create the ground targets.
 - [x] Add throttling for enemies if their target is too far away.
 - [ ] Shot criticality

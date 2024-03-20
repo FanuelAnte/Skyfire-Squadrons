@@ -1,23 +1,30 @@
 extends Node2D
 
+onready var clouds_1 = $"%Clouds1"
+onready var clouds_2 = $"%Clouds2"
+
 onready var background = $"%Background"
 var payloads = []
 
 func _ready():
 	payloads = get_tree().get_nodes_in_group("payloads")
 	
-	var step_size = (1 - 0.1) / 49.0
-
-	for i in range(50):
-		var step = stepify((0.1 + i * step_size), 0.001)
+	var step_size = (0.35 - 0.2) / 24.0
+	
+	for i in range(25):
+		var step = stepify((0.2 + i * step_size), 0.001)
 		var parallax_layer = ParallaxLayer.new()
-
+		
 		parallax_layer.name = "layer" + str(i + 1)
 		parallax_layer.motion_scale = Vector2(step, step)
 		parallax_layer.add_to_group("payload_layers")
-
-		background.add_child(parallax_layer)
 		
+		#move the clouds above the newly added layers.
+		background.add_child(parallax_layer)
+	
+	background.move_child(clouds_1, background.get_child_count() - 1)
+	background.move_child(clouds_2, background.get_child_count() - 1)
+	
 	#replace the animation player with a timer.
 #	payloads[0].animation_player.connect("animation_finished", self, "change_layers")
 #	payloads[0].timer.connect("timeout", self, "change_layers", [payloads[0]])

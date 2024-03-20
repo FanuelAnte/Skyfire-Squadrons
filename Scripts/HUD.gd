@@ -69,7 +69,7 @@ func _ready():
 		if plane_body.details.classification == "Small Fighter":
 			fire_primary.show()
 			fire_secondary.show()
-			fire_tertiary.hide()
+			fire_tertiary.show()
 		
 		elif plane_body.details.classification == "Medium Fighter":
 			fire_primary.show()

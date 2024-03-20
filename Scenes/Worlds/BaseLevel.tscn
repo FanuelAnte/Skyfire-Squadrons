@@ -13,7 +13,7 @@ script = ExtResource( 5 )
 unique_name_in_owner = true
 
 [node name="Water" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2( 0.1, 0.1 )
+motion_scale = Vector2( 0.2, 0.02 )
 motion_mirroring = Vector2( 5120, 2880 )
 
 [node name="Sprite" type="Sprite" parent="Background/Water"]
@@ -22,12 +22,13 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 5120, 2880 )
 
 [node name="Ground" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2( 0.1, 0.1 )
+motion_scale = Vector2( 0.2, 0.2 )
 
 [node name="Sprite" type="Sprite" parent="Background/Ground"]
 texture = ExtResource( 2 )
 
 [node name="Clouds1" type="ParallaxLayer" parent="Background"]
+unique_name_in_owner = true
 motion_scale = Vector2( 0.6, 0.6 )
 motion_mirroring = Vector2( 5120, 2880 )
 
@@ -37,6 +38,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 5120, 2880 )
 
 [node name="Clouds2" type="ParallaxLayer" parent="Background"]
+unique_name_in_owner = true
 motion_scale = Vector2( 0.8, 0.8 )
 motion_mirroring = Vector2( 5120, 2880 )
 
