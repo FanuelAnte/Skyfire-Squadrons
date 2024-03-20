@@ -85,7 +85,7 @@ func get_input():
 				shoot_secondary()
 				
 			if Input.is_action_just_pressed("fire_tertiary"):
-				pass
+				get_tree().get_nodes_in_group("levels")[0].create_payload(tertiary_weapon, plane_body.position)
 				
 		else:
 			check_rays()

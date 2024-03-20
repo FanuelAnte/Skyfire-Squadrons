@@ -1,7 +1,13 @@
 extends Area2D
 
-onready var animation_player = $"%AnimationPlayer"
 onready var icon = $"%Icon"
+onready var timer = $"%Timer"
 
-var current_layer = 10
+var start_position = Vector2.ZERO
 
+var current_layer = 50
+
+func _ready():
+	var tween = create_tween().set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(icon, "scale", Vector2(0.1, 0.1), 1)
+	

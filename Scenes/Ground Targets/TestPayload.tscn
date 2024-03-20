@@ -1,14 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/Ground Targets/TestPayload.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 16.0
-
-[sub_resource type="Animation" id=2]
-resource_name = "shrink"
-length = 0.2
 
 [node name="TestPayload" type="Area2D" groups=["payloads"]]
 script = ExtResource( 1 )
@@ -20,7 +16,7 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
-autoplay = "shrink"
-anims/shrink = SubResource( 2 )
+wait_time = 0.05
+autostart = true
