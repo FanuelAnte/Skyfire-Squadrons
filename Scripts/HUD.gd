@@ -109,8 +109,8 @@ func _physics_process(delta):
 		framerate.text = str(Engine.get_frames_per_second())
 		drag_amount_label.text = str(int(movement_component.drag_distance))
 		
-		tween_hud_color(primary_ammo, artillery_component.primary_heat)
-		tween_hud_color(secondary_ammo, artillery_component.secondary_heat)
+		tween_hud_color(primary_ammo, artillery_component.primary_heat, artillery_component.primary_weapon.max_heat)
+		tween_hud_color(secondary_ammo, artillery_component.secondary_heat, artillery_component.secondary_weapon.max_heat)
 		
 		tween_pass_out_filter(movement_component.consciousness)
 		
@@ -122,8 +122,8 @@ func _physics_process(delta):
 			else:
 				drag_controls.hide()
 	
-func tween_hud_color(node, value):
-	var changed_value = range_lerp(value, 100, 0, 0, 1)
+func tween_hud_color(node, value, max_heat):
+	var changed_value = range_lerp(value, max_heat, 0, 0, 1)
 	node.self_modulate = Color(1, changed_value, changed_value)
 
 func tween_pass_out_filter(value):

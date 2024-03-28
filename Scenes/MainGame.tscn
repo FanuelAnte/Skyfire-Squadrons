@@ -15,7 +15,6 @@ __meta__ = {
 
 [node name="Player" parent="Planes" instance=ExtResource( 3 )]
 position = Vector2( 2000, 0 )
-rotation = -6.28318
 details = ExtResource( 4 )
 
 [node name="Ally" parent="Planes" instance=ExtResource( 3 )]

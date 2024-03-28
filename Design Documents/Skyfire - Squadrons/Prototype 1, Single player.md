@@ -1,7 +1,7 @@
 To figure out what is going to be included in this version, I'm going to divide it up into Gameplay, Tech, Level, Art, Sound and Music.
 #### Gameplay
 - [x] Plane Controls and Movement
-- [ ] Plane class dependent evasive maneuvers
+- [ ] Plane Class-Dependent Evasive Maneuvers
 - [x] Enemy Movement AI
 - [x] G-forces
 - [x] Combat Controls
@@ -73,6 +73,12 @@ I'm thinking of making the movement controller it's own component. I have two po
 2. Use an export variable to get the parent node.
 ##### Mobile Controls.
 The buttons for movement just aren't going to cut it I need to do something more intuitive. Hear me out: free dragging on the screen. Drag left and right on any part of the screen and depending on how far away you finger is from the drag_start_position, the turn variable is set accordingly.
+### Plane Class-Dependent Evasive Maneuvers (Climbing and Diving)
+I have two options regarding how to handle the manueuvers
+1. Figure out a way to switch the planes between the top-level scene or the base-level parallax layers.
+2. Make the planes, bullets and ground targets all part of the base-level and the set them on different layers and use collision layers to separate the damage taken by bullets and payloads. If a plane is diving or climbing, switch its collision layer to something that doesn't interfere with the bullets collision.
+
+I'm liking option 2.
 ### Enemy Movement AI
 This applies to both ___Enemy___ and ___Ally___ AI. The behavior I have so far is that once a target is set, which is set by me at the moment, the plane follows it. It utilizes the same movement logic as the player controller, the only difference being that the turn angle is set based on the angle between the heading of the plane itself and the target.
 ```GDScript
@@ -94,7 +100,7 @@ If target locked, follow. Else, Go into a random searching pattern. What's the r
 1. ___Search mode___ - It just picks the average global position of all enemy aircrafts and moves towards that location until the detection ray catches something.
 2. ___Evade mode___ - If targeted for too long, and is being shot at, turn left at max_bank.
 
-A little modification to the targeting code. If there is an imbalance between the ally and enemy planes, there should be a a "gang up" mode. 
+A little modification to the targeting code. If there is an imbalance between the ally and enemy planes, there should be a "gang up" mode. 
 
 Add a Area 2D to the movement component to detect enemy planes. Add an export variable to exclude the detection of the parent plane(self).
 
@@ -152,6 +158,11 @@ Each path leads to a bullet scene. Each bullet scene has the following structure
 	- Sprite
 	- SFXComponent
 Whenever one of the fire keys is pressed, a spawn bullet method is called.
+#### Bullets and Payloads
+Weapons like the Browning M2 and other mounted machine guns fire projectiles bullets that do damage on the same layer that they are spawned on. 
+Payload like bombs get spawned on one level and then move down the layer list until they collide with a ground unit or the ground/water and explode.
+#### Dive-bombing
+To dive or not to dive, what's the point anymore.
 ### Enemy Combat AI
 This combat logic follows the __Movement__ logic I'll set above.
 
@@ -208,13 +219,13 @@ The games resolution and the plane sprite scale in relation to that resolution i
 
 Solution: dynamic camera zoom. Player controlled. There are going to be 5 different zoom levels:
 
-| Name| Value | Key binding |
-| ---- | ---- | ---- |
-| zoom_min | 2.0 | num 1 |
-| zoom_two | 1.75 | num 2 |
-| zoom_mid | 1.5 | num 3 |
-| zoom_four | 1.25 | num 4 |
-| zoom_max | 1 | num 5 |
+| Name      | Value | Key binding |
+| --------- | ----- | ----------- |
+| zoom_min  | 2.0   | num 1       |
+| zoom_two  | 1.75  | num 2       |
+| zoom_mid  | 1.5   | num 3       |
+| zoom_four | 1.25  | num 4       |
+| zoom_max  | 1     | num 5       |
 # Tech
 ### HUD
 I'm going to keep the in-game HUD as minimal as possible.
@@ -309,7 +320,7 @@ So to summarize. the level is going to be built based on a singe static scene th
 ### Base Level and Level Resources
 The base level scene contains the basic parallax scenes and the sprites.
 ### Ground target
-These ground targets will be on the same level as the ground.
+These ground targets will be on the same level as the ground or the water.
 ##### Damage of ground targets
 When the player presses the tertiary bombing button, a payload scene is instanced as a child of the base level. The payload scene has a timer on it that counts down and when it times out, it emits a signal to tell the base level to relocate it to the next parallax layer. It has a variable that holds the current level it is at and whenever it is relocated, that variable is changed. Relocation stops when the current_level variable is equal to "ground". Once it reaches ground, it plays the explosion animation and if it is overlapping with any ground targets, the ground targets take damage. I need to add a few more parallax layers to make the transition of the payload smoother and I also need to scale the sprite of the payload as it goes further down.
 

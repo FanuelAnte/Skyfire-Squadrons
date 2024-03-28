@@ -3,8 +3,9 @@ These are to be added in the first playable prototype.
 	- [x] burn rates
 	- [x] throttle toggle PC
 	- [x] throttle toggle Android
-	- [ ] flight disable and coasting (this comes after death is implemented.)
-		- [ ] If coasting, turning costs you speed. Therefore you need to be frugal with the maneuvers you make. coasting speed starts off at the base speed, if coasting, there is no throttling, and coasting speed gradually decreases if just flying in a straight line, and dramatically if maneuvering and turning, If coasting speed reaches zero, you either crash into the ocean on on land or somewhere. 
+	- [x] flight disable and coasting (this comes after death is implemented.)
+		- [x] (possible future feature) If coasting, turning costs you speed. Therefore you need to be frugal with the maneuvers you make. coasting speed starts off at the base speed, if coasting, there is no throttling, and coasting speed gradually decreases if just flying in a straight line, and dramatically if maneuvering and turning, If coasting speed reaches zero, you either crash into the ocean on on land or somewhere. 
+		- [x] Or just set a standard coasting speed and decelerate down to it and hold there until you refuel.
 	- [x] UI indicator for time and fuel
 - [ ] Speed lines when throttling.
 - [x] Make the enemies not target the same player. The is_targeted flag did nothing.
@@ -19,7 +20,8 @@ These are to be added in the first playable prototype.
 	- [x] not targeting the dead
 - [x] Map coordinates HUD
 - [ ] Climbing and diving maneuvers
-	- [ ] Class dependent maneuvers
+	- [ ] Class dependent maneuvers 
+	- [ ] Add extra layers to the base world, move the planes either up or down the layers to show the different maneuvers by using animations and varying the speed.
 - [ ] Add a new targeting system. Each plane has a circular area around it and it can only target the planes that are intersecting with the area. If no bodies are intersecting with the area, it picks a random target.
 - [x] Plane Classes.
 - [ ] Flak rounds for bombers and ground units
@@ -36,9 +38,11 @@ These are to be added in the first playable prototype.
 		- [ ] Assign Mission
 		- [ ] Place ground targets
 			- [ ] placement of ground targets should be on the same parallax layer as the ground.
-	- [ ] Ground target damage
+	- [ ] Ground target damage and payloads
 		- [x] Move the bombs between the different layers at runtime. starting from the main game's level down to the ground level.
 - [ ] Create the ground targets.
+	- [ ] Define what a ground target needs.
+	- [ ] Create the scene structure.
 - [x] Add throttling for enemies if their target is too far away.
 - [ ] Shot criticality
 	- [x] Not all bullet hits do the same amount of damage
@@ -59,6 +63,11 @@ These are to be added in the first playable prototype.
 	- [ ] Settings
 	- [ ] ...
 - [ ] Divebombing
+	- [x] Basic payloads
+	- [ ] Improved diving and payload delivery mechanics - most-likely unnecessary since it's an arcade game.
+		- [ ] Maybe move the plane between the layers just like the payloads. Dive-bombers dive at a 70 degree angle, and the bomb should inherit the speed of plane. You need to press and hold the tertiary fire button to initiate a dive, and then you have to keep an eye on your altimeter to decide the perfect time to drop the payload. Then you automatically climb back up to the standard layer.
+		- [ ] Disable shooting while diving with primary and secondary weapons
+- [ ] Move the planes to a parallax layer inside of the base level or figure out a way to move them between the top level scene and the base level's parallax layers.
 - [ ] Bomber behavior
 	- [ ] targeting (ground)
 	- [ ] defense artillery
@@ -88,7 +97,7 @@ These are to be added in the first playable prototype.
 	- [ ] Shot vibration strength
 	- [ ] Damage vibration strength
 	- [ ] Camera shake intensity
-# For Saturday
+# For Saturday (old demo - completed)
 - [x] Dedicated throttle toggle for android
 - [x] Zoom buttons for android
 - [ ] Simple tutorial screen (for controls)
@@ -97,3 +106,16 @@ These are to be added in the first playable prototype.
 - [ ] main menu
 - [ ] objectives
 - [x] Hide tertiary action button accordingly.
+# Order of features
+- [ ] Class based maneuvers and movement
+	- [ ] Parallax layer based maneuvers
+	- [ ] moving the planes between layers
+- [ ] Ground targets and proper payloads
+	- [ ] bomber payloads vs dive-bomber payloads
+- [ ] Updated artillery system
+- [ ] Level management
+	- [ ] Missions
+	- [ ] Fail and Win states
+- [ ] Menus
+- [ ] SFX
+- [ ] Music System

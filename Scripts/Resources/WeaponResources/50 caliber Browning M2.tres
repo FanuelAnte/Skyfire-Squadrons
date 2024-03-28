@@ -19,4 +19,4 @@ effective_range = 256
 cooling_rate = 5.0
 heating_rate = 1.5
 heat_threshold = 50.0
-max_heat = 300.0
+max_heat = 100.0

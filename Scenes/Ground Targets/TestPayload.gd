@@ -9,5 +9,5 @@ var current_layer = 25
 
 func _ready():
 	var tween = create_tween().set_trans(Tween.TRANS_LINEAR)
-	tween.tween_property(icon, "scale", Vector2(0.05, 0.05), timer.wait_time * current_layer)
+	tween.tween_property(icon, "scale", Vector2(0.01, 0.01), timer.wait_time * current_layer)
 	
