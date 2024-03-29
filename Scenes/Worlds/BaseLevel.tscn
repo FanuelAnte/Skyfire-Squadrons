@@ -1,19 +1,80 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Exports/TestMap/Water.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Exports/TestMap/Ground.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Exports/TestMap/Clouds1.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Exports/TestMap/Clouds2.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/BaseLevel.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Resources/PlaneResources/SupermarineSpitfire.tres" type="Resource" id=6]
+[ext_resource path="res://Scripts/Resources/PlaneResources/A6M_Zero.tres" type="Resource" id=7]
+[ext_resource path="res://Scenes/PlaneBase.tscn" type="PackedScene" id=8]
 
 [node name="Baselevel" type="Node2D" groups=["levels"]]
 script = ExtResource( 5 )
+
+[node name="Planes" type="Node2D" parent="." groups=["planes_container"]]
+
+[node name="Player" parent="Planes" instance=ExtResource( 8 )]
+position = Vector2( 1288, 8 )
+details = ExtResource( 6 )
+
+[node name="Ally" parent="Planes" instance=ExtResource( 8 )]
+position = Vector2( 735, 115 )
+is_player = false
+details = ExtResource( 6 )
+
+[node name="Ally2" parent="Planes" instance=ExtResource( 8 )]
+position = Vector2( 632, 208 )
+is_player = false
+details = ExtResource( 6 )
+
+[node name="Ally3" parent="Planes" instance=ExtResource( 8 )]
+position = Vector2( 544, 384 )
+is_player = false
+details = ExtResource( 6 )
+
+[node name="Ally4" parent="Planes" instance=ExtResource( 8 )]
+position = Vector2( 544, 384 )
+is_player = false
+details = ExtResource( 6 )
+
+[node name="Axis" parent="Planes" instance=ExtResource( 8 )]
+modulate = Color( 1, 0.419608, 0.419608, 1 )
+position = Vector2( 1065, 205 )
+is_player = false
+details = ExtResource( 7 )
+
+[node name="Axis2" parent="Planes" instance=ExtResource( 8 )]
+modulate = Color( 1, 0.419608, 0.419608, 1 )
+position = Vector2( 992, 472 )
+is_player = false
+details = ExtResource( 7 )
+
+[node name="Axis3" parent="Planes" instance=ExtResource( 8 )]
+modulate = Color( 1, 0.419608, 0.419608, 1 )
+position = Vector2( 1008, -88 )
+is_player = false
+details = ExtResource( 7 )
+
+[node name="Axis4" parent="Planes" instance=ExtResource( 8 )]
+modulate = Color( 1, 0.419608, 0.419608, 1 )
+position = Vector2( 1328, 616 )
+is_player = false
+details = ExtResource( 7 )
+
+[node name="Axis5" parent="Planes" instance=ExtResource( 8 )]
+modulate = Color( 1, 0.419608, 0.419608, 1 )
+position = Vector2( 1328, 616 )
+is_player = false
+details = ExtResource( 7 )
+
+[node name="Bullets" type="Node2D" parent="." groups=["bullets_container"]]
 
 [node name="Background" type="ParallaxBackground" parent="."]
 unique_name_in_owner = true
 
 [node name="Water" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2( 0.2, 0.02 )
+motion_scale = Vector2( 0.2, 0.2 )
 motion_mirroring = Vector2( 5120, 2880 )
 
 [node name="Sprite" type="Sprite" parent="Background/Water"]
@@ -49,3 +110,5 @@ region_rect = Rect2( 0, 0, 5120, 2880 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="Sky" type="ParallaxLayer" parent="Background"]

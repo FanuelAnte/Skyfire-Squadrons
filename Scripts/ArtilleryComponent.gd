@@ -1,6 +1,6 @@
 extends Node2D
 
-var bullet_scene = preload("res://Scenes/Bullet.tscn")
+var bullet_scene = preload("res://Scenes/Weapons/Bullet.tscn")
 
 export (Resource) var primary_weapon
 export (Resource) var secondary_weapon
@@ -136,7 +136,8 @@ func spawn_bullet(bullet_resource, weapon_group):
 		var bullet = bullet_scene.instance()
 		bullet.weapon_details = bullet_resource
 		bullet.who_shot_me = plane_body
-		get_tree().root.get_node("MainGame").get_node("Bullets").add_child(bullet)
+#		get_tree().root.get_node("MainGame").get_node("Bullets").add_child(bullet)
+		get_tree().get_nodes_in_group("bullets_container")[0].add_child(bullet)
 		bullet.transform = muzzle.global_transform
 		
 		if OS.get_name() == "Android" and plane_body.is_player:

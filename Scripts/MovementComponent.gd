@@ -137,7 +137,7 @@ func burn_fuel(burn_rate, delta):
 	
 func update_enemy_planes():
 	enemy_planes = []
-	var all_planes = get_tree().root.get_node("MainGame").get_node("Planes").get_children()
+	var all_planes = get_tree().get_nodes_in_group("planes_container")[0].get_children()
 	for plane in all_planes:
 		var plane_position = plane.global_position
 		

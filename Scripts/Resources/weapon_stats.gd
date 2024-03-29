@@ -7,6 +7,7 @@ export (int) var speed = 500
 
 export (float) var base_damage = 10.0
 export (float) var max_damage = 10.0
+export (int, 1, 5) var criticality_threshold
 export (Curve) var criticality_curve
 
 export (int) var frame = 0

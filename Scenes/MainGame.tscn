@@ -1,77 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scripts/Resources/PlaneResources/A6M_Zero.tres" type="Resource" id=1]
 [ext_resource path="res://Scenes/Worlds/BaseLevel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/PlaneBase.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/Resources/PlaneResources/SupermarineSpitfire.tres" type="Resource" id=4]
 
 [node name="MainGame" type="Node2D"]
 __meta__ = {
 "_edit_horizontal_guides_": [ 384.0 ],
 "_edit_vertical_guides_": [ 640.0 ]
 }
-
-[node name="Planes" type="Node2D" parent="."]
-
-[node name="Player" parent="Planes" instance=ExtResource( 3 )]
-position = Vector2( 2000, 0 )
-details = ExtResource( 4 )
-
-[node name="Ally" parent="Planes" instance=ExtResource( 3 )]
-position = Vector2( 735, 115 )
-rotation = -6.28318
-is_player = false
-details = ExtResource( 4 )
-
-[node name="Ally2" parent="Planes" instance=ExtResource( 3 )]
-position = Vector2( 811, -7 )
-rotation = -6.28318
-is_player = false
-details = ExtResource( 4 )
-
-[node name="Ally3" parent="Planes" instance=ExtResource( 3 )]
-position = Vector2( 709, -112 )
-rotation = -6.28318
-is_player = false
-details = ExtResource( 4 )
-
-[node name="Ally4" parent="Planes" instance=ExtResource( 3 )]
-position = Vector2( 807, -217 )
-rotation = -6.28318
-is_player = false
-details = ExtResource( 4 )
-
-[node name="Axis" parent="Planes" instance=ExtResource( 3 )]
-modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 1065, 205 )
-is_player = false
-details = ExtResource( 1 )
-
-[node name="Axis2" parent="Planes" instance=ExtResource( 3 )]
-modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 1028, 96 )
-is_player = false
-details = ExtResource( 1 )
-
-[node name="Axis3" parent="Planes" instance=ExtResource( 3 )]
-modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 1086, -16 )
-is_player = false
-details = ExtResource( 1 )
-
-[node name="Axis4" parent="Planes" instance=ExtResource( 3 )]
-modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 1028, -104 )
-is_player = false
-details = ExtResource( 1 )
-
-[node name="Axis5" parent="Planes" instance=ExtResource( 3 )]
-modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 1091, -230 )
-is_player = false
-details = ExtResource( 1 )
-
-[node name="Bullets" type="Node2D" parent="."]
 
 [node name="Camera2D2" type="Camera2D" parent="."]
 position = Vector2( -514, -224 )

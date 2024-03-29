@@ -3,14 +3,15 @@
 [ext_resource path="res://Scripts/Resources/weapon_stats.gd" type="Script" id=1]
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.658136, 0.186321 ), 0.829346, 0.829346, 0, 0, Vector2( 1, 1 ), 5.97271, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.568686, 0.115566 ), 0.498968, 0.498968, 0, 0, Vector2( 1, 1 ), 4.48513, 0.0, 0, 0 ]
 
 [resource]
 script = ExtResource( 1 )
 weapon_name = ".50 Cal"
 speed = 1500
 base_damage = 0.1
-max_damage = 1.5
+max_damage = 2.5
+criticality_threshold = 4
 criticality_curve = SubResource( 1 )
 frame = 0
 max_ammo_count = 2400

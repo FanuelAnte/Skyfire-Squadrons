@@ -1,5 +1,5 @@
 These are to be added in the first playable prototype.
-- [ ] Fuel.
+- [x] Fuel.
 	- [x] burn rates
 	- [x] throttle toggle PC
 	- [x] throttle toggle Android
@@ -113,6 +113,7 @@ These are to be added in the first playable prototype.
 - [ ] Ground targets and proper payloads
 	- [ ] bomber payloads vs dive-bomber payloads
 - [ ] Updated artillery system
+	- [ ] attach damage sparks to the bullets themselves.
 - [ ] Level management
 	- [ ] Missions
 	- [ ] Fail and Win states

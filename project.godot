@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/Resources/level_stats.gd"
 }, {
 "base": "Resource",
+"class": "payload_resource",
+"language": "GDScript",
+"path": "res://Scripts/Resources/payload_stats.gd"
+}, {
+"base": "Resource",
 "class": "pilot_resource",
 "language": "GDScript",
 "path": "res://Scripts/Resources/pilot_stats.gd"
@@ -31,6 +36,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "level_resource": "",
+"payload_resource": "",
 "pilot_resource": "",
 "plane_resource": "",
 "weapon_resource": ""

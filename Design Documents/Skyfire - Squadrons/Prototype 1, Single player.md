@@ -161,6 +161,14 @@ Whenever one of the fire keys is pressed, a spawn bullet method is called.
 #### Bullets and Payloads
 Weapons like the Browning M2 and other mounted machine guns fire projectiles bullets that do damage on the same layer that they are spawned on. 
 Payload like bombs get spawned on one level and then move down the layer list until they collide with a ground unit or the ground/water and explode.
+
+Bullets, Payloads and Flak rounds. What makes them different? Movement and damage behavior
+
+|                      | Bullets                                                   | Flak                                                                                                                                                                                                                                                                                                                                                            | Payloads                                                                                                                  |
+| -------------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Movement             | Move in a straight line from source to target.            | Move from the ground layer to the sky layer.                                                                                                                                                                                                                                                                                                                    | Move from the sky layer to the ground layer.                                                                              |
+| End-of-life Behavior | Do damage and queue free when they collide with a target. | Has 2 parts: the part that goes up from the ground to sky layer and the part that gets spawned on the sky layer with a AOE indicator. The second part is the one that actually does damage and is spawned at the same time as the traveling component and does damage and plays the explosion animation and does damage in the AOE circle and then queue frees. | Do damage in a circular area and an explosion animation is played and then is queue freed when the animation is finished. |
+
 #### Dive-bombing
 To dive or not to dive, what's the point anymore.
 ### Enemy Combat AI
