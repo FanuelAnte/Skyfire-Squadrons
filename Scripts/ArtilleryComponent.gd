@@ -142,7 +142,6 @@ func release_payload():
 			tertiary_ammo_count -= get_child(2).get_child_count()
 			tertiary_last_shot_time = OS.get_ticks_msec()
 			
-			
 func spawn_bullet(bullet_resource, weapon_group):
 	for muzzle in get_child(weapon_group).get_children():
 		var bullet = bullet_scene.instance()

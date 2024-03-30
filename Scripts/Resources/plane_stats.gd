@@ -6,7 +6,7 @@ export (String) var plane_name
 export (String, "Allied", "Axis") var alignment
 export (String, "Great Britain", "United States", "Japan", "Germany", "Soviet Union") var country
 
-export (String, "Small Fighter", "Medium Fighter", "Bomber") var classification
+export (String, "Light Fighter", "Heavy Fighter", "Light Bomber", "Heavy Bomber") var classification
 
 export (int) var max_primary_ammo_count = 0
 export (int) var max_secondary_ammo_count = 0

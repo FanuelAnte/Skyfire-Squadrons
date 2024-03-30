@@ -12,6 +12,7 @@ To figure out what is going to be included in this version, I'm going to divide 
 - [x] Pilots
 - [x] Death
 - [x] Resolution and Dynamic Camera
+- [ ] Plane Classification
 #### Tech
 - [x] Heads Up Display
 	- [x] Static HUD
@@ -235,6 +236,17 @@ Solution: dynamic camera zoom. Player controlled. There are going to be 5 differ
 | zoom_mid  | 1.5   | num 3       |
 | zoom_four | 1.25  | num 4       |
 | zoom_max  | 1     | num 5       |
+### Plane Classification
+##### Light Fighters
+These are very small and very maneuverable. Have a lower fuel tank capacity and carry less ammunition. Don't carry payloads and secondary weapons. They only have primary weapons. They make up for the lack of artillery in their maneuverability and their speed. Also have lower health
+##### heavy Fighters
+These are large and are moderately maneuverable. Have both primary and secondary weapons. Are slower and therefore less maneuverable than small fighters but they have a larger fuel tank and carry more ammo. They have higher health and are the perfect all-rounders.
+##### Light Bombers
+Quicker, carry less payload. More health than HF, less that HB.
+##### Heavy Bombers
+Slower, carry more payload. Basically fortresses. Have multiple side cannons and tailguns.
+
+
 # Tech
 ### HUD
 I'm going to keep the in-game HUD as minimal as possible.
