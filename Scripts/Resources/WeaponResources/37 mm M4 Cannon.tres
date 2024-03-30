@@ -14,7 +14,6 @@ max_damage = 2.0
 criticality_threshold = 3
 criticality_curve = SubResource( 1 )
 frame = 1
-max_ammo_count = 200
 delay_between_shots = 100
 effective_range = 192
 cooling_rate = 5.0

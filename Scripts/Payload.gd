@@ -1,5 +1,7 @@
 extends Area2D
 
+export (Resource) var payload_details
+
 onready var sprite = $"%Sprite"
 onready var timer = $"%Timer"
 

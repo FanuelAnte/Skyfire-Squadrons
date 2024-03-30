@@ -365,10 +365,33 @@ margin_bottom = 6.0
 text = "000000"
 align = 2
 
-[node name="FramerateRow" type="HBoxContainer" parent="AmmoSection"]
+[node name="TertiaryRow" type="HBoxContainer" parent="AmmoSection"]
 margin_top = 20.0
 margin_right = 160.0
 margin_bottom = 26.0
+rect_min_size = Vector2( 160, 0 )
+alignment = 2
+
+[node name="TertiaryName" type="Label" parent="AmmoSection/TertiaryRow"]
+unique_name_in_owner = true
+margin_left = 114.0
+margin_right = 120.0
+margin_bottom = 6.0
+text = "-"
+align = 2
+
+[node name="TertiaryAmmo" type="Label" parent="AmmoSection/TertiaryRow"]
+unique_name_in_owner = true
+margin_left = 124.0
+margin_right = 160.0
+margin_bottom = 6.0
+text = "000000"
+align = 2
+
+[node name="FramerateRow" type="HBoxContainer" parent="AmmoSection"]
+margin_top = 30.0
+margin_right = 160.0
+margin_bottom = 36.0
 rect_min_size = Vector2( 160, 0 )
 alignment = 2
 

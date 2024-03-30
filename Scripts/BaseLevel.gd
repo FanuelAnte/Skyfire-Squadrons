@@ -28,8 +28,7 @@ func _ready():
 #	payloads[0].animation_player.connect("animation_finished", self, "change_layers")
 #	payloads[0].timer.connect("timeout", self, "change_layers", [payloads[0]])
 		
-func create_payload(payload_scene, plane_position):
-	var payload = payload_scene.instance()
+func create_payload(payload, plane_position):
 	payload.start_position = plane_position
 	
 	var top_layer = get_tree().get_nodes_in_group("payload_layers")[-1]

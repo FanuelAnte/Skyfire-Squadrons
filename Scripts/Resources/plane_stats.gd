@@ -8,6 +8,10 @@ export (String, "Great Britain", "United States", "Japan", "Germany", "Soviet Un
 
 export (String, "Small Fighter", "Medium Fighter", "Bomber") var classification
 
+export (int) var max_primary_ammo_count = 0
+export (int) var max_secondary_ammo_count = 0
+export (int) var max_tertiary_ammo_count = 0
+
 export (int) var wingspan = 45
 
 export (float) var g_force_increase_rate = 0.5

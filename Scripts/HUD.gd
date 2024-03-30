@@ -13,9 +13,11 @@ onready var g_force_slider = $"%GForceSlider"
 
 onready var primary_name = $"%PrimaryName"
 onready var secondary_name = $"%SecondaryName"
+onready var tertiary_name = $"%TertiaryName"
 
 onready var primary_ammo = $"%PrimaryAmmo"
 onready var secondary_ammo = $"%SecondaryAmmo"
+onready var tertiary_ammo = $"%TertiaryAmmo"
 
 onready var health_bar = $"%HealthBar"
 onready var consciousness_bar = $"%ConsciousnessBar"
@@ -53,6 +55,7 @@ func _ready():
 	health_bar.max_value = plane_body.details.max_plane_health
 	primary_name.text = artillery_component.primary_weapon.weapon_name
 	secondary_name.text = artillery_component.secondary_weapon.weapon_name
+	tertiary_name.text = artillery_component.tertiary_weapon.weapon_name
 	
 	fuel_slider.max_value = plane_body.details.max_fuel
 	
@@ -91,6 +94,7 @@ func _physics_process(delta):
 	if plane_body.is_player and !plane_body.is_dead:
 		primary_ammo.text = str(artillery_component.primary_ammo_count).pad_zeros(4)
 		secondary_ammo.text = str(artillery_component.secondary_ammo_count).pad_zeros(4)
+		tertiary_ammo.text = str(artillery_component.tertiary_ammo_count).pad_zeros(4)
 		
 		health_bar.value = health_component.plane_health
 		consciousness_bar.value = movement_component.consciousness

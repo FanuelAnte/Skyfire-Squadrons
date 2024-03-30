@@ -37,8 +37,8 @@ func _on_HurtboxComponent_area_entered(area):
 			if is_visible:
 				if area.is_critical:
 					damage_spark(area.global_position, 4)
-				else:
-					damage_spark(area.global_position, 2)
+#				else:
+#					damage_spark(area.global_position, 2)
 					
 			
 			area.queue_free()
