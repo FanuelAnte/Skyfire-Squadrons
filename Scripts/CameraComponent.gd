@@ -13,7 +13,7 @@ func _ready():
 	if plane_body.is_player:
 		camera.current = true
 		
-func _physics_process(delta):
+func _process(delta):
 	if plane_body.is_player and !plane_body.is_dead:
 		get_input()
 	

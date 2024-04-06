@@ -109,10 +109,11 @@ These are to be added in the first playable prototype.
 # Order of features
 - [ ] Class based maneuvers and movement
 	- [ ] Parallax layer based maneuvers
-	- [ ] moving the planes between layers
+	- [x] (no good) moving the planes between layers
 - [ ] Ground targets and proper payloads
 	- [ ] bomber payloads vs dive-bomber payloads
 - [ ] Updated artillery system
+	- [ ] add weapon type signifiers in order to dictate the function that will be called for tertiary.
 	- [ ] attach damage sparks to the bullets themselves.
 - [ ] Level management
 	- [ ] Missions
@@ -120,3 +121,8 @@ These are to be added in the first playable prototype.
 - [ ] Menus
 - [ ] SFX
 - [ ] Music System
+# Optimization
+- [ ] Hit-scan vs Projectile weapons.
+- [ ] Try to decrease the max draw calls
+	- [ ] The trail is the biggest culprit
+	- [ ] Bullet queue freeing is also another one

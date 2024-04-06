@@ -29,12 +29,17 @@ is_player = false
 details = ExtResource( 6 )
 
 [node name="Ally3" parent="Planes" instance=ExtResource( 8 )]
-position = Vector2( 544, 384 )
+position = Vector2( 472, 424 )
 is_player = false
 details = ExtResource( 6 )
 
 [node name="Ally4" parent="Planes" instance=ExtResource( 8 )]
-position = Vector2( 544, 384 )
+position = Vector2( 352, 552 )
+is_player = false
+details = ExtResource( 6 )
+
+[node name="Ally5" parent="Planes" instance=ExtResource( 8 )]
+position = Vector2( 240, 744 )
 is_player = false
 details = ExtResource( 6 )
 
@@ -64,7 +69,13 @@ details = ExtResource( 7 )
 
 [node name="Axis5" parent="Planes" instance=ExtResource( 8 )]
 modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 1328, 616 )
+position = Vector2( 704, 640 )
+is_player = false
+details = ExtResource( 7 )
+
+[node name="Axis6" parent="Planes" instance=ExtResource( 8 )]
+modulate = Color( 1, 0.419608, 0.419608, 1 )
+position = Vector2( 680, -456 )
 is_player = false
 details = ExtResource( 7 )
 
@@ -110,5 +121,3 @@ region_rect = Rect2( 0, 0, 5120, 2880 )
 __meta__ = {
 "_editor_description_": ""
 }
-
-[node name="Sky" type="ParallaxLayer" parent="Background"]

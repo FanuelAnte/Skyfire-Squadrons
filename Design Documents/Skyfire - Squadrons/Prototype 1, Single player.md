@@ -99,7 +99,7 @@ This behavior is a good starting point to build upon and create more complex beh
 ##### Complex Movement AI
 If target locked, follow. Else, Go into a random searching pattern. What's the random searching pattern? What I have figured out is that the hurtbox, movement and artillery components need to work together. For example, if an ___AI___ is being shot at, it needs to do some sort of evasive maneuver. It detects that it's being shot at and then it... I need a state machine. If I were to do it without a state machine, basically, I need to make the plane know if it's in chase mode, evade more or search mode. 
 1. ___Search mode___ - It just picks the average global position of all enemy aircrafts and moves towards that location until the detection ray catches something.
-2. ___Evade mode___ - If targeted for too long, and is being shot at, turn left at max_bank.
+2. ___Evade mode___ - If targeted for too long, and is being shot at, turn left at max_bank. Evades only when hit by critical shots.
 
 A little modification to the targeting code. If there is an imbalance between the ally and enemy planes, there should be a "gang up" mode. 
 
@@ -206,6 +206,7 @@ To make things even more interesting, I could use another RNG check to decide if
 	- then finally returns final damage.
 - else
 	- final damage = base damage
+I want to push the criticality even further. I want to make every hit location count. Wing and tail hits decrease maneuverability, engine hits may explode the plane totally and so on. ***BUT*** since the planes are so small, and movement is so quick and since there isn't a dedicated aim button, it's not a question of skill, but rather, a question of RNG. Maybe have different hitboxes for different parts of the plane.
 ### Fuel and Ammunition
 These are also variables. Very simple. Fuel goes down at a pre-determined rate i.e. the longer you fly, the more fuel you consume. Running out of fuel results in the plane coasting and eventually crashing. Just like repairs, you can go back to bases or carriers to refuel and rearm.
 ### Pilots
@@ -237,16 +238,24 @@ Solution: dynamic camera zoom. Player controlled. There are going to be 5 differ
 | zoom_four | 1.25  | num 4       |
 | zoom_max  | 1     | num 5       |
 ### Plane Classification
+
+|                     | Light Fighters                                                      | Heavy Fighters                                                          | Light Bombers                                                                                                    | Heavy Bombers                                                                                                    |
+| ------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Health**          | Low                                                                 | Medium                                                                  | Medium                                                                                                           | High                                                                                                             |
+| **Artillery**       | ***primary*** - low caliber.<br><br>***secondary*** - high caliber. | ***primary*** - low caliber.<br><br>***secondary*** - high caliber.<br> | ***primary*** - low caliber.<br><br>***secondary*** - high caliber.<br><br>***tertiary*** - light bomb payloads. | ***primary*** - low caliber.<br><br>***secondary*** - high caliber.<br><br>***tertiary*** - heavy bomb payloads. |
+| **Speed**           |                                                                     |                                                                         |                                                                                                                  |                                                                                                                  |
+| **Fuel**            | Small tank                                                          | Medium tank                                                             | Medium tank                                                                                                      | Large tank                                                                                                       |
+| **Maneuverability** | Very high                                                           | Moderate                                                                | Low                                                                                                              | Low                                                                                                              |
+| **Size**            | Small                                                               | Medium                                                                  | Medium                                                                                                           | Large                                                                                                            |
+
 ##### Light Fighters
 These are very small and very maneuverable. Have a lower fuel tank capacity and carry less ammunition. Don't carry payloads and secondary weapons. They only have primary weapons. They make up for the lack of artillery in their maneuverability and their speed. Also have lower health
-##### heavy Fighters
+##### Heavy Fighters
 These are large and are moderately maneuverable. Have both primary and secondary weapons. Are slower and therefore less maneuverable than small fighters but they have a larger fuel tank and carry more ammo. They have higher health and are the perfect all-rounders.
 ##### Light Bombers
 Quicker, carry less payload. More health than HF, less that HB.
 ##### Heavy Bombers
-Slower, carry more payload. Basically fortresses. Have multiple side cannons and tailguns.
-
-
+Slower, carry more payload. Basically fortresses. Have multiple side cannons and tail guns.
 # Tech
 ### HUD
 I'm going to keep the in-game HUD as minimal as possible.

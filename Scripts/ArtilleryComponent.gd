@@ -51,10 +51,11 @@ func get_rays():
 				ray.cast_to = Vector2(secondary_weapon.effective_range, 0)
 				secondary_rays.append(ray)
 				
-func _physics_process(delta):
+func _process(delta):
+	pass
 	if plane_body.get_node(plane_body.movement_component).conscious:
 		get_input()
-	
+
 	if primary_heat >= primary_weapon.max_heat:
 		primary_is_overheated = true
 
@@ -66,7 +67,7 @@ func _physics_process(delta):
 			primary_heat -= primary_weapon.cooling_rate * delta
 		else:
 			primary_is_overheated = false
-	
+
 	if secondary_heat >= secondary_weapon.max_heat:
 		secondary_is_overheated = true
 

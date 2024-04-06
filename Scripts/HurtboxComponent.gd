@@ -18,9 +18,6 @@ func _ready():
 	plane_body = get_parent()
 	health_component = get_node(HealthComponentPath)
 	camera_component =  plane_body.get_node(plane_body.camera_component)
-	
-func _physics_process(delta):
-	pass
 
 func damage_spark(hit_position, amount):
 	var spark = spark_scene.instance()
@@ -34,17 +31,16 @@ func _on_HurtboxComponent_area_entered(area):
 		if area.who_shot_me != plane_body:
 			var damage = area.damage
 			
-			if is_visible:
-				if area.is_critical:
+			if area.is_critical:
+				plane_body.is_being_shot = true
+				if is_visible:
 					damage_spark(area.global_position, 4)
 #				else:
 #					damage_spark(area.global_position, 2)
 					
-			
 			area.queue_free()
 			health_component.take_damage(damage)
 			yield(get_tree().create_timer(stepify(rng.randf_range(0, 0.2), 0.1)), "timeout")
-			plane_body.is_being_shot = true
 			dodge_timer.start(stepify(rng.randf_range(0.5, plane_body.pilot.dodge_duration), 0.1))
 			
 			if plane_body.is_player:

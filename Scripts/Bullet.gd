@@ -13,7 +13,7 @@ func _ready():
 	rng.randomize()
 	assign_damage()
 
-func _physics_process(delta):
+func _process(delta):
 	position += transform.x * weapon_details.speed * delta
 
 func assign_damage():

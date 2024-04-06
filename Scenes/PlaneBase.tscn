@@ -123,7 +123,7 @@ position = Vector2( 3, -14 )
 [node name="Trail" parent="Trails/TrailsParent1" instance=ExtResource( 6 )]
 default_color = Color( 1, 1, 1, 0.627451 )
 gradient = null
-max_trail_length = 100
+max_trail_length = 50
 
 [node name="TrailsParent2" type="Position2D" parent="Trails"]
 position = Vector2( 3, 14 )
@@ -131,7 +131,7 @@ position = Vector2( 3, 14 )
 [node name="Trail" parent="Trails/TrailsParent2" instance=ExtResource( 6 )]
 default_color = Color( 1, 1, 1, 0.627451 )
 gradient = null
-max_trail_length = 100
+max_trail_length = 50
 
 [node name="HealthComponent" parent="." instance=ExtResource( 7 )]
 

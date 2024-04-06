@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var c_timer = $"%CTimer"
+onready var consciousness_timer = $"%CTimer"
 onready var search_target_timer = $"%SearchTargetTimer"
 onready var idle_flight_timer = $"%IdleFlightTimer"
 
@@ -83,7 +83,7 @@ func _ready():
 	
 	update_enemy_planes()
 	
-func _physics_process(delta):
+func _process(delta):
 	if !plane_body.is_dead:
 		get_input()
 		apply_rotation(delta)
@@ -116,7 +116,7 @@ func _physics_process(delta):
 			if consciousness > 0:
 				consciousness -= plane_body.pilot.unconsciousness_rate * delta
 			else:
-				c_timer.start(plane_body.pilot.unconsciousness_duration)
+				consciousness_timer.start(plane_body.pilot.unconsciousness_duration)
 				conscious = false
 				full_throttle = false
 		else:
@@ -250,7 +250,7 @@ func get_input():
 	elif !plane_body.is_player and conscious:
 		if !plane_body.is_being_shot:
 			var target_point = Vector2(0, 0)
-			
+
 			if plane_body.target_node != "":
 				var target = plane_body.get_parent().get_node(plane_body.target_node)
 				target_point = target.global_position
@@ -266,7 +266,7 @@ func get_input():
 						target_point = target_one.global_position
 					else:
 						target_point = Vector2(0, 0)
-						
+
 				else:
 					can_search = false
 					var value = rng.randi_range(0, 1)
@@ -276,7 +276,7 @@ func get_input():
 							plane_body.target_node = target.name
 							target.targeted = true
 							is_chasing = true
-					
+							
 			if !is_idle:
 				var direction = (target_point - plane_body.global_position)
 				var angle = plane_body.transform.x.angle_to(direction)
@@ -286,38 +286,37 @@ func get_input():
 				if is_chasing:
 					if abs(target_angle_difference) <= plane_body.pilot.min_turn_threshold:
 						turn += sign(target_angle_difference) * 1
-
+						
 						if !is_coasting:
 							g_force_increase_factor += base_g_force_turn_factor
-
+							
 					elif abs(target_angle_difference) > plane_body.pilot.min_turn_threshold and abs(target_angle_difference) <= plane_body.pilot.max_turn_threshold:
 						turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
-					
+						
 						if is_coasting:
 							g_force_increase_factor += base_g_force_turn_factor
 						else:
 							g_force_increase_factor += max_g_force_turn_factor
-						
-					
+							
 					else:
 						if plane_body.target_node != "":
 							plane_body.get_parent().get_node(plane_body.target_node).targeted = false
 							plane_body.target_node = ""
-						
+							
 						can_search = false
 						is_chasing = false
 						
 						if !is_idle:
 							is_idle = true
 							idle_flight_timer.start(rng.randi_range(2, 10))
-						
+							
 				else:
 					if abs(target_angle_difference) <= plane_body.pilot.min_turn_threshold:
 						turn += sign(target_angle_difference) * 1
 						
 						if !is_coasting:
 							g_force_increase_factor += base_g_force_turn_factor
-						
+							
 					elif abs(target_angle_difference) > plane_body.pilot.min_turn_threshold:
 						turn += sign(target_angle_difference) * plane_body.details.max_bank_angle_factor
 						
@@ -325,14 +324,15 @@ func get_input():
 							g_force_increase_factor += base_g_force_turn_factor
 						else:
 							g_force_increase_factor += max_g_force_turn_factor
-				
+							
 		else:
-			turn += plane_body.details.max_bank_angle_factor * evade_direction
+			turn += 1 * evade_direction
+			g_force_increase_factor += base_g_force_turn_factor
 
-			if is_coasting:
-				g_force_increase_factor += base_g_force_turn_factor
-			else:
-				g_force_increase_factor += max_g_force_turn_factor
+#			if is_coasting:
+#				g_force_increase_factor += base_g_force_turn_factor
+#			else:
+#				g_force_increase_factor += max_g_force_turn_factor
 			
 	steer_angle = turn * deg2rad(plane_body.details.bank_angle)
 	velocity = Vector2.ZERO

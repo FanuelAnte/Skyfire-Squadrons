@@ -8,7 +8,7 @@ func _ready():
 	plane_body = get_parent()
 	plane_health = plane_body.details.max_plane_health
 
-func _physics_process(delta):
+func _process(delta):
 	if plane_health <= 0 and !plane_body.is_dead:
 		plane_body.is_dead = true
 
