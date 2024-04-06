@@ -3,7 +3,7 @@ extends Resource
 class_name weapon_resource
 
 export (String) var weapon_name
-export (int) var speed = 500
+export (int) var speed = 1500
 
 export (float) var base_damage = 10.0
 export (float) var max_damage = 10.0

@@ -15,7 +15,8 @@ func _ready():
 
 func _process(delta):
 	position += transform.x * weapon_details.speed * delta
-
+	self.rotation_degrees += rng.randf_range(-1, 1)
+	
 func assign_damage():
 	is_critical = rng.randi_range(0, 5) > weapon_details.criticality_threshold
 	

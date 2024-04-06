@@ -30,7 +30,7 @@ export (int) var max_speed = 250
 export (int) var bank_angle = 15
 export (float) var max_bank_angle_factor = 1.5
 
-export (float) var max_plane_health = 100.0
+export (float) var max_plane_health = 50.0
 export (float) var max_fuel = 100.0
 
 export (float) var fuel_burn_rate_standard = 0.1

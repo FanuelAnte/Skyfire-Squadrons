@@ -8,14 +8,14 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.568686, 0.115566 ), 0.4989
 [resource]
 script = ExtResource( 1 )
 weapon_name = ".50 Cal"
-speed = 1000
+speed = 1500
 base_damage = 0.1
 max_damage = 2.5
 criticality_threshold = 4
 criticality_curve = SubResource( 1 )
 frame = 0
 delay_between_shots = 80
-effective_range = 256
+effective_range = 160
 cooling_rate = 5.0
 heating_rate = 1.5
 heat_threshold = 50.0

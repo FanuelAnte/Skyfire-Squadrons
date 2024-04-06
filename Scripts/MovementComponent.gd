@@ -62,6 +62,11 @@ var turning = false
 var enemy_planes = []
 var rng = RandomNumberGenerator.new()
 
+var steer_delay_value = 0
+var steer_delay_target = 1
+var steer_delay_increase_duration = 0.5  
+var steer_delay_decrease_duration = 0.1  
+
 func _ready():
 	rng.randomize()
 	plane_body = get_parent()
@@ -85,7 +90,7 @@ func _ready():
 	
 func _process(delta):
 	if !plane_body.is_dead:
-		get_input()
+		get_input(delta)
 		apply_rotation(delta)
 		velocity = plane_body.move_and_slide(velocity)
 		
@@ -146,7 +151,7 @@ func update_enemy_planes():
 		
 		var angle_difference = stepify(rad2deg(angle), 5)
 		
-		if plane.details.alignment != plane_body.details.alignment and !plane.is_dead and angle_difference < plane_body.pilot.max_turn_threshold and !plane.targeted:
+		if plane.details.alignment != plane_body.details.alignment and !plane.is_dead and angle_difference < plane_body.pilot.max_turn_threshold:# and !plane.targeted:
 			enemy_planes.append(plane)
 		
 func _input(event):
@@ -175,7 +180,7 @@ func _input(event):
 	else:
 		is_dragging = true
 		
-func get_input():
+func get_input(delta):
 	turning = false
 	turn = 0
 	g_force_increase_factor = 0
@@ -188,27 +193,31 @@ func get_input():
 #		var drag_clampped_min = range_lerp(abs(drag_distance), drag_values["lower_limit"], drag_values["upper_limit"], 0, 1)
 		var drag_clampped_min = 1
 		if Input.is_action_pressed("turn_right") or (drag_distance > drag_values["lower_limit"] and drag_distance < drag_values["upper_limit"] and is_dragging):
+			steer_delay_value = lerp(steer_delay_value, steer_delay_target, delta / steer_delay_increase_duration)
+			
 			if is_dragging:
-				turn += 1 * drag_clampped_min
+				turn += 1 * drag_clampped_min * stepify(steer_delay_value, 0.1)
 			else:
-				turn += 1
+				turn += 1 * stepify(steer_delay_value, 0.1)
 			
 			if !is_coasting:
 				g_force_increase_factor += base_g_force_turn_factor
 				
 			turning = true
-
+			
 		elif Input.is_action_pressed("turn_left") or (drag_distance < -drag_values["lower_limit"] and drag_distance > -drag_values["upper_limit"] and is_dragging):
+			steer_delay_value = lerp(steer_delay_value, steer_delay_target, delta / steer_delay_increase_duration)
+			
 			if is_dragging:
-				turn -= 1 * drag_clampped_min
+				turn -= 1 * drag_clampped_min * stepify(steer_delay_value, 0.1)
 			else:
-				turn -= 1
+				turn -= 1 * stepify(steer_delay_value, 0.1)
 				
 			if !is_coasting:
 				g_force_increase_factor += base_g_force_turn_factor
-	
+			
 			turning = true
-
+			
 		if Input.is_action_pressed("throttle"):
 			if fuel > 0:
 				full_throttle = true
@@ -220,39 +229,55 @@ func get_input():
 				g_force_increase_factor += base_g_force_turn_factor
 			else:
 				g_force_increase_factor += max_g_force_turn_factor
-
+		
 #		this part is used by the mobile touch inputs.
 #		Analogue bs digital.
 #		var drag_clampped_max = clamp(range_lerp(abs(drag_distance), drag_values["upper_limit"], drag_values["max_limit"], 0, 1), 0, 1)
 		var drag_clampped_max = 1
 		if Input.is_action_pressed("turn_right_max") or (drag_distance >= drag_values["upper_limit"] and drag_distance <= drag_values["max_limit"] and is_dragging):
+			steer_delay_value = lerp(steer_delay_value, steer_delay_target, delta / steer_delay_increase_duration)
+			
 			if is_dragging:
-				turn += 1 * plane_body.details.max_bank_angle_factor * drag_clampped_max
+				turn += 1 * plane_body.details.max_bank_angle_factor * drag_clampped_max * stepify(steer_delay_value, 0.1)
 			else:
-				turn += 1 * plane_body.details.max_bank_angle_factor
+				turn += 1 * plane_body.details.max_bank_angle_factor * stepify(steer_delay_value, 0.1)
 				
 			if is_coasting:
 				g_force_increase_factor += base_g_force_turn_factor
 			else:
 				g_force_increase_factor += max_g_force_turn_factor
 			
+			turning = true
+			
 		elif Input.is_action_pressed("turn_left_max") or (drag_distance <= -drag_values["upper_limit"] and drag_distance <= drag_values["max_limit"] and is_dragging):
+			steer_delay_value = lerp(steer_delay_value, steer_delay_target, delta / steer_delay_increase_duration)
+			
 			if is_dragging:
-				turn -= 1 * plane_body.details.max_bank_angle_factor * drag_clampped_max
+				turn -= 1 * plane_body.details.max_bank_angle_factor * drag_clampped_max * stepify(steer_delay_value, 0.1)
 			else:
-				turn -= 1 * plane_body.details.max_bank_angle_factor
+				turn -= 1 * plane_body.details.max_bank_angle_factor * stepify(steer_delay_value, 0.1)
 				
 			if is_coasting:
 				g_force_increase_factor += base_g_force_turn_factor
 			else:
 				g_force_increase_factor += max_g_force_turn_factor
-		
+			
+			turning = true
+			
+		if !turning:
+			steer_delay_value = lerp(steer_delay_value, 0, delta / steer_delay_decrease_duration)
+			
 	elif !plane_body.is_player and conscious:
+		var distance_to_target = 0
 		if !plane_body.is_being_shot:
 			var target_point = Vector2(0, 0)
-
+			
 			if plane_body.target_node != "":
 				var target = plane_body.get_parent().get_node(plane_body.target_node)
+				
+				distance_to_target = plane_body.global_position.distance_to(target.global_position)
+#				print(distance_to_target)
+				
 				target_point = target.global_position
 				is_chasing = true
 			else:
@@ -266,15 +291,15 @@ func get_input():
 						target_point = target_one.global_position
 					else:
 						target_point = Vector2(0, 0)
-
+					
 				else:
 					can_search = false
 					var value = rng.randi_range(0, 1)
 					if value == 1 and !is_idle:
 						if enemy_planes.size() != 0:
-							var target = enemy_planes[rng.randi_range(0, enemy_planes.size() - 1)]
-							plane_body.target_node = target.name
-							target.targeted = true
+							var picked_target = enemy_planes[rng.randi_range(0, enemy_planes.size() - 1)]
+							plane_body.target_node = picked_target.name
+							picked_target.targeted = true
 							is_chasing = true
 							
 			if !is_idle:
@@ -298,7 +323,7 @@ func get_input():
 						else:
 							g_force_increase_factor += max_g_force_turn_factor
 							
-					else:
+					else: #abs(target_angle_difference) > plane_body.pilot.max_turn_threshold or distance_to_target < 8:
 						if plane_body.target_node != "":
 							plane_body.get_parent().get_node(plane_body.target_node).targeted = false
 							plane_body.target_node = ""
@@ -308,7 +333,7 @@ func get_input():
 						
 						if !is_idle:
 							is_idle = true
-							idle_flight_timer.start(rng.randi_range(2, 10))
+							idle_flight_timer.start(rng.randi_range(5, 15))
 							
 				else:
 					if abs(target_angle_difference) <= plane_body.pilot.min_turn_threshold:

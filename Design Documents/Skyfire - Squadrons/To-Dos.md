@@ -126,3 +126,6 @@ These are to be added in the first playable prototype.
 - [ ] Try to decrease the max draw calls
 	- [ ] The trail is the biggest culprit
 	- [ ] Bullet queue freeing is also another one
+# Weekend Features
+- [ ] Use the artillery raycasts to detect if an enemy is within range. If they are farther than 2/3 of the effective range, draw a grey circle around them. If they are closer that 1/2 of the way, draw a green circle around them.  the green and grey circles signify the effectiveness of the shots you take. Or just decrease the effective range of the weapons.  or just do both.
+- [ ] Add a target reset if they get too close to the target.
