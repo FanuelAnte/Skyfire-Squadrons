@@ -52,7 +52,7 @@ func get_rays():
 				secondary_rays.append(ray)
 				
 func _process(delta):
-	pass
+#	pass
 	if plane_body.get_node(plane_body.movement_component).conscious:
 		get_input()
 

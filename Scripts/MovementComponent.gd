@@ -3,6 +3,8 @@ extends Node2D
 onready var consciousness_timer = $"%CTimer"
 onready var search_target_timer = $"%SearchTargetTimer"
 onready var idle_flight_timer = $"%IdleFlightTimer"
+onready var dodge_timer = $"%DodgeTimer"
+onready var swerve_timer = $"%SwerveTimer"
 
 var plane_body
 
@@ -22,6 +24,9 @@ var fuel_burn_rate_standard = 0
 var fuel_burn_rate_max = 0
 var total_flight_time
 var coasting_duration_seconds
+
+var is_being_shot = false
+var is_swerving = false
 
 var is_coasting = true
 
@@ -56,6 +61,8 @@ var g_force_throttle_factor
 
 var consciousness = 10
 var conscious = true
+
+var distance_to_target = null
 
 var turning = false
 
@@ -151,7 +158,7 @@ func update_enemy_planes():
 		
 		var angle_difference = stepify(rad2deg(angle), 5)
 		
-		if plane.details.alignment != plane_body.details.alignment and !plane.is_dead and angle_difference < plane_body.pilot.max_turn_threshold:# and !plane.targeted:
+		if plane.details.alignment != plane_body.details.alignment and !plane.is_dead and angle_difference < plane_body.pilot.max_turn_threshold and !plane.targeted:
 			enemy_planes.append(plane)
 		
 func _input(event):
@@ -268,15 +275,13 @@ func get_input(delta):
 			steer_delay_value = lerp(steer_delay_value, 0, delta / steer_delay_decrease_duration)
 			
 	elif !plane_body.is_player and conscious:
-		var distance_to_target = 0
-		if !plane_body.is_being_shot:
+		if !is_being_shot and !is_swerving:
 			var target_point = Vector2(0, 0)
 			
 			if plane_body.target_node != "":
 				var target = plane_body.get_parent().get_node(plane_body.target_node)
 				
 				distance_to_target = plane_body.global_position.distance_to(target.global_position)
-#				print(distance_to_target)
 				
 				target_point = target.global_position
 				is_chasing = true
@@ -323,18 +328,12 @@ func get_input(delta):
 						else:
 							g_force_increase_factor += max_g_force_turn_factor
 							
-					else: #abs(target_angle_difference) > plane_body.pilot.max_turn_threshold or distance_to_target < 8:
-						if plane_body.target_node != "":
-							plane_body.get_parent().get_node(plane_body.target_node).targeted = false
-							plane_body.target_node = ""
-							
-						can_search = false
-						is_chasing = false
-						
-						if !is_idle:
-							is_idle = true
-							idle_flight_timer.start(rng.randi_range(5, 15))
-							
+					else:
+						reset_targeting(false)
+					
+					if distance_to_target != null and distance_to_target < 48:
+						reset_targeting(true)
+					
 				else:
 					if abs(target_angle_difference) <= plane_body.pilot.min_turn_threshold:
 						turn += sign(target_angle_difference) * 1
@@ -353,7 +352,7 @@ func get_input(delta):
 		else:
 			turn += 1 * evade_direction
 			g_force_increase_factor += base_g_force_turn_factor
-
+			
 #			if is_coasting:
 #				g_force_increase_factor += base_g_force_turn_factor
 #			else:
@@ -362,6 +361,23 @@ func get_input(delta):
 	steer_angle = turn * deg2rad(plane_body.details.bank_angle)
 	velocity = Vector2.ZERO
 	velocity = plane_body.transform.x * speed
+
+func reset_targeting(should_swerve):
+	if plane_body.target_node != "":
+		plane_body.get_parent().get_node(plane_body.target_node).targeted = false
+		plane_body.target_node = ""
+		
+	can_search = false
+	is_chasing = false
+	distance_to_target = null
+	
+	if should_swerve:
+		is_swerving = true
+		swerve_timer.start(stepify(rng.randf_range(0.5, plane_body.pilot.swerve_duration), 0.1))
+	
+	if !is_idle:
+		is_idle = true
+		idle_flight_timer.start(rng.randi_range(5, 10))
 
 func apply_rotation(delta):
 	var rear = plane_body.position - plane_body.transform.x * plane_body.details.wingspan / 2.0
@@ -383,3 +399,12 @@ func _on_UpdateEnemiesTimer_timeout():
 	
 func _on_IdleFlightTimer_timeout():
 	is_idle = false
+
+func _on_DodgeTimer_timeout():
+	is_being_shot = false
+	evade_direction *= -1
+
+func _on_SwerveTimer_timeout():
+	is_swerving = false
+	evade_direction *= -1
+	

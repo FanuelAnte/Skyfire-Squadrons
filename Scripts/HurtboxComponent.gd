@@ -6,6 +6,7 @@ onready var dodge_timer = $"%DodgeTimer"
 export (NodePath) var HealthComponentPath
 var health_component
 var camera_component
+var movement_component
 
 var is_visible = false
 
@@ -17,7 +18,8 @@ func _ready():
 	rng.randomize()
 	plane_body = get_parent()
 	health_component = get_node(HealthComponentPath)
-	camera_component =  plane_body.get_node(plane_body.camera_component)
+	camera_component = plane_body.get_node(plane_body.camera_component)
+	movement_component = plane_body.get_node(plane_body.movement_component)
 
 func damage_spark(hit_position, amount):
 	var spark = spark_scene.instance()
@@ -32,7 +34,7 @@ func _on_HurtboxComponent_area_entered(area):
 			var damage = area.damage
 			
 			if area.is_critical:
-				plane_body.is_being_shot = true
+				movement_component.is_being_shot = true
 				if is_visible:
 					damage_spark(area.global_position, 4)
 #				else:
@@ -40,8 +42,8 @@ func _on_HurtboxComponent_area_entered(area):
 					
 			area.queue_free()
 			health_component.take_damage(damage)
-			yield(get_tree().create_timer(stepify(rng.randf_range(0, 0.2), 0.1)), "timeout")
-			dodge_timer.start(stepify(rng.randf_range(0.5, plane_body.pilot.dodge_duration), 0.1))
+#			yield(get_tree().create_timer(stepify(rng.randf_range(0, 0.2), 0.1)), "timeout")
+			movement_component.dodge_timer.start(stepify(rng.randf_range(0.5, plane_body.pilot.dodge_duration), 0.1))
 			
 			if plane_body.is_player:
 				camera_component.camera_shake(0.5, 3)
@@ -49,9 +51,9 @@ func _on_HurtboxComponent_area_entered(area):
 				if OS.get_name() == "Android":
 					Input.vibrate_handheld(40)
 
-func _on_Timer_timeout():
-	plane_body.is_being_shot = false
-	plane_body.get_node(plane_body.movement_component).evade_direction *= -1
+#func _on_Timer_timeout():
+#	plane_body.is_being_shot = false
+#	plane_body.get_node(plane_body.movement_component).evade_direction *= -1
 
 func _on_VisibilityNotifier2D_screen_entered():
 	is_visible = true

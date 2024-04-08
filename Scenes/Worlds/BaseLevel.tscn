@@ -15,41 +15,26 @@ script = ExtResource( 5 )
 [node name="Planes" type="Node2D" parent="." groups=["planes_container"]]
 
 [node name="Player" parent="Planes" instance=ExtResource( 8 )]
-position = Vector2( 1288, 8 )
+position = Vector2( 768, -344 )
 details = ExtResource( 6 )
 
 [node name="Ally" parent="Planes" instance=ExtResource( 8 )]
-position = Vector2( 735, 115 )
+position = Vector2( 752, 60 )
 is_player = false
 details = ExtResource( 6 )
 
 [node name="Ally2" parent="Planes" instance=ExtResource( 8 )]
-position = Vector2( 632, 208 )
+position = Vector2( 672, -48 )
 is_player = false
 details = ExtResource( 6 )
 
 [node name="Ally3" parent="Planes" instance=ExtResource( 8 )]
-position = Vector2( 472, 424 )
+position = Vector2( 760, -152 )
 is_player = false
 details = ExtResource( 6 )
 
 [node name="Ally4" parent="Planes" instance=ExtResource( 8 )]
-position = Vector2( 352, 552 )
-is_player = false
-details = ExtResource( 6 )
-
-[node name="Ally5" parent="Planes" instance=ExtResource( 8 )]
-position = Vector2( 240, 744 )
-is_player = false
-details = ExtResource( 6 )
-
-[node name="Ally6" parent="Planes" instance=ExtResource( 8 )]
-position = Vector2( 80, 456 )
-is_player = false
-details = ExtResource( 6 )
-
-[node name="Ally7" parent="Planes" instance=ExtResource( 8 )]
-position = Vector2( 72, 312 )
+position = Vector2( 656, -240 )
 is_player = false
 details = ExtResource( 6 )
 
@@ -61,43 +46,25 @@ details = ExtResource( 7 )
 
 [node name="Axis2" parent="Planes" instance=ExtResource( 8 )]
 modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 992, 472 )
+position = Vector2( 976, 120 )
 is_player = false
 details = ExtResource( 7 )
 
 [node name="Axis3" parent="Planes" instance=ExtResource( 8 )]
 modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 1008, -88 )
+position = Vector2( 1096, 24 )
 is_player = false
 details = ExtResource( 7 )
 
 [node name="Axis4" parent="Planes" instance=ExtResource( 8 )]
 modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 1328, 616 )
+position = Vector2( 992, -44 )
 is_player = false
 details = ExtResource( 7 )
 
 [node name="Axis5" parent="Planes" instance=ExtResource( 8 )]
 modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 704, 640 )
-is_player = false
-details = ExtResource( 7 )
-
-[node name="Axis6" parent="Planes" instance=ExtResource( 8 )]
-modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 680, -456 )
-is_player = false
-details = ExtResource( 7 )
-
-[node name="Axis7" parent="Planes" instance=ExtResource( 8 )]
-modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 607, -168 )
-is_player = false
-details = ExtResource( 7 )
-
-[node name="Axis8" parent="Planes" instance=ExtResource( 8 )]
-modulate = Color( 1, 0.419608, 0.419608, 1 )
-position = Vector2( 479, -74 )
+position = Vector2( 1096, -128 )
 is_player = false
 details = ExtResource( 7 )
 

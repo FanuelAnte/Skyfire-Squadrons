@@ -12,7 +12,6 @@ export(NodePath) var movement_component
 export(NodePath) var camera_component
 
 var targeted = false
-var is_being_shot = false
 var is_dead = false
 
 func _process(delta):

@@ -34,7 +34,7 @@ func create_payload(payload, plane_position):
 	var top_layer = get_tree().get_nodes_in_group("payload_layers")[-1]
 	top_layer.add_child(payload)
 
-	payload.position = payload.start_position * top_layer.motion_scale.x	
+	payload.position = payload.start_position * top_layer.motion_scale.x
 	payload.timer.connect("timeout", self, "change_layers", [payload])
 	
 func change_layers(payload):

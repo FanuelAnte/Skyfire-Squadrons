@@ -12,3 +12,4 @@ export (float) var unconsciousness_duration
 
 export (float) var search_timer_duration
 export (float) var dodge_duration
+export (float) var swerve_duration

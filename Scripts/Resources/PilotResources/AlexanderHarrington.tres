@@ -12,4 +12,5 @@ unconsciousness_rate = 2.0
 consciousness_rate = 5.0
 unconsciousness_duration = 3.0
 search_timer_duration = 1.0
-dodge_duration = 2.0
+dodge_duration = 1.0
+swerve_duration = 2.0

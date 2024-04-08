@@ -4,7 +4,7 @@ var plane_body
 var camera
 
 var zoom_max = 1
-var zoom_min = 3
+var zoom_min = 2
 
 func _ready():
 	plane_body = get_parent()

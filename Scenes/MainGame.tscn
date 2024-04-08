@@ -8,9 +8,4 @@ __meta__ = {
 "_edit_vertical_guides_": [ 640.0 ]
 }
 
-[node name="Camera2D2" type="Camera2D" parent="."]
-position = Vector2( -514, -224 )
-current = true
-zoom = Vector2( 4, 4 )
-
 [node name="Baselevel" parent="." instance=ExtResource( 2 )]
