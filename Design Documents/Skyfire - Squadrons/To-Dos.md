@@ -108,16 +108,27 @@ These are to be added in the first playable prototype.
 - [x] Hide tertiary action button accordingly.
 # Order of features
 - [ ] Class based maneuvers and movement
-	- [ ] Parallax layer based maneuvers
+	- [x] (no good) Parallax layer based maneuvers
 	- [x] (no good) moving the planes between layers
+		- [ ] replace with animations and speed tweens. locked controls.
 - [ ] Ground targets and proper payloads
-	- [ ] bomber payloads vs dive-bomber payloads
+	- [x] bomber payloads vs dive-bomber payloads
+		- [x] Payloads for bomber
+		- [x] Weapons for fighters
+		- [ ] Continuous payload drops.
+	- [ ] Ground targets
+		- [ ] types
+			- [ ] offensive
+			- [ ] static
+		- [ ] behavior
 - [ ] Updated artillery system
-	- [ ] add weapon type signifiers in order to dictate the function that will be called for tertiary.
-	- [ ] attach damage sparks to the bullets themselves.
+	- [x] add weapon type signifiers in order to dictate the function that will be called for tertiary.
+		- [ ] Instead of relying on the weapon itself, use the plane classes.
+	- [x] (Scrapped) attach damage sparks to the bullets themselves.
 - [ ] Level management
 	- [ ] Missions
 	- [ ] Fail and Win states
+		- [ ] Identify the failure spectrum
 - [ ] Menus
 - [ ] SFX
 - [ ] Music System
@@ -128,4 +139,4 @@ These are to be added in the first playable prototype.
 	- [ ] Bullet queue freeing is also another one
 # Weekend Features
 - [ ] Use the artillery raycasts to detect if an enemy is within range. If they are farther than 2/3 of the effective range, draw a grey circle around them. If they are closer that 1/2 of the way, draw a green circle around them.  the green and grey circles signify the effectiveness of the shots you take. Or just decrease the effective range of the weapons.  or just do both.
-- [ ] Add a target reset if they get too close to the target.
+- [x] Add a target reset if they get too close to the target.

@@ -4,6 +4,7 @@ To figure out what is going to be included in this version, I'm going to divide 
 - [ ] Plane Class-Dependent Evasive Maneuvers
 - [x] Enemy Movement AI
 - [x] G-forces
+- [ ] Squad tactics and hot-swapping
 - [x] Combat Controls
 - [x] Enemy Combat AI
 - [x] Health and Damage
@@ -127,6 +128,17 @@ Fucking Finally!!!! The AI behaves exactly as I want it to.
 I can set the priority of targets.
 ### G-Forces
 Different planes classes have different maneuverability and therefore the pilots experience  G-forces differently.
+### Squad Tactics and Hot-swapping
+##### Tactics
+I don't want the AI doing it's own thing. The AI is in charge of what happens moment to moment when it's being attacked but I still want to have a larger, overarching objective. For instance, fighters could be tasked with protecting the bombers. I want there to be squad tactics and planning. Things like formations, targeting commands, routes, and so on.
+The closer you are together, light fighters don't get to you but you are prone to flak and AA damage.
+##### Hot-swapping
+I don't want the player to be locked in into a single pilot throughout the game. I want to allow the player to:
+1. Either switch freely between planes and pilots mid-game.
+	1. I think this is going to hurt the gameplay and make it too much to handle but I'm still going to try it.
+2. Or to switch to another plane and pilot once the lead/player plane/pilot is downed.
+	1. I think this is the way to go. It allows for a wider failure spectrum while also giving the gameplay some focus. 
+Basically Battlefield 2 Modern Combat's hot-swapping mechanic.
 ### Combat Controls
 Depending on the class of the plane, a given plane might carry no weapons or at most 3 different types of weapons. This means there will be a ___primary weapon___, a ___secondary weapon___, and a ___tertiary weapon___. This is independent of positioning i.e. where the gun is physically on the plane. Bombers for instance may have the same weapon type mounted in two different positions (real and front). 
 #### Artillery Component
@@ -183,7 +195,6 @@ When a bullet hits a plane, the damage stat of that specific caliber of that bul
 Crashing the plane into another one results in an immediate explosion. Crashing completely is at the bottom of the failure spectrum. You can go back to a base or to a carrier to repair your plane but that costs time and that may lead to failure of some time-sensitive objectives.
 ### Damage Criticality
 Bullet's, when instanced, are assigned a damage value. This damage value is dictated by a function inside of the bullet script. How is it decided?  very good question.
-
 Each weapon resource has:
 - base damage
 - max damage
@@ -195,7 +206,6 @@ The criticality function:
 - multiplies the mapped value with base damage
 - then finally returns final damage.
 If the criticality curve is, for instance, a logarithmic curve, most hits are critical, meaning the probability of a high criticality shot is high. On the contrary, if it is an exponential curve, most hits are not that critical. 
-
 To make things even more interesting, I could use another RNG check to decide if the base damage is applied as is or if I should pick a criticality value. Meaning:
 - pick a random number from 0 - 5
 - if the number is greater that 3
@@ -207,6 +217,7 @@ To make things even more interesting, I could use another RNG check to decide if
 - else
 	- final damage = base damage
 I want to push the criticality even further. I want to make every hit location count. Wing and tail hits decrease maneuverability, engine hits may explode the plane totally and so on. ***BUT*** since the planes are so small, and movement is so quick and since there isn't a dedicated aim button, it's not a question of skill, but rather, a question of RNG. Maybe have different hitboxes for different parts of the plane.
+I want to really rework the health and damage system.
 ### Fuel and Ammunition
 These are also variables. Very simple. Fuel goes down at a pre-determined rate i.e. the longer you fly, the more fuel you consume. Running out of fuel results in the plane coasting and eventually crashing. Just like repairs, you can go back to bases or carriers to refuel and rearm.
 ### Pilots
@@ -218,6 +229,17 @@ How are G-forces going to affect gameplay? After max G-forces are sustained, a t
 Pilots also dictate how much you can zoom out. Also, zoom level of the camera is reset back to 1 if you pass out.
 ##### Shot Criticality
 Pilots also dictate the criticality percentage alongside the weapon resource's criticality values.
+##### Pilot Specialty (Perks)
+Each pilot has a unique perk like more damage when fighting in a heavy fighter or more maneuverability when in a light fighter.
+##### Multiple Pilots
+VOID BASTARDS!!! What if there was a revolving door of pilots, each with a randomized set of resource values. Whenever you decide to play a mission, you select a squadron. After the mission, the members of the squadron who have made it back alive get XP points, upgrades to their resource values and they get one flight mission knocked off of their total flight cap. Once the flight cap is reached, you can no longer use that pilot (Pyre meets Catch 22). 
+There is a list of possible first names and surnames along with a title (Maj., Sgt.).
+1. Create a new pilot resource based on the pilot class from within the script.
+2. pick a random name by combining first and last names.
+3. randomize the values.
+4. assign perk
+5. assign rank/title
+I think that this selection process should happen once the game starts. Each player gets a random pilot set. 100 pilots for instance.
 ### Fuel and Coasting
 The standard fuel burning is working fine.
 ### Resolution
@@ -351,9 +373,13 @@ So to summarize. the level is going to be built based on a singe static scene th
 The base level scene contains the basic parallax scenes and the sprites.
 ### Ground target
 These ground targets will be on the same level as the ground or the water.
-##### Damage of ground targets
-When the player presses the tertiary bombing button, a payload scene is instanced as a child of the base level. The payload scene has a timer on it that counts down and when it times out, it emits a signal to tell the base level to relocate it to the next parallax layer. It has a variable that holds the current level it is at and whenever it is relocated, that variable is changed. Relocation stops when the current_level variable is equal to "ground". Once it reaches ground, it plays the explosion animation and if it is overlapping with any ground targets, the ground targets take damage. I need to add a few more parallax layers to make the transition of the payload smoother and I also need to scale the sprite of the payload as it goes further down.
+#### Types of ground targets
+There are two types of ground targets classified based on whether or not they attack.
+###### Static
+###### Offensive
 
+#### Damage of ground targets
+When the player presses the tertiary bombing button, a payload scene is instanced as a child of the base level. The payload scene has a timer on it that counts down and when it times out, it emits a signal to tell the base level to relocate it to the next parallax layer. It has a variable that holds the current level it is at and whenever it is relocated, that variable is changed. Relocation stops when the current_level variable is equal to "ground". Once it reaches ground, it plays the explosion animation and if it is overlapping with any ground targets, the ground targets take damage. I need to add a few more parallax layers to make the transition of the payload smoother and I also need to scale the sprite of the payload as it goes further down.
 So the core loop is as follows.
 1. Press ___C___
 2. Instance payload as a child of the base level
@@ -364,6 +390,21 @@ So the core loop is as follows.
 	2. If it is at the ground level
 		1. It'll play the explode animation and check for collisions and then queue free itself.
 ### Objective and Mission Design 
+As mentioned above, missions revolve around a specific objective (or set of objectives) that needs to be completed by your selected squadron.
+You aren't locked into a mission once you start it. You can issue a retreat command if you wish to abandon the mission and return home with the pilots and the planes intact.
+Losing planes costs money and losing experienced pilots is infuriating. In order to avoid the XCom snowballing issue, there are going to be occasional enemy raids and small scale bombing runs that can be used to train rookie pilots.
+You truly fail at the game when you either run out of money or when you exhaust your pilot reserves. So that's a pretty wide failure spectrum.
+Missions have a plane requirement but it's not that strict. You always take 5 - 10 planes and out of those, you can chose 4 - 8 of them. Meaning, on bombing runs, for instance, you always have to have 1 bomber in your squadron.
+I also don't want 5 AI fighters at all time on the screen. Most of the work could be done by defensive ground targets.
+##### Mission Types
+Different mission types have different plane requirements
+
+|              | Plane requirement | Objective(s) |     |
+| ------------ | ----------------- | ------------ | --- |
+| Bombing runs |                   |              |     |
+| Interception |                   |              |     |
+|              |                   |              |     |
+
 # Art
 ### Plane Sprites and Animation
 ### Level Art
