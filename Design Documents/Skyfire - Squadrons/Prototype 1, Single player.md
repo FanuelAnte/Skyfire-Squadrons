@@ -34,6 +34,7 @@ To figure out what is going to be included in this version, I'm going to divide 
 - [ ] Base Level and Level Resources
 - [ ] Ground target
 - [ ] Objective and Mission Design
+- [ ] Story, Setting and Themes
 #### Art
 - [ ] Plane Sprites and Animation
 - [ ] Level Art
@@ -389,6 +390,8 @@ So the core loop is as follows.
 		1. Emit a signal to the base level to tell it to relocate it
 	2. If it is at the ground level
 		1. It'll play the explode animation and check for collisions and then queue free itself.
+### Story, Setting and Themes
+I think I want to set this thing in Britain and Italy as a series of RAF-USAF joint operations. Or maybe you just play as the USAF.
 ### Objective and Mission Design 
 As mentioned above, missions revolve around a specific objective (or set of objectives) that needs to be completed by your selected squadron.
 You aren't locked into a mission once you start it. You can issue a retreat command if you wish to abandon the mission and return home with the pilots and the planes intact.
@@ -396,14 +399,25 @@ Losing planes costs money and losing experienced pilots is infuriating. In order
 You truly fail at the game when you either run out of money or when you exhaust your pilot reserves. So that's a pretty wide failure spectrum.
 Missions have a plane requirement but it's not that strict. You always take 5 - 10 planes and out of those, you can chose 4 - 8 of them. Meaning, on bombing runs, for instance, you always have to have 1 bomber in your squadron.
 I also don't want 5 AI fighters at all time on the screen. Most of the work could be done by defensive ground targets.
+Mission objectives are one of very few (Bombing, Interception, yada yada...). The placement of targets, the combination of enemy planes, and the sequence of the objectives changes on each playthrough (essentially a save file.).
+What if you had a set of missions at a given time. Like you have a set of races in NFS:MW that you had to complete in order to progress, what if you had a handful of missions to pick and choose at a time? For instance, the first 5 mission might be sinking of battleships over the coast or maybe you have to neutralize ground defenses at a seaside town and neutralizing the ground targets unlocks more missions further inland and so on. What if the ultimate goal of the game is to do as much damage to "mainland Europe" before you exhaust your capital, resources and pilot reserves. maybe I could make some missions one-offs, aborting them or failing them locks you out of attempting them forever, and succeeding grants mega XP and cash bonuses as well as weaking the enemy, making further progress towards the defeat of the enemy.
+
+What if you could repurpose captured enemy fighters? just repaint them and get them for no cash. Missions set in towns with plane factories in them grant you a handful of extra planes if you leave the factory undamaged (The main objective being the destruction of ground targets and military strongholds).
+
+I don't want the campaign to be rigid. However I don't want it to be a random and messy stich-up-job. It's going to be Masters of the Air. A progressive and tactical ingress into mainland Europe. The progression is going to be predefined; the sequence of locations unlocked. However, the nature of the missions at those specific locations and the order in which you choose to approach a given set of missions is up to the RNG and you respectively. Random surprise missions (such as time sensitive missions, one-offs and missions where you play defense) will pop up occasionally depending on your progress.
+
+During defensive missions (interceptions), failure results in both pilot casualties and loss of property and consequently loss of money.
+
+Depending on how things turn out, I may or may not eliminate the whole money management and marker/economy and just focus on the pilots exclusively.
 ##### Mission Types
 Different mission types have different plane requirements
 
-|              | Plane requirement | Objective(s) |     |
-| ------------ | ----------------- | ------------ | --- |
-| Bombing runs |                   |              |     |
-| Interception |                   |              |     |
-|              |                   |              |     |
+|                | Plane requirement | Objective(s) |     |
+| -------------- | ----------------- | ------------ | --- |
+| Bombing runs   |                   |              |     |
+| Interception   |                   |              |     |
+| Reconnaissance |                   |              |     |
+|                |                   |              |     |
 
 # Art
 ### Plane Sprites and Animation
