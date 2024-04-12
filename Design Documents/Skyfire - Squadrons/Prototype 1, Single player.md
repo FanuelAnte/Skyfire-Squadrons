@@ -14,6 +14,7 @@ To figure out what is going to be included in this version, I'm going to divide 
 - [x] Death
 - [x] Resolution and Dynamic Camera
 - [ ] Plane Classification
+- [ ] Economy
 #### Tech
 - [x] Heads Up Display
 	- [x] Static HUD
@@ -142,6 +143,13 @@ I don't want the player to be locked in into a single pilot throughout the game.
 Basically Battlefield 2 Modern Combat's hot-swapping mechanic.
 ### Combat Controls
 Depending on the class of the plane, a given plane might carry no weapons or at most 3 different types of weapons. This means there will be a ___primary weapon___, a ___secondary weapon___, and a ___tertiary weapon___. This is independent of positioning i.e. where the gun is physically on the plane. Bombers for instance may have the same weapon type mounted in two different positions (real and front). 
+##### Weapon overheating and degradation
+Don't overheat your weapons!!! Shooting constantly degrades the health of the weapons which affects it's accuracy and which is persistent from mission to mission if not repaired or replaced. Same thing goes for planes. Planes that have taken damage during combat need to be repaired.
+I want players to play with intentionality and discipline; I don't want them to spam the shoot buttons and spray bullets wildly. I want them to line up a shot perfectly and then shoot in bursts. This has various benefits.
+1. You don't run out of ammunition quickly - ammunition also costs money. So does fuel.
+2. I can make damage criticality much more aggressive.
+3. Performance boost; no more thousands of bullets painting the screen.
+4. More interesting combat.
 #### Artillery Component
 There's going to be a custom component called ___Artillery___ that handles all shooting (bullet spawning, ammo counting, loadout swapping, and gun positioning) related logic. The component is primarily meant to house the ___Position Markers___ that act as spawning points for the bullets. Each of marker is going to be marked by ___P___, ___S___, or ___T___ for primary, secondary, or tertiary weapons respectively. In the case of ___Primary___ and ___Secondary___ weapons, they are mostly placed symmetrically on the wings and therefore there needs to be 2 position markers. In such a case, I'll use a parent ___Node2D___ to encapsulate both of them.
 The structure, which applies to both symmetrical and asymmetrical placement, would be:
@@ -219,6 +227,15 @@ To make things even more interesting, I could use another RNG check to decide if
 	- final damage = base damage
 I want to push the criticality even further. I want to make every hit location count. Wing and tail hits decrease maneuverability, engine hits may explode the plane totally and so on. ***BUT*** since the planes are so small, and movement is so quick and since there isn't a dedicated aim button, it's not a question of skill, but rather, a question of RNG. Maybe have different hitboxes for different parts of the plane.
 I want to really rework the health and damage system.
+Maybe setup the criticality assignment of the bullets so that the attributes in the pilot and the bullet resources define the criticality. Maybe the pilot determines if the shot is critical or not and the bullet's criticality curve determines the damage value. More experienced pilots hit more critical shots.
+The pilot criticality values are as follows:
+1. Criticality value range - is a value ranging from 5 - 25, experienced pilots have lower range values while rookies have larger values.
+2. Criticality threshold - is a value ranging from 2 - maximum range -2. This is the value that determines if a shot is critical or not. Experienced pilots have higher values while rookies have lower values.
+How it to works:
+1. Pick a random number from the criticality values range.
+2. Compare that selected number with the criticality threshold.
+	1. If it is greater than the threshold, the shot is not critical
+	2. If it is equal or less than the threshold, the shot is critical.
 ### Fuel and Ammunition
 These are also variables. Very simple. Fuel goes down at a pre-determined rate i.e. the longer you fly, the more fuel you consume. Running out of fuel results in the plane coasting and eventually crashing. Just like repairs, you can go back to bases or carriers to refuel and rearm.
 ### Pilots
@@ -262,23 +279,25 @@ Solution: dynamic camera zoom. Player controlled. There are going to be 5 differ
 | zoom_max  | 1     | num 5       |
 ### Plane Classification
 
-|                     | Light Fighters                                                      | Heavy Fighters                                                          | Light Bombers                                                                                                    | Heavy Bombers                                                                                                    |
-| ------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| **Health**          | Low                                                                 | Medium                                                                  | Medium                                                                                                           | High                                                                                                             |
-| **Artillery**       | ***primary*** - low caliber.<br><br>***secondary*** - high caliber. | ***primary*** - low caliber.<br><br>***secondary*** - high caliber.<br> | ***primary*** - low caliber.<br><br>***secondary*** - high caliber.<br><br>***tertiary*** - light bomb payloads. | ***primary*** - low caliber.<br><br>***secondary*** - high caliber.<br><br>***tertiary*** - heavy bomb payloads. |
-| **Speed**           |                                                                     |                                                                         |                                                                                                                  |                                                                                                                  |
-| **Fuel**            | Small tank                                                          | Medium tank                                                             | Medium tank                                                                                                      | Large tank                                                                                                       |
-| **Maneuverability** | Very high                                                           | Moderate                                                                | Low                                                                                                              | Low                                                                                                              |
-| **Size**            | Small                                                               | Medium                                                                  | Medium                                                                                                           | Large                                                                                                            |
+|                     | Light Fighters                                                      | Heavy Fighters                                                                                         | Light Bombers                                                                                                    | Heavy Bombers                                                                                                    |
+| ------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Health**          | Low                                                                 | Medium                                                                                                 | Medium                                                                                                           | High                                                                                                             |
+| **Artillery**       | ***primary*** - low caliber.<br><br>***secondary*** - high caliber. | ***primary*** - low caliber.<br><br>***secondary*** - high caliber.<br><br>***tertiary*** - torpedoes. | ***primary*** - low caliber.<br><br>***secondary*** - high caliber.<br><br>***tertiary*** - light bomb payloads. | ***primary*** - low caliber.<br><br>***secondary*** - high caliber.<br><br>***tertiary*** - heavy bomb payloads. |
+| **Speed**           |                                                                     |                                                                                                        |                                                                                                                  |                                                                                                                  |
+| **Fuel**            | Small tank                                                          | Medium tank                                                                                            | Medium tank                                                                                                      | Large tank                                                                                                       |
+| **Maneuverability** | Very high                                                           | Moderate                                                                                               | Low                                                                                                              | Low                                                                                                              |
+| **Size**            | Small                                                               | Medium                                                                                                 | Medium                                                                                                           | Large                                                                                                            |
 
 ##### Light Fighters
 These are very small and very maneuverable. Have a lower fuel tank capacity and carry less ammunition. Don't carry payloads and secondary weapons. They only have primary weapons. They make up for the lack of artillery in their maneuverability and their speed. Also have lower health
 ##### Heavy Fighters
 These are large and are moderately maneuverable. Have both primary and secondary weapons. Are slower and therefore less maneuverable than small fighters but they have a larger fuel tank and carry more ammo. They have higher health and are the perfect all-rounders.
 ##### Light Bombers
-Quicker, carry less payload. More health than HF, less that HB.
+Quicker, carry less payload. More health than HF, less that HB. Automated primary and secondary weapon firing.
 ##### Heavy Bombers
-Slower, carry more payload. Basically fortresses. Have multiple side cannons and tail guns.
+Slower, carry more payload. Basically fortresses. Have multiple side cannons and tail guns. Automated primary and secondary weapon firing.
+### Economy
+Buying and repairing planes cost money. So do bullets and payloads. So does fuel. And so do weapons. 
 # Tech
 ### HUD
 I'm going to keep the in-game HUD as minimal as possible.
@@ -395,29 +414,42 @@ I think I want to set this thing in Britain and Italy as a series of RAF-USAF jo
 ### Objective and Mission Design 
 As mentioned above, missions revolve around a specific objective (or set of objectives) that needs to be completed by your selected squadron.
 You aren't locked into a mission once you start it. You can issue a retreat command if you wish to abandon the mission and return home with the pilots and the planes intact.
-Losing planes costs money and losing experienced pilots is infuriating. In order to avoid the XCom snowballing issue, there are going to be occasional enemy raids and small scale bombing runs that can be used to train rookie pilots.
+Losing planes costs money and losing experienced pilots is infuriating and has an effect of gameplay. In order to avoid the terrible X-COM snowballing issue, there are going to be occasional enemy raids and small scale bombing runs that can be used to train rookie pilots.
 You truly fail at the game when you either run out of money or when you exhaust your pilot reserves. So that's a pretty wide failure spectrum.
-Missions have a plane requirement but it's not that strict. You always take 5 - 10 planes and out of those, you can chose 4 - 8 of them. Meaning, on bombing runs, for instance, you always have to have 1 bomber in your squadron.
+Missions have a plane requirement but it's not that strict. You always take 5 - 10 planes and out of those, you can chose 4 - 8 of them. Meaning, on bombing runs, for instance, you always have to have at least 1 bomber in your squadron, with the option of taking more that that (until the plane requirement is reached, 5 usually).
 I also don't want 5 AI fighters at all time on the screen. Most of the work could be done by defensive ground targets.
-Mission objectives are one of very few (Bombing, Interception, yada yada...). The placement of targets, the combination of enemy planes, and the sequence of the objectives changes on each playthrough (essentially a save file.).
+Mission objectives are one of very few (Bombing, Interception, yada yada...). The placement of targets, the combination of enemy planes, and the sequence of the objectives changes on each playthrough (essentially a single save file).
 What if you had a set of missions at a given time. Like you have a set of races in NFS:MW that you had to complete in order to progress, what if you had a handful of missions to pick and choose at a time? For instance, the first 5 mission might be sinking of battleships over the coast or maybe you have to neutralize ground defenses at a seaside town and neutralizing the ground targets unlocks more missions further inland and so on. What if the ultimate goal of the game is to do as much damage to "mainland Europe" before you exhaust your capital, resources and pilot reserves. maybe I could make some missions one-offs, aborting them or failing them locks you out of attempting them forever, and succeeding grants mega XP and cash bonuses as well as weaking the enemy, making further progress towards the defeat of the enemy.
 
 What if you could repurpose captured enemy fighters? just repaint them and get them for no cash. Missions set in towns with plane factories in them grant you a handful of extra planes if you leave the factory undamaged (The main objective being the destruction of ground targets and military strongholds).
+
+Almost all missions can be retried. The ones that can't be retried are the one-offs, time sensitive ones and defensive/interception missions.
 
 I don't want the campaign to be rigid. However I don't want it to be a random and messy stich-up-job. It's going to be Masters of the Air. A progressive and tactical ingress into mainland Europe. The progression is going to be predefined; the sequence of locations unlocked. However, the nature of the missions at those specific locations and the order in which you choose to approach a given set of missions is up to the RNG and you respectively. Random surprise missions (such as time sensitive missions, one-offs and missions where you play defense) will pop up occasionally depending on your progress.
 
 During defensive missions (interceptions), failure results in both pilot casualties and loss of property and consequently loss of money.
 
 Depending on how things turn out, I may or may not eliminate the whole money management and marker/economy and just focus on the pilots exclusively.
+
+Missions that emanate from land-based bases have a time limit in the from of the fuel timer. Meaning, no refueling. You must finish the objective and return to the exit point before you run out of fuel. On the other hand, naval carrier based battles allow for refueling but only for fighters, not bombers.
+Naval battles are a bit of a tricky one. They can be either offensive or defensive, bombing runs, interceptions or reconnaissance, can be fully naval or have some planes launch from land. For instance, a naval bombing run may have the fighters (basically the escorts) launching from the carriers but the bombers themselves launch from land-based bases.
+Or maybe I just make naval missions a game of battleship; no bombers, just light and heavy fighters launching from naval carriers, attacking the enemies carriers and planes by using torpedoes. Simpler to construct and easier to manage. 
+
+One possible type of one-off interception mission is a defense of cargo ships carrying valuable resources. If the mission is lost, you pay a premium to get the resources. If you win, you pay nothing at all.... Something like that...refine it further.  
+##### Campaigns
+1. RAF-USAF British campaign
+2. USAF Italian campaign
+3. USAF Pacific naval campaign
 ##### Mission Types
 Different mission types have different plane requirements
 
-|                | Plane requirement | Objective(s) |     |
-| -------------- | ----------------- | ------------ | --- |
-| Bombing runs   |                   |              |     |
-| Interception   |                   |              |     |
-| Reconnaissance |                   |              |     |
-|                |                   |              |     |
+|                | Plane Requirement | Objective(s) | Offensive or Defensive       |
+| -------------- | ----------------- | ------------ | ---------------------------- |
+| Bombing runs   |                   |              | Offensive                    |
+| Interception   |                   |              | Defensive                    |
+| Reconnaissance |                   |              | Offensive                    |
+| Naval battles  |                   |              | Both Offensive and Defensive |
+|                |                   |              |                              |
 
 # Art
 ### Plane Sprites and Animation

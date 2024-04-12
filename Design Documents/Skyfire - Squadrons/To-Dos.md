@@ -107,6 +107,7 @@ These are to be added in the first playable prototype.
 - [ ] objectives
 - [x] Hide tertiary action button accordingly.
 # Order of features
+- [ ] Add the instance resources for the planes and weapons.
 - [ ] Class based maneuvers and movement
 	- [x] (no good) Parallax layer based maneuvers
 	- [x] (no good) moving the planes between layers
@@ -125,6 +126,14 @@ These are to be added in the first playable prototype.
 	- [x] add weapon type signifiers in order to dictate the function that will be called for tertiary.
 		- [ ] Instead of relying on the weapon itself, use the plane classes.
 	- [x] (Scrapped) attach damage sparks to the bullets themselves.
+	- [ ] Improved bullet criticality
+		- [ ] Pilot criticality values - one value determines the range of the values, to be picked from, the other value determines the criticality threshold.
+	- [ ] Rework weapon overheating.
+		- [ ] Add a slider/progress bar indicator to show weapon heat status instead of tweening the modulate color.
+		- [ ] Maybe weapons work in bursts instead of shooting continuously and then allowing the player to not shoot for a long stretch of time.
+		- [ ] Or maybe its just up to the player to do that.
+		- [ ] or maybe overheating your weapon too much has consequences, like barrel degradation leading to inaccuracy.
+		- [ ] Add the inaccuracy value to weapon instance resource.
 - [ ] Level management
 	- [ ] Missions
 	- [ ] Fail and Win states
