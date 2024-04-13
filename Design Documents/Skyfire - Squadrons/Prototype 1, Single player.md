@@ -130,7 +130,9 @@ Fucking Finally!!!! The AI behaves exactly as I want it to.
 I can set the priority of targets.
 ### G-Forces
 Different planes classes have different maneuverability and therefore the pilots experience  G-forces differently.
-### Squad Tactics and Hot-swapping
+### Squads, Squad Tactics, and Hot-swapping
+##### Squads
+Fighter planes have one-man crews. Bombers have 3 - 5 man crews. Each member of the crew can fly the plane in the rare case the pilot and copilot were both shot.
 ##### Tactics
 I don't want the AI doing it's own thing. The AI is in charge of what happens moment to moment when it's being attacked but I still want to have a larger, overarching objective. For instance, fighters could be tasked with protecting the bombers. I want there to be squad tactics and planning. Things like formations, targeting commands, routes, and so on.
 The closer you are together, light fighters don't get to you but you are prone to flak and AA damage.
@@ -140,7 +142,8 @@ I don't want the player to be locked in into a single pilot throughout the game.
 	1. I think this is going to hurt the gameplay and make it too much to handle but I'm still going to try it.
 2. Or to switch to another plane and pilot once the lead/player plane/pilot is downed.
 	1. I think this is the way to go. It allows for a wider failure spectrum while also giving the gameplay some focus. 
-Basically Battlefield 2 Modern Combat's hot-swapping mechanic.
+Basically Battlefield 2 Modern Combat's hot-swapping mechanic. 
+How is it going to work? Simple: when you want to swap, the game pauses, and you select a pilot from the list of pilots. In the case of bomber crews, you can only select either the main pilot or the bombardier.  
 ### Combat Controls
 Depending on the class of the plane, a given plane might carry no weapons or at most 3 different types of weapons. This means there will be a ___primary weapon___, a ___secondary weapon___, and a ___tertiary weapon___. This is independent of positioning i.e. where the gun is physically on the plane. Bombers for instance may have the same weapon type mounted in two different positions (real and front). 
 ##### Weapon overheating and degradation
@@ -249,6 +252,18 @@ Pilots also dictate how much you can zoom out. Also, zoom level of the camera is
 Pilots also dictate the criticality percentage alongside the weapon resource's criticality values.
 ##### Pilot Specialty (Perks)
 Each pilot has a unique perk like more damage when fighting in a heavy fighter or more maneuverability when in a light fighter.
+In order to avoid completely useless pilots, every rookie pilot is good at at least one thing; Either
+1. high G-force tolerance
+2. good accuracy
+3. high targeting and turning thresholds
+4. good dodge and swerve timers
+5. good zoom
+I feel like there should be more values to be tweaked.
+The things I want to avoid are:
+1. Samey pilots.
+2. Pilots that are completely useless from the get-go
+##### Pilot progression
+If a pilot scores a kill, his accuracy increases. If a pilot returns home with minimal damage to the plane, he gains maneuver points. The swerve and dodge timers increase steadily every time the pilot returns from a mission.
 ##### Multiple Pilots
 VOID BASTARDS!!! What if there was a revolving door of pilots, each with a randomized set of resource values. Whenever you decide to play a mission, you select a squadron. After the mission, the members of the squadron who have made it back alive get XP points, upgrades to their resource values and they get one flight mission knocked off of their total flight cap. Once the flight cap is reached, you can no longer use that pilot (Pyre meets Catch 22). 
 There is a list of possible first names and surnames along with a title (Maj., Sgt.).
@@ -257,7 +272,14 @@ There is a list of possible first names and surnames along with a title (Maj., S
 3. randomize the values.
 4. assign perk
 5. assign rank/title
-I think that this selection process should happen once the game starts. Each player gets a random pilot set. 100 pilots for instance.
+I think that this selection process should happen once the game starts. Each player gets a random pilot set. 100 pilots for instance. 
+Each pilot has flight training as well as mounted gun and bombing training. 
+OOOOOOOOOR.
+What if instead of being given 100 similar pilots, you're given, say 50 fighter pilots, 5 crews of 3 for light bombers, and 10 crews of 5 for heavy bombers. Each pilot has a specialization and using them outside of their specialization results in them performing poorly and gaining less XP at the end of a mission. For instance, If you make a light fighter pilot fly a heavy bomber, the maneuverability is significantly affected. Placing pilots as bomber gunners results in less shot accuracy for defensive purposes. I think this is the way to go. I'm not sure about the exact number of pilots you're given but I know it's going to follow this structure.
+What if you could train fresh recruits if you have enough money instead of failing the entire campaign if you loose your entire pilot allotment.
+This means that every pilot starts out with the same stats but as soon as a specialization is assigned, certain attributes are boosted and nerfed accordingly. For instance, a gunner has more accuracy with mounted guns that a pilot and conversely, a pilot has better maneuvering skills than the gunner. I don't know exactly how these values for differentiation are going to be manifested yet but I have a good idea of how I want it to be.
+##### Pilot health
+Both physical and mental??? Maybe. What if fully critical shots did damage to the pilots? Especially in bombers? Based on the type of damage model I implement, what if there was damage done to pilots' health, both physically and mentally? If a pilot gets wounded, he is unavailable for 2-5 missions depending on the severity. I don't know about mental health effects. Do I really what that in the game?
 ### Fuel and Coasting
 The standard fuel burning is working fine.
 ### Resolution
@@ -450,7 +472,8 @@ Different mission types have different plane requirements
 | Reconnaissance |                   |              | Offensive                    |
 | Naval battles  |                   |              | Both Offensive and Defensive |
 |                |                   |              |                              |
-
+### Campaign progress
+AGE OF EMPIRES!!! What if I also kept track of the enemy details as well? Things like pilot count and progress, plane and artillery health, money, 
 # Art
 ### Plane Sprites and Animation
 ### Level Art

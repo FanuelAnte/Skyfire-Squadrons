@@ -128,6 +128,7 @@ These are to be added in the first playable prototype.
 	- [x] (Scrapped) attach damage sparks to the bullets themselves.
 	- [ ] Improved bullet criticality
 		- [ ] Pilot criticality values - one value determines the range of the values, to be picked from, the other value determines the criticality threshold.
+		- [ ] also attach the bullet accuracy to the pilot.
 	- [ ] Rework weapon overheating.
 		- [ ] Add a slider/progress bar indicator to show weapon heat status instead of tweening the modulate color.
 		- [ ] Maybe weapons work in bursts instead of shooting continuously and then allowing the player to not shoot for a long stretch of time.
