@@ -457,7 +457,11 @@ Missions that emanate from land-based bases have a time limit in the from of the
 Naval battles are a bit of a tricky one. They can be either offensive or defensive, bombing runs, interceptions or reconnaissance, can be fully naval or have some planes launch from land. For instance, a naval bombing run may have the fighters (basically the escorts) launching from the carriers but the bombers themselves launch from land-based bases.
 Or maybe I just make naval missions a game of battleship; no bombers, just light and heavy fighters launching from naval carriers, attacking the enemies carriers and planes by using torpedoes. Simpler to construct and easier to manage. 
 
-One possible type of one-off interception mission is a defense of cargo ships carrying valuable resources. If the mission is lost, you pay a premium to get the resources. If you win, you pay nothing at all.... Something like that...refine it further.  
+One possible type of one-off interception mission is a defense of cargo ships carrying valuable resources. If the mission is lost, you pay a premium to get the resources. If you win, you pay nothing at all.... Something like that...refine it further.
+
+Interception missions mostly occur after you endure a heavy mission failure or once every 3 - 5 missions.
+
+What if there were chained missions? Meaning missions where you have to attack multiple targets in multiple locations. Or rather, some missions have a chaining option in order to remove the threat of an immediate response (in the form of an interception mission) from the enemy. For instance, the main objective may be to hit an engine factory in one town but as a chained mission, you have to hit two other locations adjacent to it to destroy the air bases to avoid retaliation.
 ##### Campaigns
 1. RAF-USAF British campaign
 2. USAF Italian campaign
@@ -473,7 +477,9 @@ Different mission types have different plane requirements
 | Naval battles  |                   |              | Both Offensive and Defensive |
 |                |                   |              |                              |
 ### Campaign progress
-AGE OF EMPIRES!!! What if I also kept track of the enemy details as well? Things like pilot count and progress, plane and artillery health, money, 
+AGE OF EMPIRES!!! What if I also kept track of the enemy details as well? Things like pilot count and progress, plane and artillery health, money, plane count and so on.
+
+You're given a certain amount of planes at the beginning of your campaign just like pilots.
 # Art
 ### Plane Sprites and Animation
 ### Level Art

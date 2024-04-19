@@ -28,11 +28,16 @@ var secondary_rays = []
 var can_shoot_primary = false
 var can_shoot_secondary = false
 
+var weapon
+
 var rng = RandomNumberGenerator.new()
 
 func _ready():
 	rng.randomize()
 	plane_body = get_parent()
+	
+	print(primary_weapon)
+	
 	primary_ammo_count = plane_body.details.max_primary_ammo_count
 	secondary_ammo_count = plane_body.details.max_secondary_ammo_count
 	tertiary_ammo_count = plane_body.details.max_tertiary_ammo_count
@@ -52,7 +57,6 @@ func get_rays():
 				secondary_rays.append(ray)
 				
 func _process(delta):
-#	pass
 	if plane_body.get_node(plane_body.movement_component).conscious:
 		get_input()
 

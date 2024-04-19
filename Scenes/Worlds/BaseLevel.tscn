@@ -74,7 +74,7 @@ details = ExtResource( 7 )
 unique_name_in_owner = true
 
 [node name="Water" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2( 0.2, 0.2 )
+motion_scale = Vector2( 0.3, 0.3 )
 motion_mirroring = Vector2( 5120, 2880 )
 
 [node name="Sprite" type="Sprite" parent="Background/Water"]
@@ -83,7 +83,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 5120, 2880 )
 
 [node name="Ground" type="ParallaxLayer" parent="Background"]
-motion_scale = Vector2( 0.2, 0.2 )
+motion_scale = Vector2( 0.3, 0.3 )
 
 [node name="Sprite" type="Sprite" parent="Background/Ground"]
 texture = ExtResource( 2 )
