@@ -18,7 +18,8 @@ To figure out what is going to be included in this version, I'm going to divide 
 #### Tech
 - [x] Heads Up Display
 	- [x] Static HUD
-	- [ ] Player markers/names and attached health bars
+	- [ ] (Unnecessary) Player markers/names and attached health bars
+	- [ ] Target indicators
 - [ ] Menus
 	- [ ] Main Menu
 	- [ ] Game Mode Selection Screen
@@ -334,6 +335,8 @@ I'm going to keep the in-game HUD as minimal as possible.
 - Everything on the PC Version
 - On-Screen Controls
 - Pause Button
+### Player markers/names and attached health bars
+This is unnecessary. Refer to Whitelight's video on Far Cry 6 35:00 - 37:00.  
 ### Menus
 ##### Main Menu
 Standard main menu. Buttons:

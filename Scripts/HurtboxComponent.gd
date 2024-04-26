@@ -37,8 +37,6 @@ func _on_HurtboxComponent_area_entered(area):
 				movement_component.is_being_shot = true
 				if is_visible:
 					damage_spark(area.global_position, 4)
-#				else:
-#					damage_spark(area.global_position, 2)
 					
 			area.queue_free()
 			health_component.take_damage(damage)
@@ -50,10 +48,6 @@ func _on_HurtboxComponent_area_entered(area):
 				
 				if OS.get_name() == "Android":
 					Input.vibrate_handheld(40)
-
-#func _on_Timer_timeout():
-#	plane_body.is_being_shot = false
-#	plane_body.get_node(plane_body.movement_component).evade_direction *= -1
 
 func _on_VisibilityNotifier2D_screen_entered():
 	is_visible = true

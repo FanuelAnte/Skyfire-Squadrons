@@ -116,7 +116,7 @@ These are to be added in the first playable prototype.
 	- [x] bomber payloads vs dive-bomber payloads
 		- [x] Payloads for bomber
 		- [x] Weapons for fighters
-		- [ ] Continuous payload drops.
+		- [x] Continuous payload drops.
 	- [ ] Ground targets
 		- [ ] types
 			- [ ] offensive

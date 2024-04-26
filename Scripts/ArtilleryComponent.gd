@@ -28,6 +28,8 @@ var secondary_rays = []
 var can_shoot_primary = false
 var can_shoot_secondary = false
 
+var is_dropping_payload = false
+
 var weapon
 
 var rng = RandomNumberGenerator.new()
@@ -35,8 +37,6 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	rng.randomize()
 	plane_body = get_parent()
-	
-	print(primary_weapon)
 	
 	primary_ammo_count = plane_body.details.max_primary_ammo_count
 	secondary_ammo_count = plane_body.details.max_secondary_ammo_count
@@ -59,7 +59,7 @@ func get_rays():
 func _process(delta):
 	if plane_body.get_node(plane_body.movement_component).conscious:
 		get_input()
-
+	
 	if primary_heat >= primary_weapon.max_heat:
 		primary_is_overheated = true
 
@@ -83,6 +83,9 @@ func _process(delta):
 			secondary_heat -= secondary_weapon.cooling_rate * delta
 		else:
 			secondary_is_overheated = false
+			
+	if is_dropping_payload:
+		release_payload()
 	
 func get_input():
 	if !plane_body.is_dead:
@@ -94,7 +97,8 @@ func get_input():
 				shoot_secondary()
 				
 			if Input.is_action_just_pressed("fire_tertiary"):
-				release_payload()
+				is_dropping_payload = true
+				
 				
 		else:
 			check_rays()
@@ -146,6 +150,8 @@ func release_payload():
 			spawn_payload(tertiary_weapon, 2)
 			tertiary_ammo_count -= get_child(2).get_child_count()
 			tertiary_last_shot_time = OS.get_ticks_msec()
+	else:
+		is_dropping_payload = false
 			
 func spawn_bullet(bullet_resource, weapon_group):
 	for muzzle in get_child(weapon_group).get_children():

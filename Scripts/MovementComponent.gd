@@ -69,6 +69,7 @@ var turning = false
 var enemy_planes = []
 var rng = RandomNumberGenerator.new()
 
+#make these tweakable in te settings
 var steer_delay_value = 0
 var steer_delay_target = 1
 var steer_delay_increase_duration = 0.5  

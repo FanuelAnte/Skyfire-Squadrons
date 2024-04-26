@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource( 1 )
 weapon_name = "AN-M30A1 Bomb"
-delay_between_drops = 1000.0
+delay_between_drops = 100.0
