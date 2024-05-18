@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/Exports/HUD/D-Pad#1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Exports/HUD/D-Pad#1(p).png" type="Texture" id=2]
@@ -15,12 +15,14 @@
 [ext_resource path="res://Scenes/UI/MiniMap.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/Exports/HUD/DragControls-S.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Exports/HUD/SliderGrabber-Mirror.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Exports/HUD/WeaponHeatIndicatorsProgress.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Exports/HUD/ZoomButton.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Exports/HUD/ZoomButton(p).png" type="Texture" id=18]
 [ext_resource path="res://Assets/Exports/HUD/PilotCBarOver.png" type="Texture" id=19]
 [ext_resource path="res://Assets/Exports/HUD/PilotCBarUnder.png" type="Texture" id=20]
 [ext_resource path="res://Assets/Exports/HUD/PilotCBarProgress.png" type="Texture" id=21]
 [ext_resource path="res://Assets/Exports/HUD/DragControls-C.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Exports/HUD/WeaponHeatIndicatorsOver.png" type="Texture" id=23]
 
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
@@ -443,6 +445,38 @@ value = 10.0
 texture_under = ExtResource( 20 )
 texture_over = ExtResource( 19 )
 texture_progress = ExtResource( 21 )
+
+[node name="PrimaryHeatBar" type="TextureProgress" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -136.0
+margin_top = -68.0
+margin_right = -128.0
+margin_bottom = -4.0
+max_value = 1.0
+step = 0.001
+texture_over = ExtResource( 23 )
+texture_progress = ExtResource( 16 )
+fill_mode = 3
+
+[node name="SecondaryHeatBar" type="TextureProgress" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 128.0
+margin_top = -68.0
+margin_right = 136.0
+margin_bottom = -4.0
+max_value = 1.0
+step = 0.001
+texture_over = ExtResource( 23 )
+texture_progress = ExtResource( 16 )
+fill_mode = 3
 
 [node name="MiniMap" parent="." instance=ExtResource( 13 )]
 unique_name_in_owner = true

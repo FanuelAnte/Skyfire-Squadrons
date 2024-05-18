@@ -30,6 +30,9 @@ var can_shoot_secondary = false
 
 var is_dropping_payload = false
 
+var is_shooting_primary = false
+var is_shooting_secondary = false
+
 var weapon
 
 var rng = RandomNumberGenerator.new()
@@ -63,7 +66,7 @@ func _process(delta):
 	if primary_heat >= primary_weapon.max_heat:
 		primary_is_overheated = true
 
-	elif primary_heat > 0:
+	elif primary_heat > 0 and !is_shooting_primary:
 		primary_heat -= primary_weapon.cooling_rate * delta
 
 	if primary_is_overheated:
@@ -75,7 +78,7 @@ func _process(delta):
 	if secondary_heat >= secondary_weapon.max_heat:
 		secondary_is_overheated = true
 
-	elif secondary_heat > 0:
+	elif secondary_heat > 0 and !is_shooting_secondary:
 		secondary_heat -= secondary_weapon.cooling_rate * delta
 
 	if secondary_is_overheated:
@@ -91,14 +94,19 @@ func get_input():
 	if !plane_body.is_dead:
 		if plane_body.is_player:
 			if Input.is_action_pressed("fire_primary") and !primary_is_overheated:
+				is_shooting_primary = true
 				shoot_primary()
-				
+			else:
+				is_shooting_primary = false
+			
 			if Input.is_action_pressed("fire_secondary") and !secondary_is_overheated:
+				is_shooting_secondary = true
 				shoot_secondary()
+			else:
+				is_shooting_secondary = false
 				
 			if Input.is_action_just_pressed("fire_tertiary"):
 				is_dropping_payload = true
-				
 				
 		else:
 			check_rays()

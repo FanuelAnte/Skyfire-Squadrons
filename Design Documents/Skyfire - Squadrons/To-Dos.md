@@ -107,7 +107,6 @@ These are to be added in the first playable prototype.
 - [ ] objectives
 - [x] Hide tertiary action button accordingly.
 # Order of features
-- [ ] Add the instance resources for the planes and weapons.
 - [ ] Class based maneuvers and movement
 	- [x] (no good) Parallax layer based maneuvers
 	- [x] (no good) moving the planes between layers
@@ -119,8 +118,12 @@ These are to be added in the first playable prototype.
 		- [x] Continuous payload drops.
 	- [ ] Ground targets
 		- [ ] types
-			- [ ] offensive
-			- [ ] static
+			- [ ] defensive
+			- [ ] infrastructure
+			- [ ] stationary
+			- [ ] mobile
+			- [ ] land
+			- [ ] water
 		- [ ] behavior
 - [ ] Updated artillery system
 	- [x] add weapon type signifiers in order to dictate the function that will be called for tertiary.
@@ -142,11 +145,12 @@ These are to be added in the first playable prototype.
 - [ ] Menus
 - [ ] SFX
 - [ ] Music System
+- [ ] Add the instance resources for the planes and weapons.
 # Optimization
-- [ ] Hit-scan vs Projectile weapons.
-- [ ] Try to decrease the max draw calls
-	- [ ] The trail is the biggest culprit
-	- [ ] Bullet queue freeing is also another one
+- [x] (Irrelevant) Hit-scan vs Projectile weapons.
+- [x] Try to decrease the max draw calls
+	- [x] The trail is the biggest culprit
+	- [x] Bullet queue freeing is also another one
 # Weekend Features
 - [ ] Use the artillery raycasts to detect if an enemy is within range. If they are farther than 2/3 of the effective range, draw a grey circle around them. If they are closer that 1/2 of the way, draw a green circle around them.  the green and grey circles signify the effectiveness of the shots you take. Or just decrease the effective range of the weapons.  or just do both.
 - [x] Add a target reset if they get too close to the target.

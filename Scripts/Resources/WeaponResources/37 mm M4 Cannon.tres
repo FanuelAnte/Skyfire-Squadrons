@@ -17,6 +17,6 @@ frame = 1
 delay_between_shots = 100
 effective_range = 128
 cooling_rate = 5.0
-heating_rate = 5.0
+heating_rate = 3.0
 heat_threshold = 30.0
 max_heat = 100.0

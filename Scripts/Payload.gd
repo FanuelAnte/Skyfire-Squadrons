@@ -7,7 +7,7 @@ onready var timer = $"%Timer"
 
 var start_position = Vector2.ZERO
 
-var current_layer = 10
+var current_layer = 15
 
 func _ready():
 	var tween = create_tween().set_trans(Tween.TRANS_LINEAR)

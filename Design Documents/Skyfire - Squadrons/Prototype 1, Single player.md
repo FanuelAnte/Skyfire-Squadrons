@@ -417,11 +417,34 @@ So to summarize. the level is going to be built based on a singe static scene th
 ### Base Level and Level Resources
 The base level scene contains the basic parallax scenes and the sprites.
 ### Ground target
-These ground targets will be on the same level as the ground or the water.
+Ground targets are either mobile or stationary, hostile or passive, land-based or water-based. They all take damage from bombs dropped from planes. If they are hostile, they can do damage to the planes. If they are mobile, they have a pre-defined path/route they follow. These ground targets will be on the same level as the ground or the water.\
+#### Shared Behavior
+All ground targets have:
+1. Health Component
+2. Hurtbox Component
 #### Types of ground targets
-There are two types of ground targets classified based on whether or not they attack.
-###### Static
-###### Offensive
+There are two types of ground targets classified based on whether or not they attack (WRONG).
+Ground targets fall into one or more of the following categories:
+1. Based on hostility
+	1. Defensive
+	2. Infrastructure
+2. Based on mobility
+	1. Stationary
+	2. Mobile
+3. Based on location
+	1. Land
+	2. Water
+##### Based on Hostility
+###### Defensive
+Pose a direct threat to the player and can do damage. For example, Anti-aircraft guns, Flak cannons.
+###### Infrastructure
+These don't pose a threat to the player, do not inflict damage. Bunkers, Factories, Airstrips, Outposts, Convoys, Trains.
+##### Based on Mobility
+###### Stationary
+###### Mobile
+##### Based on Location
+###### Land
+###### Water
 
 #### Damage of ground targets
 When the player presses the tertiary bombing button, a payload scene is instanced as a child of the base level. The payload scene has a timer on it that counts down and when it times out, it emits a signal to tell the base level to relocate it to the next parallax layer. It has a variable that holds the current level it is at and whenever it is relocated, that variable is changed. Relocation stops when the current_level variable is equal to "ground". Once it reaches ground, it plays the explosion animation and if it is overlapping with any ground targets, the ground targets take damage. I need to add a few more parallax layers to make the transition of the payload smoother and I also need to scale the sprite of the payload as it goes further down.

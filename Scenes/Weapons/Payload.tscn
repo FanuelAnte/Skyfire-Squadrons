@@ -19,5 +19,5 @@ shape = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.15
+wait_time = 0.2
 autostart = true

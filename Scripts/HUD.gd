@@ -40,6 +40,9 @@ onready var drag_amount_label = $"%DragAmountLabel"
 
 onready var coordinates_label = $"%CoordinatesLabel"
 
+onready var primary_heat_bar = $"%PrimaryHeatBar"
+onready var secondary_heat_bar = $"%SecondaryHeatBar"
+
 var plane_body
 var artillery_component
 var movement_component
@@ -108,13 +111,13 @@ func _process(delta):
 		g_force_slider.value = movement_component.g_force
 		g_force_label.text = str(stepify((movement_component.g_force), 0.1)).pad_zeros(2).pad_decimals(1) + " G"
 		
-		coordinates_label.text = "X:" + str(stepify(plane_body.global_position.x, 1)).pad_zeros(4) + " " + "Y:" + str(stepify(plane_body.global_position.y, 1)).pad_zeros(4)
+		coordinates_label.text = "X:" + str(stepify((plane_body.global_position.x) / 100, 5)).pad_zeros(3) + "  " + "Y:" + str(stepify((plane_body.global_position.y) / 100, 5)).pad_zeros(3)
 		
 		framerate.text = str(Engine.get_frames_per_second())
 		drag_amount_label.text = str(int(movement_component.drag_distance))
 		
-		tween_hud_color(primary_ammo, artillery_component.primary_heat, artillery_component.primary_weapon.max_heat)
-		tween_hud_color(secondary_ammo, artillery_component.secondary_heat, artillery_component.secondary_weapon.max_heat)
+		primary_heat_bar.value = range_lerp(stepify(artillery_component.primary_heat, 0.001), 0, artillery_component.primary_weapon.max_heat, 0, 1)
+		secondary_heat_bar.value = range_lerp(stepify(artillery_component.secondary_heat, 0.001), 0, artillery_component.secondary_weapon.max_heat, 0, 1)
 		
 		tween_pass_out_filter(movement_component.consciousness)
 		

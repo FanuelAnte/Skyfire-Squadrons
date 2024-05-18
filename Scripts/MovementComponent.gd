@@ -332,7 +332,7 @@ func get_input(delta):
 					else:
 						reset_targeting(false)
 					
-					if distance_to_target != null and distance_to_target < 48:
+					if distance_to_target != null and distance_to_target < 64:
 						reset_targeting(true)
 					
 				else:
