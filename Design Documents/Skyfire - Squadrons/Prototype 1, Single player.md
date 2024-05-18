@@ -412,12 +412,11 @@ A single location might host various missions and therefore it's visuals and tar
 				- List of ground units.
 Things like limits, map name and other location specific details are kept in the level_resource.
 The level resource contains mission specific details.
-
 So to summarize. the level is going to be built based on a singe static scene that accepts a resource to load sprite textures, the levels(missions) are all unique scenes i.e. each mission has it's own scene.
 ### Base Level and Level Resources
 The base level scene contains the basic parallax scenes and the sprites.
 ### Ground target
-Ground targets are either mobile or stationary, hostile or passive, land-based or water-based. They all take damage from bombs dropped from planes. If they are hostile, they can do damage to the planes. If they are mobile, they have a pre-defined path/route they follow. These ground targets will be on the same level as the ground or the water.\
+Ground targets are either mobile or stationary, hostile or passive, land-based or water-based. They all take damage from bombs dropped from planes. If they are hostile, they can do damage to the planes. If they are mobile, they have a pre-defined path/route they follow. These ground targets will be on the same level as the ground or the water.
 #### Shared Behavior
 All ground targets have:
 1. Health Component
