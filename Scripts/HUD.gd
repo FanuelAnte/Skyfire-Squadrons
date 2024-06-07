@@ -99,7 +99,7 @@ func _process(delta):
 		secondary_ammo.text = str(artillery_component.secondary_ammo_count).pad_zeros(4)
 		tertiary_ammo.text = str(artillery_component.tertiary_ammo_count).pad_zeros(4)
 		
-		health_bar.value = health_component.plane_health
+		health_bar.value = health_component.current_health
 		consciousness_bar.value = movement_component.consciousness
 		
 		fuel_slider.value = movement_component.fuel

@@ -421,6 +421,7 @@ Ground targets are either mobile or stationary, hostile or passive, land-based o
 All ground targets have:
 1. Health Component
 2. Hurtbox Component
+I think I can reuse the existing components that I have made for the Planes.
 #### Types of ground targets
 There are two types of ground targets classified based on whether or not they attack (WRONG).
 Ground targets fall into one or more of the following categories:
@@ -440,7 +441,9 @@ Pose a direct threat to the player and can do damage. For example, Anti-aircraft
 These don't pose a threat to the player, do not inflict damage. Bunkers, Factories, Airstrips, Outposts, Convoys, Trains.
 ##### Based on Mobility
 ###### Stationary
+
 ###### Mobile
+
 ##### Based on Location
 ###### Land
 ###### Water
@@ -460,7 +463,7 @@ So the core loop is as follows.
 I think I want to set this thing in Britain and Italy as a series of RAF-USAF joint operations. Or maybe you just play as the USAF.
 ### Objective and Mission Design 
 As mentioned above, missions revolve around a specific objective (or set of objectives) that needs to be completed by your selected squadron.
-You aren't locked into a mission once you start it. You can issue a retreat command if you wish to abandon the mission and return home with the pilots and the planes intact.
+You aren't locked into a mission once you start it. You can issue a retreat command if you wish to abandon the mission and return home with the pilots and the planes that you have left.
 Losing planes costs money and losing experienced pilots is infuriating and has an effect of gameplay. In order to avoid the terrible X-COM snowballing issue, there are going to be occasional enemy raids and small scale bombing runs that can be used to train rookie pilots.
 You truly fail at the game when you either run out of money or when you exhaust your pilot reserves. So that's a pretty wide failure spectrum.
 Missions have a plane requirement but it's not that strict. You always take 5 - 10 planes and out of those, you can chose 4 - 8 of them. Meaning, on bombing runs, for instance, you always have to have at least 1 bomber in your squadron, with the option of taking more that that (until the plane requirement is reached, 5 usually).

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var hud = $CanvasLayer/HUD
+onready var hud = $"%HUD"
 
 export (bool) var is_player = true
 export (Resource) var details
@@ -10,6 +10,8 @@ export(NodePath) var artillery_component
 export(NodePath) var health_component
 export(NodePath) var movement_component
 export(NodePath) var camera_component
+
+var entity_type = "plane"
 
 var targeted = false
 var is_dead = false

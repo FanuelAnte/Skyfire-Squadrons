@@ -111,19 +111,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "1dc2791423a03bc3",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.5.12"
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -250,10 +239,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1dc2791423a03bc3",
+  "active": "477474111ff4acb6",
   "lastOpenFiles": [
-    "To-Dos.md",
+    "2.md",
     "Prototype 1, Single player.md",
+    "To-Dos.md",
     "Research.md",
     "Planes.md",
     "Final Design Document.md",

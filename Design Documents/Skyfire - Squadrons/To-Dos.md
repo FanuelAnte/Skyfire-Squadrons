@@ -6,6 +6,7 @@ These are to be added in the first playable prototype.
 	- [x] flight disable and coasting (this comes after death is implemented.)
 		- [x] (possible future feature) If coasting, turning costs you speed. Therefore you need to be frugal with the maneuvers you make. coasting speed starts off at the base speed, if coasting, there is no throttling, and coasting speed gradually decreases if just flying in a straight line, and dramatically if maneuvering and turning, If coasting speed reaches zero, you either crash into the ocean on on land or somewhere. 
 		- [x] Or just set a standard coasting speed and decelerate down to it and hold there until you refuel.
+		- [ ] Or slowly slow the plane down to 0 and decrease the scale and depending on where you crash-land show appropriate explosion animations.
 	- [x] UI indicator for time and fuel
 - [ ] Speed lines when throttling.
 - [x] Make the enemies not target the same player. The is_targeted flag did nothing.
