@@ -8,9 +8,9 @@ var payloads = []
 
 func _ready():
 	payloads = get_tree().get_nodes_in_group("payloads")
-	var step_size = (0.5 - 0.2) / 14.0
-	for i in range(15):
-		var step = stepify((0.2 + i * step_size), 0.001)
+	var step_size = (0.5 - 0.15) / 19.0
+	for i in range(20):
+		var step = stepify((0.15 + i * step_size), 0.001)
 		var parallax_layer = ParallaxLayer.new()
 		
 		parallax_layer.name = "layer" + str(i + 1)
