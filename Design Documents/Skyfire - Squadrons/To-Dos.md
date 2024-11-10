@@ -1,0 +1,157 @@
+These are to be added in the first playable prototype.
+- [x] Fuel.
+	- [x] burn rates
+	- [x] throttle toggle PC
+	- [x] throttle toggle Android
+	- [x] flight disable and coasting (this comes after death is implemented.)
+		- [x] (possible future feature) If coasting, turning costs you speed. Therefore you need to be frugal with the maneuvers you make. coasting speed starts off at the base speed, if coasting, there is no throttling, and coasting speed gradually decreases if just flying in a straight line, and dramatically if maneuvering and turning, If coasting speed reaches zero, you either crash into the ocean on on land or somewhere. 
+		- [x] Or just set a standard coasting speed and decelerate down to it and hold there until you refuel.
+		- [ ] Or slowly slow the plane down to 0 and decrease the scale and depending on where you crash-land show appropriate explosion animations.
+	- [x] UI indicator for time and fuel
+- [ ] Speed lines when throttling.
+- [x] Make the enemies not target the same player. The is_targeted flag did nothing.
+- [x] Either multi-targeting or random flight pattern towards action zones.
+	- [x] Constant chase loop.
+- [x] Gs.
+- [x] G-Force Effects
+	- [ ] Zoom in camera when passing out or just reset it to 1.
+- [x] Pilot consciousness bar
+- [x] Death.
+	- [x] radar icon removal
+	- [x] not targeting the dead
+- [x] Map coordinates HUD
+- [ ] Climbing and diving maneuvers
+	- [ ] Class dependent maneuvers 
+	- [ ] Add extra layers to the base world, move the planes either up or down the layers to show the different maneuvers by using animations and varying the speed.
+- [ ] Add a new targeting system. Each plane has a circular area around it and it can only target the planes that are intersecting with the area. If no bodies are intersecting with the area, it picks a random target.
+- [x] Plane Classes.
+- [ ] Flak rounds for bombers and ground units
+- [x] add owners to bullets.
+- [ ] Levels and Missions
+	- [x] Create the base level scene
+	- [ ] Create the level_resource
+		- [ ] Add level limits
+			- [ ] Limits only apply to non-player planes. Player-controlled planes will only be given a warning saying that you are leaving the combat area. The AI planes, if they exceed the level limits, they will be forced to make a sharp U-turn.
+		- [ ] Add level art.
+	- [ ] Create the mission_resource
+	- [ ] Create a Single level and make a mission.
+		- [ ] Add level and assign level resource
+		- [ ] Assign Mission
+		- [ ] Place ground targets
+			- [ ] placement of ground targets should be on the same parallax layer as the ground.
+	- [ ] Ground target damage and payloads
+		- [x] Move the bombs between the different layers at runtime. starting from the main game's level down to the ground level.
+- [ ] Create the ground targets.
+	- [ ] Define what a ground target needs.
+	- [ ] Create the scene structure.
+- [x] Add throttling for enemies if their target is too far away.
+- [ ] Shot criticality
+	- [x] Not all bullet hits do the same amount of damage
+		- [x] Based on RNG, make some shots do more damage
+	- [ ] Consecutive shots do more damage.
+	- [ ] Glass breaking effects after critical hits
+	- [ ] Smoke effects after critical hits
+- [ ] Fan out bullets a little bit. Give them travel angle variation.
+- [ ] ~~1280 asset port.~~
+	- [ ] ~~Minimap~~
+	- [ ] ~~Android Controls~~
+	- [ ] ~~Bars~~
+	- [ ] ~~Text~~
+	- [ ] ~~Guides~~
+- [ ] The AI doesn't know how to pace itself when it comes to using the throttle. They keep passing out too quickly.
+- [ ] Menus
+	- [ ] main menu
+	- [ ] Settings
+	- [ ] ...
+- [ ] Divebombing
+	- [x] Basic payloads
+	- [ ] Improved diving and payload delivery mechanics - most-likely unnecessary since it's an arcade game.
+		- [ ] Maybe move the plane between the layers just like the payloads. Dive-bombers dive at a 70 degree angle, and the bomb should inherit the speed of plane. You need to press and hold the tertiary fire button to initiate a dive, and then you have to keep an eye on your altimeter to decide the perfect time to drop the payload. Then you automatically climb back up to the standard layer.
+		- [ ] Disable shooting while diving with primary and secondary weapons
+- [ ] Move the planes to a parallax layer inside of the base level or figure out a way to move them between the top level scene and the base level's parallax layers.
+- [ ] Bomber behavior
+	- [ ] targeting (ground)
+	- [ ] defense artillery
+- [ ] Tween when throttling
+- [x] Avoid pane overlaps by checking proximity
+	- [ ] If within 100 pixels of your target, move away randomly. Or just reset target and turn_max.
+- [ ] Small fighters controlled by AI should do evasive maneuvers instead of turning at max_bank when being shot at.
+- [ ] The pilot you pick dictates how far out you can zoom. Meaning the pilot resource sets the max_zoom level.
+- [ ] dithering for pass-out shader 
+- [x] drag indicators for android
+	- [x] don't lock turn amount to certain thresholds 
+		- [x] turn amount should be finessed but the effects and turn animations should stay the same.
+		- [x] if dragging, multiply the turn amount by a range_lerp value set between 0 and max_turn angle.
+			- [ ] Experiment more with this.
+			- [ ] maybe make it an option to go back and forth between fixed snapping and a gradient. (___var drag_clampped_min = range_lerp(abs(drag_distance), drag_values["lower_limit"], drag_values["upper_limit"], 0, 1)___ or ___var drag_clampped_min = 1___)
+		- [ ] add a buffer between the upper limit for the normal turn and the lower limit for the maximum turn. and make the variables into one dictionary. 
+		- [x] maybe fix the drag start position along the x axis to the (get_viewport().rect().x/3)/2. It's all over the place. It needs to be more consistent.
+			- [ ] maybe make it an option in the controls settings to go back and forth between the fixed and floating option.
+		- [ ] refine and tweak the min/max values. Movement is a nightmare.
+- [ ] Settings globals.
+- [ ] Sound Effects.
+- [ ] Hit effects
+	- [x] vibration
+	- [x] camera shake
+	- [ ] smoke
+- [ ] Settings options for
+	- [ ] Shot vibration strength
+	- [ ] Damage vibration strength
+	- [ ] Camera shake intensity
+# For Saturday (old demo - completed)
+- [x] Dedicated throttle toggle for android
+- [x] Zoom buttons for android
+- [ ] Simple tutorial screen (for controls)
+- [x] Placeholder level art
+	- [ ] limits
+- [ ] main menu
+- [ ] objectives
+- [x] Hide tertiary action button accordingly.
+# Order of features
+- [ ] Class based maneuvers and movement
+	- [x] (no good) Parallax layer based maneuvers
+	- [x] (no good) moving the planes between layers
+		- [ ] replace with animations and speed tweens. locked controls.
+- [ ] Ground targets and proper payloads
+	- [x] bomber payloads vs dive-bomber payloads
+		- [x] Payloads for bomber
+		- [x] Weapons for fighters
+		- [x] Continuous payload drops.
+	- [ ] Ground targets
+		- [ ] types
+			- [ ] defensive
+			- [ ] infrastructure
+			- [ ] stationary
+			- [ ] mobile
+			- [ ] land
+			- [ ] water
+		- [ ] behavior
+- [ ] Updated artillery system
+	- [x] add weapon type signifiers in order to dictate the function that will be called for tertiary.
+		- [ ] Instead of relying on the weapon itself, use the plane classes.
+	- [x] (Scrapped) attach damage sparks to the bullets themselves.
+	- [ ] Improved bullet criticality
+		- [ ] Pilot criticality values - one value determines the range of the values, to be picked from, the other value determines the criticality threshold.
+		- [ ] also attach the bullet accuracy to the pilot.
+	- [ ] Rework weapon overheating.
+		- [ ] Add a slider/progress bar indicator to show weapon heat status instead of tweening the modulate color.
+		- [ ] Maybe weapons work in bursts instead of shooting continuously and then allowing the player to not shoot for a long stretch of time.
+		- [ ] Or maybe its just up to the player to do that.
+		- [ ] or maybe overheating your weapon too much has consequences, like barrel degradation leading to inaccuracy.
+		- [ ] Add the inaccuracy value to weapon instance resource.
+- [ ] Level management
+	- [ ] Missions
+	- [ ] Fail and Win states
+		- [ ] Identify the failure spectrum
+- [ ] Menus
+- [ ] SFX
+- [ ] Music System
+- [ ] Add the instance resources for the planes and weapons.
+# Optimization
+- [x] (Irrelevant) Hit-scan vs Projectile weapons.
+- [x] Try to decrease the max draw calls
+	- [x] The trail is the biggest culprit
+	- [x] Bullet queue freeing is also another one
+# Weekend Features
+- [ ] Use the artillery raycasts to detect if an enemy is within range. If they are farther than 2/3 of the effective range, draw a grey circle around them. If they are closer that 1/2 of the way, draw a green circle around them.  the green and grey circles signify the effectiveness of the shots you take. Or just decrease the effective range of the weapons.  or just do both.
+- [x] Add a target reset if they get too close to the target.

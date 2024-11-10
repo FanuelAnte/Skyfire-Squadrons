@@ -32,3 +32,25 @@ This is the other essential gameplay mechanic. This involves:
 
 > Aircraft carriers, submarines, AA guns, Navy Ships.
 
+> Bullets have owners to signify who shot them to allow for identification of who got the kill.
+
+> Use the parallax effect set at different values to determine the height of the plane instead of the scale of objects.
+
+### Questions
+1. What do I want the visual aspect of the game to look like?
+	1. environments
+	2. HUD
+	3. planes
+	4. Mobile Controls
+2. How much detail is required form the planes? What resolution fits best?
+3. What is affected by the resolution change? What are the gameplay effects? 
+4. How to bridge the gap between the maximum and minimum resolution.
+5. How to get the screen visibility of 1280 in 640?
+	1. Smaller plane sprites
+	2. just use 1280. (avoid)
+
+> Helldiver's 2 style key combinations to access special abilities.
+
+> Bombing runs in which you encounter exclusively ground targets and ground defense units such as Flak cannons and AA guns. Flak guns fire five shots consecutively and you are given a 1 second warning as to what the are of damage looks like around the Flak shots. Kinda like AOE effects in Hades, or the clay pots that shoot mines.
+
+> Wave-based strategies for both AI and Players (both PvP and PvE). You are allowed a certain amount of planes to take on a given mission and you can either launch all at once or launch them in a wave-like manner depending on your strategy. This may not always be the case for every mission and mission type. Launching may happen either from carriers or from army bases. If the army base of the carrier is attacked, the unlaunched planes may or may not be damaged based on RNG. 

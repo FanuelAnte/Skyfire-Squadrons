@@ -1,0 +1,585 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://Assets/Exports/HUD/D-Pad#1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Exports/HUD/D-Pad#1(p).png" type="Texture" id=2]
+[ext_resource path="res://Assets/Exports/HUD/D-Pad#2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Exports/HUD/D-Pad#2(p).png" type="Texture" id=4]
+[ext_resource path="res://Assets/Exports/HUD/ActionButton(p).png" type="Texture" id=5]
+[ext_resource path="res://Assets/Exports/HUD/ActionButton.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Themes/PrototypeTheme.tres" type="Theme" id=7]
+[ext_resource path="res://Scripts/HUD.gd" type="Script" id=8]
+[ext_resource path="res://Assets/Exports/HUD/HealthBarOver.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Exports/HUD/HealthBarProgress.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Exports/HUD/HealthBarUnder.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Exports/HUD/Guides.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/UI/MiniMap.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Exports/HUD/DragControls-S.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Exports/HUD/SliderGrabber-Mirror.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Exports/HUD/WeaponHeatIndicatorsProgress.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Exports/HUD/ZoomButton.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Exports/HUD/ZoomButton(p).png" type="Texture" id=18]
+[ext_resource path="res://Assets/Exports/HUD/PilotCBarOver.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Exports/HUD/PilotCBarUnder.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Exports/HUD/PilotCBarProgress.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Exports/HUD/DragControls-C.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Exports/HUD/WeaponHeatIndicatorsOver.png" type="Texture" id=23]
+
+[sub_resource type="Shader" id=4]
+code = "shader_type canvas_item;
+uniform vec2 player_position;
+uniform vec4 color : hint_color = vec4(0.305, 0.298, 0.341,1);
+
+uniform float MULTIPLIER = 0.56;
+uniform float SCALE = 0.5;
+uniform float SOFTNESS = 0.45;
+
+void fragment(){
+	float val = distance(vec2(UV.x , UV.y * MULTIPLIER), vec2(player_position.x , player_position.y * MULTIPLIER));
+	val = val / SCALE;
+	float vignette = smoothstep(0.2, SOFTNESS, val);
+	COLOR = vec4(color.rgb , vignette );
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
+shader_param/player_position = Vector2( 0.5, 0.5 )
+shader_param/color = Color( 0.0745098, 0.0901961, 0.152941, 1 )
+shader_param/MULTIPLIER = 0.7
+shader_param/SCALE = 1.0
+shader_param/SOFTNESS = 1.5
+
+[node name="HUD" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 7 )
+script = ExtResource( 8 )
+
+[node name="DPad" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -64.0
+margin_right = 214.0
+margin_bottom = -16.0
+custom_constants/separation = 2
+
+[node name="Control" type="Control" parent="DPad"]
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="TurnLeftMax" type="TouchScreenButton" parent="DPad/Control"]
+normal = ExtResource( 1 )
+pressed = ExtResource( 2 )
+passby_press = true
+action = "turn_left_max"
+
+[node name="Control3" type="Control" parent="DPad"]
+margin_left = 50.0
+margin_right = 98.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="TurnLeft" type="TouchScreenButton" parent="DPad/Control3"]
+normal = ExtResource( 3 )
+pressed = ExtResource( 4 )
+passby_press = true
+action = "turn_left"
+
+[node name="Control4" type="Control" parent="DPad"]
+margin_left = 100.0
+margin_right = 148.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="TurnRigh" type="TouchScreenButton" parent="DPad/Control4"]
+position = Vector2( 48, 48 )
+rotation = -3.14159
+normal = ExtResource( 3 )
+pressed = ExtResource( 4 )
+passby_press = true
+action = "turn_right"
+
+[node name="Control2" type="Control" parent="DPad"]
+margin_left = 150.0
+margin_right = 198.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="TurnRighMax" type="TouchScreenButton" parent="DPad/Control2"]
+position = Vector2( 48, 48 )
+rotation = -3.14159
+normal = ExtResource( 1 )
+pressed = ExtResource( 2 )
+passby_press = true
+action = "turn_right_max"
+
+[node name="DragControls" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -180.0
+margin_right = 256.0
+margin_bottom = 180.0
+
+[node name="DragS" type="Sprite" parent="DragControls"]
+unique_name_in_owner = true
+texture = ExtResource( 14 )
+
+[node name="DragC" type="Sprite" parent="DragControls/DragS"]
+unique_name_in_owner = true
+texture = ExtResource( 22 )
+
+[node name="DragAmountLabel" type="Label" parent="DragControls/DragS/DragC"]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -32.0
+text = "000"
+align = 1
+valign = 1
+
+[node name="ThrottleButton" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -144.0
+margin_top = -88.0
+margin_right = -96.0
+margin_bottom = -40.0
+
+[node name="Throttle" type="Control" parent="ThrottleButton"]
+unique_name_in_owner = true
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="Throttle" type="TouchScreenButton" parent="ThrottleButton/Throttle"]
+normal = ExtResource( 6 )
+pressed = ExtResource( 5 )
+passby_press = true
+action = "throttle"
+
+[node name="Label" type="Label" parent="ThrottleButton/Throttle"]
+margin_left = 2.0
+margin_top = 41.0
+margin_right = 8.0
+margin_bottom = 47.0
+text = "T"
+
+[node name="ActionButtons" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -88.0
+margin_top = -200.0
+margin_right = -40.0
+margin_bottom = -40.0
+custom_constants/separation = 8
+alignment = 2
+
+[node name="FirePrimary" type="Control" parent="ActionButtons"]
+unique_name_in_owner = true
+margin_right = 48.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="FirePrimary" type="TouchScreenButton" parent="ActionButtons/FirePrimary"]
+normal = ExtResource( 6 )
+pressed = ExtResource( 5 )
+passby_press = true
+action = "fire_primary"
+
+[node name="Label" type="Label" parent="ActionButtons/FirePrimary"]
+margin_left = 2.0
+margin_top = 41.0
+margin_right = 8.0
+margin_bottom = 47.0
+text = "A"
+
+[node name="FireSecondary" type="Control" parent="ActionButtons"]
+unique_name_in_owner = true
+margin_top = 56.0
+margin_right = 48.0
+margin_bottom = 104.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="FireSecondary" type="TouchScreenButton" parent="ActionButtons/FireSecondary"]
+normal = ExtResource( 6 )
+pressed = ExtResource( 5 )
+passby_press = true
+action = "fire_secondary"
+
+[node name="Label2" type="Label" parent="ActionButtons/FireSecondary"]
+margin_left = 2.0
+margin_top = 41.0
+margin_right = 8.0
+margin_bottom = 47.0
+text = "B"
+
+[node name="FireTertiary" type="Control" parent="ActionButtons"]
+unique_name_in_owner = true
+margin_top = 112.0
+margin_right = 48.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 48, 48 )
+
+[node name="FireTertiary" type="TouchScreenButton" parent="ActionButtons/FireTertiary"]
+normal = ExtResource( 6 )
+pressed = ExtResource( 5 )
+passby_press = true
+action = "fire_tertiary"
+
+[node name="Label3" type="Label" parent="ActionButtons/FireTertiary"]
+margin_left = 2.0
+margin_top = 41.0
+margin_right = 8.0
+margin_bottom = 47.0
+text = "C"
+
+[node name="ZoomButtons" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = 84.0
+margin_right = 120.0
+margin_bottom = 116.0
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Control5" type="Control" parent="ZoomButtons"]
+margin_right = 32.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="Zoom_min" type="TouchScreenButton" parent="ZoomButtons/Control5"]
+normal = ExtResource( 17 )
+pressed = ExtResource( 18 )
+action = "zoom_min"
+
+[node name="Control4" type="Control" parent="ZoomButtons"]
+margin_left = 52.0
+margin_right = 84.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="Zoom_two" type="TouchScreenButton" parent="ZoomButtons/Control4"]
+normal = ExtResource( 17 )
+pressed = ExtResource( 18 )
+action = "zoom_two"
+
+[node name="Control3" type="Control" parent="ZoomButtons"]
+margin_left = 104.0
+margin_right = 136.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="Zoom_mid" type="TouchScreenButton" parent="ZoomButtons/Control3"]
+normal = ExtResource( 17 )
+pressed = ExtResource( 18 )
+action = "zoom_mid"
+
+[node name="Control2" type="Control" parent="ZoomButtons"]
+margin_left = 156.0
+margin_right = 188.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="Zoom_four" type="TouchScreenButton" parent="ZoomButtons/Control2"]
+normal = ExtResource( 17 )
+pressed = ExtResource( 18 )
+action = "zoom_four"
+
+[node name="Control" type="Control" parent="ZoomButtons"]
+margin_left = 208.0
+margin_right = 240.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="Zoom_max" type="TouchScreenButton" parent="ZoomButtons/Control"]
+normal = ExtResource( 17 )
+pressed = ExtResource( 18 )
+action = "zoom_max"
+
+[node name="AmmoSection" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -184.0
+margin_top = 24.0
+margin_right = -24.0
+margin_bottom = 40.0
+
+[node name="PrimaryRow" type="HBoxContainer" parent="AmmoSection"]
+margin_right = 160.0
+margin_bottom = 6.0
+rect_min_size = Vector2( 160, 0 )
+alignment = 2
+
+[node name="PrimaryName" type="Label" parent="AmmoSection/PrimaryRow"]
+unique_name_in_owner = true
+margin_left = 114.0
+margin_right = 120.0
+margin_bottom = 6.0
+text = "-"
+align = 2
+
+[node name="PrimaryAmmo" type="Label" parent="AmmoSection/PrimaryRow"]
+unique_name_in_owner = true
+margin_left = 124.0
+margin_right = 160.0
+margin_bottom = 6.0
+text = "000000"
+align = 2
+
+[node name="SecondaryRow" type="HBoxContainer" parent="AmmoSection"]
+margin_top = 10.0
+margin_right = 160.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 160, 0 )
+alignment = 2
+
+[node name="SecondaryName" type="Label" parent="AmmoSection/SecondaryRow"]
+unique_name_in_owner = true
+margin_left = 114.0
+margin_right = 120.0
+margin_bottom = 6.0
+text = "-"
+align = 2
+
+[node name="SecondaryAmmo" type="Label" parent="AmmoSection/SecondaryRow"]
+unique_name_in_owner = true
+margin_left = 124.0
+margin_right = 160.0
+margin_bottom = 6.0
+text = "000000"
+align = 2
+
+[node name="TertiaryRow" type="HBoxContainer" parent="AmmoSection"]
+margin_top = 20.0
+margin_right = 160.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 160, 0 )
+alignment = 2
+
+[node name="TertiaryName" type="Label" parent="AmmoSection/TertiaryRow"]
+unique_name_in_owner = true
+margin_left = 114.0
+margin_right = 120.0
+margin_bottom = 6.0
+text = "-"
+align = 2
+
+[node name="TertiaryAmmo" type="Label" parent="AmmoSection/TertiaryRow"]
+unique_name_in_owner = true
+margin_left = 124.0
+margin_right = 160.0
+margin_bottom = 6.0
+text = "000000"
+align = 2
+
+[node name="FramerateRow" type="HBoxContainer" parent="AmmoSection"]
+margin_top = 30.0
+margin_right = 160.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 160, 0 )
+alignment = 2
+
+[node name="FramerateLbl" type="Label" parent="AmmoSection/FramerateRow"]
+unique_name_in_owner = true
+margin_left = 102.0
+margin_right = 120.0
+margin_bottom = 6.0
+text = "FPS"
+align = 2
+
+[node name="Framerate" type="Label" parent="AmmoSection/FramerateRow"]
+unique_name_in_owner = true
+margin_left = 124.0
+margin_right = 160.0
+margin_bottom = 6.0
+text = "000000"
+align = 2
+
+[node name="HealthBar" type="TextureProgress" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -32.0
+margin_right = 64.0
+margin_bottom = -24.0
+step = 0.1
+value = 100.0
+texture_under = ExtResource( 11 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
+
+[node name="ConsciousnessBar" type="TextureProgress" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -32.0
+margin_top = -22.0
+margin_right = 32.0
+margin_bottom = -16.0
+max_value = 10.0
+step = 0.1
+value = 10.0
+texture_under = ExtResource( 20 )
+texture_over = ExtResource( 19 )
+texture_progress = ExtResource( 21 )
+
+[node name="PrimaryHeatBar" type="TextureProgress" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -136.0
+margin_top = -68.0
+margin_right = -128.0
+margin_bottom = -4.0
+max_value = 1.0
+step = 0.001
+texture_over = ExtResource( 23 )
+texture_progress = ExtResource( 16 )
+fill_mode = 3
+
+[node name="SecondaryHeatBar" type="TextureProgress" parent="."]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 128.0
+margin_top = -68.0
+margin_right = 136.0
+margin_bottom = -4.0
+max_value = 1.0
+step = 0.001
+texture_over = ExtResource( 23 )
+texture_progress = ExtResource( 16 )
+fill_mode = 3
+
+[node name="MiniMap" parent="." instance=ExtResource( 13 )]
+unique_name_in_owner = true
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 88.0
+margin_bottom = 88.0
+
+[node name="CoordinatesLabel" type="Label" parent="."]
+unique_name_in_owner = true
+margin_left = 23.0
+margin_top = 96.0
+margin_right = 89.0
+margin_bottom = 102.0
+text = "X:000 Y:000"
+align = 1
+valign = 1
+
+[node name="Guides2" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -180.0
+margin_right = 320.0
+margin_bottom = 180.0
+
+[node name="Guides" type="TextureRect" parent="Guides2"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -180.0
+margin_right = 320.0
+margin_bottom = 180.0
+texture = ExtResource( 12 )
+
+[node name="FlightTimeLabel" type="Label" parent="Guides2"]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -152.0
+margin_top = -92.0
+margin_right = -112.0
+margin_bottom = -86.0
+text = "00:00"
+align = 2
+
+[node name="FuelSlider" type="VSlider" parent="Guides2"]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -112.0
+margin_top = -76.0
+margin_right = -96.0
+margin_bottom = 76.0
+step = 0.1
+editable = false
+
+[node name="GForceLabel" type="Label" parent="Guides2"]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 112.0
+margin_top = -92.0
+margin_right = 152.0
+margin_bottom = -86.0
+text = "0000"
+
+[node name="GForceSlider" type="VSlider" parent="Guides2"]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 96.0
+margin_top = -76.0
+margin_right = 112.0
+margin_bottom = 76.0
+custom_icons/grabber_disabled = ExtResource( 15 )
+custom_icons/grabber_highlight = ExtResource( 15 )
+custom_icons/grabber = ExtResource( 15 )
+max_value = 10.0
+step = 0.1
+editable = false
+
+[node name="PassOut" type="ColorRect" parent="."]
+unique_name_in_owner = true
+material = SubResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+input_pass_on_modal_close_click = false
+color = Color( 0, 0, 0, 0 )
+
+[connection signal="pressed" from="DPad/Control/TurnLeftMax" to="." method="_on_TurnLeftMax_pressed"]
+[connection signal="pressed" from="DPad/Control3/TurnLeft" to="." method="_on_TurnLeft_pressed"]
+[connection signal="pressed" from="DPad/Control4/TurnRigh" to="." method="_on_TurnRigh_pressed"]
+[connection signal="pressed" from="DPad/Control2/TurnRighMax" to="." method="_on_TurnRighMax_pressed"]

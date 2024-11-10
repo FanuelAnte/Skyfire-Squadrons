@@ -1,48 +1,22 @@
 extends KinematicBody2D
 
-var bullet_scene = preload("res://Scenes/Bullet.tscn")
-onready var position_2d = $Position2D
+onready var hud = $"%HUD"
 
-var wheel_base = 50
-var steering_angle = 10
+export (bool) var is_player = true
+export (Resource) var details
+export (Resource) var pilot
+export(NodePath) var target_node
+export(NodePath) var artillery_component
+export(NodePath) var health_component
+export(NodePath) var movement_component
+export(NodePath) var camera_component
 
-var velocity = Vector2.ZERO
-var steer_angle
+var entity_type = "plane"
 
-var speed = 500
+var targeted = false
+var is_dead = false
 
-func _ready():
-	pass
-
-func _physics_process(delta):
-	get_input()
-	calculate_steering(delta)
-	velocity = move_and_slide(velocity)
-
-func get_input():
-	var turn = 0
-	if Input.is_action_pressed("ui_right"):
-		turn += 1
-	if Input.is_action_pressed("ui_left"):
-		turn -= 1
-		
-	if Input.is_action_just_pressed("ui_accept"):
-		shoot()
-		
-	steer_angle = turn * deg2rad(steering_angle)
-	velocity = Vector2.ZERO
-	velocity = transform.x * speed
-
-func shoot():
-	var b = bullet_scene.instance()
-	owner.add_child(b)
-	b.transform = position_2d.global_transform
-
-func calculate_steering(delta):
-	var rear_wheel = position - transform.x * wheel_base / 2.0
-	var front_wheel = position + transform.x * wheel_base / 2.0
-	rear_wheel += velocity * delta
-	front_wheel += velocity.rotated(steer_angle) * delta
-	var new_heading = (front_wheel - rear_wheel).normalized()
-	velocity = new_heading * velocity.length()
-	rotation = new_heading.angle()
+func _process(delta):
+	if is_dead:
+		$Explosion.show()
+		$AnimationPlayer.play("explosion")

@@ -6,10 +6,58 @@
       {
         "id": "640079a5e98bd19f",
         "type": "tabs",
-        "dimension": 44.08163265306123,
+        "dimension": 47.85397138628516,
         "children": [
           {
-            "id": "81ce41c997a9ad16",
+            "id": "d731aa89cb2df78f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Planes.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c00403013edd95b8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "To-Dos.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "44cd4cfa8d79ff35",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Alignments.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d280c012181eb63f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Prototype 1, Single player.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d25f0a53fa5462bc",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -19,21 +67,46 @@
                 "source": false
               }
             }
-          }
-        ]
-      },
-      {
-        "id": "36b46cd1eba03758",
-        "type": "tabs",
-        "dimension": 55.91836734693877,
-        "children": [
+          },
           {
-            "id": "3e85ae842b9f054c",
+            "id": "b1c0b31a384d6c01",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Research.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "46ca96033062a5a9",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Final Design Document.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ],
+        "currentTab": 1
+      },
+      {
+        "id": "88c367d8434d9320",
+        "type": "tabs",
+        "dimension": 52.14602861371484,
+        "children": [
+          {
+            "id": "477474111ff4acb6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Prototype 1, Single player.md",
                 "mode": "source",
                 "source": false
               }
@@ -105,7 +178,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Final Design Document.md",
+                "file": "Prototype 1, Single player.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,7 +195,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Final Design Document.md",
+                "file": "Prototype 1, Single player.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -145,7 +218,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Final Design Document.md"
+                "file": "Prototype 1, Single player.md"
               }
             }
           }
@@ -166,9 +239,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3e85ae842b9f054c",
+  "active": "477474111ff4acb6",
   "lastOpenFiles": [
+    "2.md",
+    "Prototype 1, Single player.md",
+    "To-Dos.md",
+    "Research.md",
+    "Planes.md",
+    "Final Design Document.md",
+    "Code Cleanup.md",
+    "Alignments.md",
     "Unformatted Ideas.md",
-    "Final Design Document.md"
+    "WIN_20240105_00_19_26_Pro.jpg.import",
+    "WIN_20240105_00_19_26_Pro.jpg"
   ]
 }

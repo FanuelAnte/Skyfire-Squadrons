@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Fonts/BLOCKYV2.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Exports/HUD/SliderGrabber.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Exports/HUD/ThrottleToggle.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Exports/HUD/ThrottleToggle(p).png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 6
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[resource]
+CheckButton/colors/font_color = Color( 0.960784, 1, 0.909804, 1 )
+CheckButton/constants/check_vadjust = 0
+CheckButton/fonts/font = SubResource( 1 )
+CheckButton/icons/off = ExtResource( 3 )
+CheckButton/icons/off_disabled = null
+CheckButton/icons/on = ExtResource( 4 )
+CheckButton/icons/on_disabled = null
+Label/fonts/font = SubResource( 1 )
+VSlider/icons/grabber = ExtResource( 2 )
+VSlider/icons/grabber_disabled = ExtResource( 2 )
+VSlider/icons/grabber_highlight = ExtResource( 2 )
+VSlider/styles/grabber_area = SubResource( 3 )
+VSlider/styles/grabber_area_highlight = SubResource( 3 )
+VSlider/styles/slider = SubResource( 3 )

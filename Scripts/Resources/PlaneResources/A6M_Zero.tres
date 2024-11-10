@@ -1,0 +1,29 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Resources/plane_stats.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+plane_name = "A6M Zero"
+alignment = "Axis"
+country = "Japan"
+classification = "Light Fighter"
+max_primary_ammo_count = 2400
+max_secondary_ammo_count = 200
+max_tertiary_ammo_count = 0
+wingspan = 35
+g_force_increase_rate = 0.5
+g_force_decrease_rate = 5.0
+base_g_force_turn_factor = 1
+max_g_force_turn_factor = 5
+g_force_throttle_factor = 10
+coasting_duration_seconds = 60
+coasting_speed = 100
+cruise_speed = 250
+max_speed = 300
+bank_angle = 15
+max_bank_angle_factor = 1.5
+max_plane_health = 30.0
+max_fuel = 80.0
+fuel_burn_rate_standard = 0.1
+fuel_burn_rate_max = 0.2

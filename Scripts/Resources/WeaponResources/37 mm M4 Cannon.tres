@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Resources/weapon_stats.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, 4.5229, 0, 0, Vector2( 0.258494, 0.681604 ), 1.67108, 1.67108, 0, 0, Vector2( 0.982633, 1 ), 0.155407, 0.0, 0, 0 ]
+
+[resource]
+script = ExtResource( 1 )
+weapon_name = "37 mm"
+speed = 1500
+base_damage = 0.2
+max_damage = 2.0
+criticality_threshold = 3
+criticality_curve = SubResource( 1 )
+frame = 1
+delay_between_shots = 100
+effective_range = 128
+cooling_rate = 5.0
+heating_rate = 3.0
+heat_threshold = 30.0
+max_heat = 100.0

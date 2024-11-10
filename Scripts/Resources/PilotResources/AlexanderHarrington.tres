@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Resources/pilot_stats.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "Alexander Harrington"
+nickname = "Ace"
+min_turn_threshold = 60
+max_turn_threshold = 160
+unconsciousness_rate = 2.0
+consciousness_rate = 5.0
+unconsciousness_duration = 3.0
+search_timer_duration = 1.0
+dodge_duration = 1.0
+swerve_duration = 2.0
